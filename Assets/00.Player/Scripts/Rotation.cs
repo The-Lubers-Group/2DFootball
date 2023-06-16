@@ -23,14 +23,16 @@ public class Rotation : MonoBehaviour
         RotationArrow();
         Vector2 inputVector = gameInput.GetArrowRotationNormalized();
 
-        if (inputVector.y == 1) 
+        if (inputVector.y == 1 || zRotate > 90) 
         { 
             zRotate += inputVector.y; 
-        } 
-        else if (inputVector.y == -1) { 
-            zRotate -= inputVector.y; 
         }
-        Debug.Log(inputVector.y);
+        else if (inputVector.y == -1 || zRotate > 0) { 
+            zRotate += inputVector.y; 
+            //zRotate -= inputVector.y; 
+        }
+        RotationLimit();
+        // Debug.Log(inputVector.y);
     }
 
     void OnSetArrow() 
@@ -47,5 +49,17 @@ public class Rotation : MonoBehaviour
     {
         arrowIMG.rectTransform.eulerAngles = new Vector3(0,0, zRotate);
         //arrowIMG.rectTransform.eulerAngles = Vector3.zero;
+    }
+
+    void RotationLimit()
+    {
+        if (zRotate >= 90)
+        {
+            zRotate = 90;
+        }
+        if (zRotate <= 0)
+        {
+            zRotate = 0;
+        }
     }
 }

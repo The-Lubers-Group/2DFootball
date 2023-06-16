@@ -94,7 +94,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""e28112d0-75c5-4c8d-842a-44706356e3e9"",
-                    ""path"": ""<Mouse>/position/x"",
+                    ""path"": ""<Mouse>/position/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -105,7 +105,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""47d1f1e6-3013-4ba8-92b2-8e86fac881a3"",
-                    ""path"": ""<Mouse>/position/y"",
+                    ""path"": ""<Mouse>/position/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
