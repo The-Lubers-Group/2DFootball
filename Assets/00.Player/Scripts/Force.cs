@@ -13,6 +13,8 @@ public class Force : MonoBehaviour
     private float force = 1000f;
     private Rotation rotation;
 
+    public const float MAX_FORCE = 500f;
+
     [SerializeField] private InputAction action;
 
     private float holdDownStartTime;
@@ -28,12 +30,7 @@ public class Force : MonoBehaviour
 
     private void Gameinput_OnForceActions(object sender, System.EventArgs e)
     {
-        float holdDownTime = Time.time - holdDownStartTime;
-
-        float maxForceHoldDownTime = 2f;
-        float holdTimeNormalized = Mathf.Clamp01(holdDownTime / maxForceHoldDownTime);
-
-
+       
 
         //float x = force * Mathf.Cos(rotation.zRotate * Mathf.Deg2Rad);
         //float y = force * Mathf.Sin(rotation.zRotate * Mathf.Deg2Rad);
@@ -64,10 +61,24 @@ public class Force : MonoBehaviour
     {
         float x = force * Mathf.Cos(rotation.zRotate * Mathf.Deg2Rad);
         float y = force * Mathf.Sin(rotation.zRotate * Mathf.Deg2Rad);
-        
+
+        // ----------------------------------------------------------
+        float holdDownTime = Time.time - holdDownStartTime;
+
+        float maxForceHoldDownTime = 2f;
+        float holdTimeNormalized = Mathf.Clamp01(holdDownTime / maxForceHoldDownTime);
+        force = holdTimeNormalized * MAX_FORCE;
+
+
+
+
+
+         
+
         if (ball != null)
         {
             ball.AddForce(new Vector2(x, y));
+            //ball.AddForce(new int(force));
         }
     }
 }
