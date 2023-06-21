@@ -10,6 +10,7 @@ public class Rotation : MonoBehaviour
     [SerializeField] private GameInput gameInput;
 
     public float zRotate;
+    public bool Shoot = false;
 
 
     void Start()
@@ -33,6 +34,7 @@ public class Rotation : MonoBehaviour
         }
         RotationLimit();
         // Debug.Log(inputVector.y);
+
     }
 
     void OnSetArrow() 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -14,13 +15,16 @@ public class GameInput : MonoBehaviour
         playerInputActions = new PlayerInputAction();
         playerInputActions.Player.Enable();
 
-        playerInputActions.Player.Force.performed += Force_performed;
+        //playerInputActions.Player.Force.performed += Force_performed;
+
+        playerInputActions.Player.Force.started += Force_performed;
     }
 
     private void Force_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {
         OnForceActions?.Invoke(this, EventArgs.Empty);
-        Debug.Log(obj);
+        Debug.Log($"Action triggered!");
+        //Debug.Log(obj);
     }
 
     public Vector2 GetArrowRotationNormalized()

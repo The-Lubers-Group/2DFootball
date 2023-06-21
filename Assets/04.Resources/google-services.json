@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "41946249638",
+    "firebase_url": "https://restaurante-3e306.firebaseio.com",
+    "project_id": "restaurante-3e306",
+    "storage_bucket": "restaurante-3e306.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41946249638:android:972b8753a8ba097750f767",
+        "android_client_info": {
+          "package_name": "com.lps.sportgame"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41946249638-bqfmj4uog4h8d6bggotp3hjm2g6c3dvt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCslu1acgFa48v-kNYSRWdCziWGdFB8jk8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41946249638-bqfmj4uog4h8d6bggotp3hjm2g6c3dvt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
