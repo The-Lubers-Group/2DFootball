@@ -934,6 +934,7 @@ GameObject:
   - component: {fileID: 476867071}
   - component: {fileID: 476867073}
   - component: {fileID: 476867072}
+  - component: {fileID: 476867074}
   m_Layer: 5
   m_Name: PopUp_Win
   m_TagString: Untagged
@@ -961,7 +962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1366}
   m_SizeDelta: {x: 338, y: 452}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &476867072
@@ -1002,6 +1003,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476867070}
   m_CullTransparentMesh: 1
+--- !u!95 &476867074
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476867070}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f4d70cd4bc2e5d54c9408c0308c7aad0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &484395599
 GameObject:
   m_ObjectHideFlags: 0
@@ -3426,13 +3448,14 @@ GameObject:
   - component: {fileID: 1838114696}
   - component: {fileID: 1838114698}
   - component: {fileID: 1838114697}
+  - component: {fileID: 1838114699}
   m_Layer: 5
   m_Name: PopUp_Lose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1838114696
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3452,7 +3475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -1376}
   m_SizeDelta: {x: 338, y: 452}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1838114697
@@ -3493,6 +3516,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838114695}
   m_CullTransparentMesh: 1
+--- !u!95 &1838114699
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838114695}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 31c88e7b89df78e4a8c0cdfbc0cd9101, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1864214704
 GameObject:
   m_ObjectHideFlags: 0
