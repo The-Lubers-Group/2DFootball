@@ -21,24 +21,15 @@ An Android game application for  play football
 
 [<img src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png"
     alt="Get it on GitHub"
-    height="80">](https://github.com/vfsfitvnm/ViMusic/releases/latest)
+    height="80">](https://github.com/The-Lubers-Group/2DFootball/releases/latest)
 ## Features
-- Play (almost) any song or video from YouTube Music
-- Background playback
-- Cache audio chunks for offline playback
-- Search for songs, albums, artists videos and playlists
-- Bookmark artists and albums
-- Import playlists
-- Fetch, display and edit songs lyrics or synchronized lyrics
-- Local playlist management
-- Reorder songs in playlist or queue
+- 4 levels 
+- Background TiledMap
+- Cache save chunks for offline game
+- Player Score 
+- Skins Store
 - Light/Dark/Dynamic theme
-- Skip silence
-- Sleep timer
-- Audio normalization
-- Android Auto
 - Persistent queue
-- Open YouTube/YouTube Music links (`watch`, `playlist`, `channel`)
 - ...
 
 ## Version History
