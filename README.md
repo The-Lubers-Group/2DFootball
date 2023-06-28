@@ -4,7 +4,7 @@
     <p align="center">
     <a href="https://github.com/kaiogama18"><strong>kaiogama18</strong></a>
   </p>
-  <h2 align="center">SIGGRAPH 2023 Conference Proceedings</h2>
+  <h2 align="center">Lab Luby Game 2023 Unity Program</h2>
   <div align="center">
     <img src="DragGAN.gif", width="600">
   </div>
