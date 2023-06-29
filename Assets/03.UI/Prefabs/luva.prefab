@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2102162052043178312}
   - component: {fileID: 4600625926498998057}
   m_Layer: 0
-  m_Name: luva
+  m_Name: Luva
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
