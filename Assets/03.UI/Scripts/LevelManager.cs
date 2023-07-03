@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.SceneManagement;
 
 /*
  * LevelManager -- Criar e gerir a tela de seleção de nível
@@ -34,11 +34,28 @@ public class LevelManager : MonoBehaviour
             //Instanciando à classe BtnLevel
             BtnLevel btnNew = newBtn.GetComponent<BtnLevel>();
             btnNew.levelTextBTN.text = level.levelName;
+
+            if(PlayerPrefs.GetInt("Level"+ btnNew.levelTextBTN.text) == 1)
+            {
+                level.unlock = 1;
+                level.isEnable = true;
+            }
+
             btnNew.unlockBTN = level.unlock;
             btnNew.GetComponent<Button>().interactable = level.isEnable;
 
-            newBtn.transform.SetParent(localBtn, false);
+            // Quando disparar o evento click no btn - chama o método ClickLevel()
+            btnNew.GetComponent<Button>().onClick.AddListener(() => ClickLevel("Level"+btnNew.levelTextBTN.text));
+
+            newBtn.transform.SetParent(localBtn,false);
+ 
         }
+    }
+
+    // Função responsável por enviar o jogador para o nível selecionado
+    void ClickLevel(string level)
+    {
+        SceneManager.LoadScene(level);
     }
 
     void Start()

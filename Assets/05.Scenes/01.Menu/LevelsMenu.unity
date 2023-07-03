@@ -785,13 +785,16 @@ MonoBehaviour:
   localBtn: {fileID: 1192751109}
   levelsList:
   - levelName: 1
-    enable: 1
+    isEnable: 1
     unlock: 0
   - levelName: 2
-    enable: 0
+    isEnable: 1
     unlock: 0
   - levelName: 3
-    enable: 0
+    isEnable: 1
+    unlock: 0
+  - levelName: 4
+    isEnable: 1
     unlock: 0
 --- !u!4 &1278412661
 Transform:
