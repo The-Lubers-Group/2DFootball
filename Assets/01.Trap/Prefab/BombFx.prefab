@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5829854094081169814}
   - component: {fileID: 6902913183716003343}
   - component: {fileID: 1064222932841892508}
+  - component: {fileID: 3963083750752479426}
   m_Layer: 0
   m_Name: BombFx
   m_TagString: Untagged
@@ -163,3 +164,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3963083750752479426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1536845589078882701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6299278581707e145996e687acaf2a60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
