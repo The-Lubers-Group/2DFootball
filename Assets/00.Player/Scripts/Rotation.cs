@@ -15,8 +15,8 @@ public class Rotation : MonoBehaviour
 
     void Start()
     {
-        OnSetBall();
-        OnSetArrow();
+       OnSetBall();
+       OnSetArrow();
     }
 
     void Update()
@@ -36,17 +36,22 @@ public class Rotation : MonoBehaviour
         // Debug.Log(inputVector.y);
 
     }
-
-    void OnSetArrow() 
-    { 
-        arrowIMG.rectTransform.localPosition = posStart.position;
-    }
-
     void OnSetBall()
     {
         this.gameObject.transform.position = posStart.position;
+        //Debug.Log(this.gameObject.transform.position);
+
     }
 
+
+    void OnSetArrow() 
+    {
+        arrowIMG.rectTransform.localPosition = posStart.position;
+        //arrowIMG.rectTransform.localPosition = this.gameObject.transform.position;
+        Debug.Log(arrowIMG.rectTransform.localPosition);
+    }
+
+    
     void RotationArrow()
     {
         arrowIMG.rectTransform.eulerAngles = new Vector3(0,0, zRotate);
