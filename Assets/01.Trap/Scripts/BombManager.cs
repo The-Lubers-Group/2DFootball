@@ -21,7 +21,6 @@ public class BombManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("ball"))
         {
-            Debug.Log("asdasda");
             Instantiate(bombFX, new Vector2 (this.transform.position.x, this.transform.position.y), Quaternion.identity);
         }
     }

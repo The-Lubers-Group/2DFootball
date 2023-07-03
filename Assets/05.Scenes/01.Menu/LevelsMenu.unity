@@ -788,13 +788,13 @@ MonoBehaviour:
     isEnable: 1
     unlock: 0
   - levelName: 2
-    isEnable: 1
+    isEnable: 0
     unlock: 0
   - levelName: 3
-    isEnable: 1
+    isEnable: 0
     unlock: 0
   - levelName: 4
-    isEnable: 1
+    isEnable: 0
     unlock: 0
 --- !u!4 &1278412661
 Transform:
