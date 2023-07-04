@@ -13,15 +13,15 @@ public class Ball : MonoBehaviour
     const string TAG_PS = "StartPoint";
 
     // Rotation
-    private Transform posStart;
+    //private Transform posStart;
     private GameObject arrowGo;
     private GameInput gameInput;
 
     public float zRotate;
-    public bool Shoot = false;
+    public bool shoot = false;
 
     // Force 
-    private float force = 0;
+    [SerializeField] private float force = 0;
     private GameObject arrow2IMG;
 
     private Rigidbody2D ball;
@@ -31,16 +31,18 @@ public class Ball : MonoBehaviour
         gameInput = GameObject.Find(TAG_GI).GetComponent<GameInput>();
         arrowGo = GameObject.Find(TAG_ARROW);
         arrow2IMG = arrowGo.transform.GetChild(0).gameObject;
-        arrowGo.SetActive(true);
+        //arrowGo.SetActive(true);
+        arrowGo.GetComponent<Image>().enabled = false;
+        arrow2IMG.GetComponent<Image>().enabled = false;
     }
 
     void Start()
     {
-        //Posicionar a bola no ponto de inicio
-        posStart = GameObject.Find(TAG_PS).GetComponent<Transform>();
-
         // Force
-        gameInput.OnForceActions += Gameinput_OnForceActions;
+        //gameInput.OnForcePerformed += Gameinput_OnForcePerformed;
+        gameInput.OnForceStarted += Gameinput_OnForceStarted;
+        gameInput.OnForcePerformed += Gameinput_OnForcePerformed;
+
         ball = GetComponent<Rigidbody2D>();
     }
 
@@ -85,25 +87,49 @@ public class Ball : MonoBehaviour
         {
             zRotate = 0;
         }
+        
     }
 
-     //private void Gameinput_OnForceActions(object sender, System.EventArgs e)
-    private void Gameinput_OnForceActions(object sender, GameInput.OnEventArgs e)
+    private void Gameinput_OnForceStarted(object sender, System.EventArgs e)
     {
-        if (ball != null)
+        arrowGo.GetComponent<Image>().enabled = true;
+        arrow2IMG.GetComponent<Image>().enabled = true;
+
+        ArrowUpdateForce();
+
+    }
+
+    //private void Gameinput_OnForceActions(object sender, System.EventArgs e)
+    private void Gameinput_OnForcePerformed(object sender, System.EventArgs e)
+    {
+
+        //Destroy(this.gameObject);
+        //GameManager.instance.ballInGame -= 1;
+
+        // Verifica se o jogador tem mais tentativas
+        if (GameManager.instance.kick == 0)
         {
-            ForceControl(e.currentTime);
-            AudioManager.instance.SongsFXPlay(1);
-            ApplyForce();
+            if (ball != null)
+            {
+                AudioManager.instance.SongsFXPlay(1);
+                ApplyForce();
+            }
+            force = 0;
+            //GameManager.instance.kick = 1;
+            arrowGo.GetComponent<Image>().enabled = false;
+            arrow2IMG.GetComponent<Image>().enabled = false;
+            arrow2IMG.GetComponent<Image>().fillAmount = 0;
         }
+
     }
 
     // Função - Que define a força total do chute de acordo com o tempo que o botão de força foi pressionado
     void ApplyForce()
     {
+        
         float x = force * Mathf.Cos(zRotate * Mathf.Deg2Rad);
         float y = force * Mathf.Sin(zRotate * Mathf.Deg2Rad);
-
+        
         if (ball != null)
         {
             ball.AddForce(new Vector2(x, y));
@@ -112,9 +138,11 @@ public class Ball : MonoBehaviour
     }
 
     // Função - Que define a animação de carregar a flecha de acordo com o tempo que o botão de força foi pressionado
-    void ForceControl(float currentTime)
+    void ArrowUpdateForce()
     {
-        arrow2IMG.GetComponent<Image>().fillAmount += 0.08f * currentTime;
+        //arrow2IMG.GetComponent<Image>().fillAmount += 0.08f * Time.deltaTime;
+        arrow2IMG.GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
         force = arrow2IMG.GetComponent<Image>().fillAmount * 1000;
+
     }
 }

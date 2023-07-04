@@ -6,24 +6,25 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
-    public static GameManager Instance;
-
-    //Ball Variables
-    [SerializeField]private GameObject ball;
-    private int BallNum = 2;
-    private bool IsBallDeath = false;
-    private int BallInGame = 0;
-    private Transform pos;
     const string TAG = "StartPoint";
 
+    public static GameManager instance;
+
+    //Ball Variables
+    private Transform pos;
+    private int ballNum = 2;
+    private bool isBallDeath = false;
+    [SerializeField] private GameObject ball;
+
+    public int kick = 0;
+    public int ballInGame = 0;
 
     private void Awake()
     {
         // Certifique-se de que não há duplicatas e mantenha os dados quando mudar de fases
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this;
+            instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
         else
@@ -55,10 +56,11 @@ public class GameManager : MonoBehaviour
 
     void BallBorn()
     {
-        if(BallNum > 0 && BallInGame == 0 )
+        if(ballNum > 0 && ballInGame == 0 )
         {
             Instantiate(ball, new Vector2(pos.position.x, pos.position.y), Quaternion.identity);
-            BallInGame++;
+            ballInGame++;
+            kick = 0;
         }
     }
 }

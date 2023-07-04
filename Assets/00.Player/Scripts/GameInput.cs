@@ -3,44 +3,44 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class GameInput : MonoBehaviour
 {
-    public event EventHandler<OnEventArgs> OnForceActions;
-    public class OnEventArgs : EventArgs
-    {
-        public float currentTime;
-    }
+    public event EventHandler OnForceStarted;
+    public event EventHandler OnForcePerformed;
 
     private PlayerInputAction playerInputActions;
-    public float currentTime;
-    public float TimeBettweenSpawns = 0.25f;
 
     private void Awake()
     {
         playerInputActions = new PlayerInputAction();
         playerInputActions.Player.Enable();
-        playerInputActions.Player.BallForce.performed += Force_performed;
     }
 
     void Update()
     {
-        // Verificar se o botão de force está precionado
-        currentTime += Time.deltaTime;
-        bool isForceKeyHeld = playerInputActions.Player.BallForce.ReadValue<float>() > 0.1f;
-        if (isForceKeyHeld )
+        if (playerInputActions.Player.BallForce.IsPressed())
         {
-            if (currentTime > TimeBettweenSpawns) currentTime = 0;
+            Force_started();
         }
-        
+        if (playerInputActions.Player.BallForce.WasReleasedThisFrame() )
+        {
+            Force_performed();
+        }
     }
 
-    //Quando o jogador soltar o botão - envia um evento com o valor do tempo que o botão foi pressionado
-    private void Force_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    //Quando o jogador clicar no botão 
+    private void Force_started()
     {
-        OnForceActions?.Invoke(this, new OnEventArgs { currentTime  = currentTime });
-        currentTime = 0;
+        OnForceStarted?.Invoke(this, EventArgs.Empty);
+    }
+
+    //Quando o jogador soltar o botão - Envia o tempo que o botão ficou pressionado
+    private void Force_performed()
+    {
+        OnForcePerformed?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 GetArrowRotationNormalized()

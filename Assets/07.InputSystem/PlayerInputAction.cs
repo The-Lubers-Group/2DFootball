@@ -39,17 +39,8 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""BallForce"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""db8ccb1a-8105-42ea-b98f-1771f9cc512f"",
+                    ""id"": ""1b65fa8a-e674-47fa-b7af-2842d483e978"",
                     ""expectedControlType"": ""Axis"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""BallForceOld"",
-                    ""type"": ""Button"",
-                    ""id"": ""da8bb6c9-8fb8-4df5-afa6-9bb83dfed1ef"",
-                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -135,9 +126,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""cdc15553-bf15-4fb9-b790-07ff00c4e838"",
+                    ""id"": ""a1c766a0-4c6f-4a50-8431-13cccb3c869d"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press(behavior=1)"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""BallForce"",
@@ -146,7 +137,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""b6b114fb-6bb8-4292-ac1d-5aa6989510f1"",
+                    ""id"": ""49efb762-eb86-48b1-9952-2d2eabe73e12"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -154,39 +145,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""BallForce"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""0d0dee66-9647-488d-998e-0a1ce9569f37"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""BallForceOld"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""372459a7-84d9-44db-a236-9e0103f076db"",
-                    ""path"": ""<Mouse>/position/y"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""BallForceOld"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""42207a63-eade-4fc7-8b08-c7b1b215a1cb"",
-                    ""path"": ""<Mouse>/position/x"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""BallForceOld"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -197,7 +155,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_ArrowRotation = m_Player.FindAction("ArrowRotation", throwIfNotFound: true);
         m_Player_BallForce = m_Player.FindAction("BallForce", throwIfNotFound: true);
-        m_Player_BallForceOld = m_Player.FindAction("BallForceOld", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -261,14 +218,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_ArrowRotation;
     private readonly InputAction m_Player_BallForce;
-    private readonly InputAction m_Player_BallForceOld;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
         public PlayerActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @ArrowRotation => m_Wrapper.m_Player_ArrowRotation;
         public InputAction @BallForce => m_Wrapper.m_Player_BallForce;
-        public InputAction @BallForceOld => m_Wrapper.m_Player_BallForceOld;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -284,9 +239,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @BallForce.started += instance.OnBallForce;
             @BallForce.performed += instance.OnBallForce;
             @BallForce.canceled += instance.OnBallForce;
-            @BallForceOld.started += instance.OnBallForceOld;
-            @BallForceOld.performed += instance.OnBallForceOld;
-            @BallForceOld.canceled += instance.OnBallForceOld;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -297,9 +249,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @BallForce.started -= instance.OnBallForce;
             @BallForce.performed -= instance.OnBallForce;
             @BallForce.canceled -= instance.OnBallForce;
-            @BallForceOld.started -= instance.OnBallForceOld;
-            @BallForceOld.performed -= instance.OnBallForceOld;
-            @BallForceOld.canceled -= instance.OnBallForceOld;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -321,6 +270,5 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     {
         void OnArrowRotation(InputAction.CallbackContext context);
         void OnBallForce(InputAction.CallbackContext context);
-        void OnBallForceOld(InputAction.CallbackContext context);
     }
 }

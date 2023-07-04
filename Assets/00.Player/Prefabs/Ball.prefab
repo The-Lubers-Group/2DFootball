@@ -11,12 +11,11 @@ GameObject:
   - component: {fileID: 7888918122496786561}
   - component: {fileID: 3358993031181052560}
   - component: {fileID: 1970586812472706692}
-  - component: {fileID: 3532379426379864954}
   - component: {fileID: 2313389061527154070}
   m_Layer: 0
   m_Name: Ball
   m_TagString: ball
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -98,31 +97,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3532379426379864954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956383154222617521}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a6371fb799583e448242fb2022b7136, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  arrowImg: {fileID: 0}
-  flt_force: 0
-  action:
-    m_Name: Action
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7f55b1bc-d3b3-4727-8441-7a14f8f6d5dd
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  gameinput: {fileID: 0}
-  force: 0
 --- !u!114 &2313389061527154070
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,12 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aef1e6653d594794087916bf5d667253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  posStart: {fileID: 0}
-  arrowIMG: {fileID: 0}
-  arrowGo: {fileID: 0}
-  gameInput: {fileID: 0}
   zRotate: 0
-  Shoot: 0
+  shoot: 0
 --- !u!1 &6591125092461827439
 GameObject:
   m_ObjectHideFlags: 0
