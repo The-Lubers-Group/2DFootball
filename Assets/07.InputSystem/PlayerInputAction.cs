@@ -28,7 +28,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             ""id"": ""1fbc4a2d-cffc-4fe9-ac0d-63f78279e558"",
             ""actions"": [
                 {
-                    ""name"": ""Arrow Rotation"",
+                    ""name"": ""ArrowRotation"",
                     ""type"": ""Value"",
                     ""id"": ""6b609d48-1563-47ee-9326-73e7daa3818f"",
                     ""expectedControlType"": ""Vector2"",
@@ -37,9 +37,18 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Force"",
-                    ""type"": ""Button"",
+                    ""name"": ""BallForce"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""db8ccb1a-8105-42ea-b98f-1771f9cc512f"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BallForceOld"",
+                    ""type"": ""Button"",
+                    ""id"": ""da8bb6c9-8fb8-4df5-afa6-9bb83dfed1ef"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -54,7 +63,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Arrow Rotation"",
+                    ""action"": ""ArrowRotation"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -65,7 +74,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Arrow Rotation"",
+                    ""action"": ""ArrowRotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -76,53 +85,108 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Arrow Rotation"",
+                    ""action"": ""ArrowRotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""89cb3021-e3bf-47f7-85d5-c7745a27142e"",
+                    ""name"": ""UPDown Rotate"",
+                    ""id"": ""7b23f0af-0347-44f1-be56-001a29ab1123"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Arrow Rotation"",
+                    ""action"": ""ArrowRotation"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
-                    ""id"": ""e28112d0-75c5-4c8d-842a-44706356e3e9"",
-                    ""path"": ""<Mouse>/position/y"",
+                    ""name"": ""Up"",
+                    ""id"": ""267542bb-e75f-4edb-935d-ea76515312e1"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Arrow Rotation"",
+                    ""action"": ""ArrowRotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
-                    ""id"": ""47d1f1e6-3013-4ba8-92b2-8e86fac881a3"",
-                    ""path"": ""<Mouse>/position/x"",
+                    ""name"": ""Down"",
+                    ""id"": ""7c4e5962-d8b3-41fe-9544-daf06146f25d"",
+                    ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Arrow Rotation"",
+                    ""action"": ""ArrowRotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
-                    ""id"": ""846fe2cf-3c73-431f-8be5-25e64f4040c2"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""id"": ""856b0369-a456-4f21-8d65-215423ef4abf"",
+                    ""path"": ""<Gamepad>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Force"",
+                    ""action"": ""ArrowRotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cdc15553-bf15-4fb9-b790-07ff00c4e838"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BallForce"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6b114fb-6bb8-4292-ac1d-5aa6989510f1"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BallForce"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""0d0dee66-9647-488d-998e-0a1ce9569f37"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BallForceOld"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""372459a7-84d9-44db-a236-9e0103f076db"",
+                    ""path"": ""<Mouse>/position/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BallForceOld"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""42207a63-eade-4fc7-8b08-c7b1b215a1cb"",
+                    ""path"": ""<Mouse>/position/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BallForceOld"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -131,8 +195,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_ArrowRotation = m_Player.FindAction("Arrow Rotation", throwIfNotFound: true);
-        m_Player_Force = m_Player.FindAction("Force", throwIfNotFound: true);
+        m_Player_ArrowRotation = m_Player.FindAction("ArrowRotation", throwIfNotFound: true);
+        m_Player_BallForce = m_Player.FindAction("BallForce", throwIfNotFound: true);
+        m_Player_BallForceOld = m_Player.FindAction("BallForceOld", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -195,13 +260,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_ArrowRotation;
-    private readonly InputAction m_Player_Force;
+    private readonly InputAction m_Player_BallForce;
+    private readonly InputAction m_Player_BallForceOld;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
         public PlayerActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @ArrowRotation => m_Wrapper.m_Player_ArrowRotation;
-        public InputAction @Force => m_Wrapper.m_Player_Force;
+        public InputAction @BallForce => m_Wrapper.m_Player_BallForce;
+        public InputAction @BallForceOld => m_Wrapper.m_Player_BallForceOld;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -214,9 +281,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @ArrowRotation.started += instance.OnArrowRotation;
             @ArrowRotation.performed += instance.OnArrowRotation;
             @ArrowRotation.canceled += instance.OnArrowRotation;
-            @Force.started += instance.OnForce;
-            @Force.performed += instance.OnForce;
-            @Force.canceled += instance.OnForce;
+            @BallForce.started += instance.OnBallForce;
+            @BallForce.performed += instance.OnBallForce;
+            @BallForce.canceled += instance.OnBallForce;
+            @BallForceOld.started += instance.OnBallForceOld;
+            @BallForceOld.performed += instance.OnBallForceOld;
+            @BallForceOld.canceled += instance.OnBallForceOld;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -224,9 +294,12 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @ArrowRotation.started -= instance.OnArrowRotation;
             @ArrowRotation.performed -= instance.OnArrowRotation;
             @ArrowRotation.canceled -= instance.OnArrowRotation;
-            @Force.started -= instance.OnForce;
-            @Force.performed -= instance.OnForce;
-            @Force.canceled -= instance.OnForce;
+            @BallForce.started -= instance.OnBallForce;
+            @BallForce.performed -= instance.OnBallForce;
+            @BallForce.canceled -= instance.OnBallForce;
+            @BallForceOld.started -= instance.OnBallForceOld;
+            @BallForceOld.performed -= instance.OnBallForceOld;
+            @BallForceOld.canceled -= instance.OnBallForceOld;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -247,6 +320,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnArrowRotation(InputAction.CallbackContext context);
-        void OnForce(InputAction.CallbackContext context);
+        void OnBallForce(InputAction.CallbackContext context);
+        void OnBallForceOld(InputAction.CallbackContext context);
     }
 }

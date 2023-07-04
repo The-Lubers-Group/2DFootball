@@ -8,54 +8,53 @@ using UnityEngine.UI;
 
 public class Force : MonoBehaviour
 {
-    [SerializeField] private GameInput gameinput;
-    private Rigidbody2D ball;
-    private float force = 1000f;
-    private Rotation rotation;
-
-    public const float MAX_FORCE = 500f;
-
+    [SerializeField] private Image arrowImg;
+    [SerializeField] private float flt_force;
     [SerializeField] private InputAction action;
+    //[SerializeField] private GameInput gameinput;
+    [SerializeField] private GameInput gameinput;
+    [SerializeField] private float force = 0; //1000f
 
+    private Rigidbody2D ball;
+    private Rotation rotation;
     private float holdDownStartTime;
-
+    public const float MAX_FORCE = 500f;
 
     // Start is called before the first frame update
     void Start()
     {
         gameinput.OnForceActions += Gameinput_OnForceActions;
+        //gameinput.OnForceActions += Gameinput_OnForceActions<GameInput>();
         ball = GetComponent<Rigidbody2D>();
         rotation = GetComponent<Rotation>();
     }
 
-    private void Gameinput_OnForceActions(object sender, System.EventArgs e)
-    {
-       
-
-        //float x = force * Mathf.Cos(rotation.zRotate * Mathf.Deg2Rad);
-        //float y = force * Mathf.Sin(rotation.zRotate * Mathf.Deg2Rad);
-
-
-        if (ball != null)
-        {
-
-            ApplyForce();
-        }
-        /*
-         if (ball != null)
-        {
-            ball.AddForce(new Vector2(x, y));
-        }
-        
-         */
-
-    }
 
     // Update is called once per frame 
     void Update()
     {
         holdDownStartTime = Time.time;
+        //Timer();
     }
+
+    //private void Gameinput_OnForceActions(object sender, System.EventArgs e)
+    private void Gameinput_OnForceActions(object sender, GameInput.OnEventArgs e)
+    {
+        //Debug.Log("Gameinput_OnForceActions ----> " + e.currentTime);
+        if (ball != null)
+        {
+            ForceControl(e.currentTime);
+            ApplyForce();
+        }
+    }
+
+    void ForceControl(float currentTime)
+    {
+        //arrowImg.fillAmount += 1 * Time.deltaTime;
+        arrowImg.fillAmount += 1 * currentTime;
+        force = arrowImg.fillAmount * 1000;
+    }
+
 
     void ApplyForce()
     {
@@ -63,17 +62,11 @@ public class Force : MonoBehaviour
         float y = force * Mathf.Sin(rotation.zRotate * Mathf.Deg2Rad);
 
         // ----------------------------------------------------------
-        float holdDownTime = Time.time - holdDownStartTime;
+        //float holdDownTime = Time.time - holdDownStartTime;
 
-        float maxForceHoldDownTime = 2f;
-        float holdTimeNormalized = Mathf.Clamp01(holdDownTime / maxForceHoldDownTime);
-        force = holdTimeNormalized * MAX_FORCE;
-
-
-
-
-
-         
+        //float maxForceHoldDownTime = 2f;
+        //float holdTimeNormalized = Mathf.Clamp01(holdDownTime / maxForceHoldDownTime);
+        //force = holdTimeNormalized * MAX_FORCE;
 
         if (ball != null)
         {
@@ -81,4 +74,7 @@ public class Force : MonoBehaviour
             //ball.AddForce(new int(force));
         }
     }
+
+   
+
 }

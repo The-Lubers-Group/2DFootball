@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class Rotation : MonoBehaviour
 {
     [SerializeField] private Transform posStart;
     [SerializeField] private Image arrowIMG;
+    [SerializeField] private GameObject arrowGo;
     [SerializeField] private GameInput gameInput;
 
     public float zRotate;
@@ -16,46 +18,39 @@ public class Rotation : MonoBehaviour
     void Start()
     {
        OnSetBall();
-       OnSetArrow();
     }
 
     void Update()
     {
         RotationArrow();
-        Vector2 inputVector = gameInput.GetArrowRotationNormalized();
 
+        Vector2 inputVector = gameInput.GetArrowRotationNormalized();
         if (inputVector.y == 1 || zRotate > 90) 
         { 
             zRotate += inputVector.y; 
         }
         else if (inputVector.y == -1 || zRotate > 0) { 
             zRotate += inputVector.y; 
-            //zRotate -= inputVector.y; 
         }
+     
         RotationLimit();
-        // Debug.Log(inputVector.y);
-
+        OnSetArrow();
     }
     void OnSetBall()
     {
         this.gameObject.transform.position = posStart.position;
-        //Debug.Log(this.gameObject.transform.position);
-
     }
 
-
+    // Posicionar a Img da Seta
     void OnSetArrow() 
     {
-        arrowIMG.rectTransform.localPosition = posStart.position;
-        //arrowIMG.rectTransform.localPosition = this.gameObject.transform.position;
-        Debug.Log(arrowIMG.rectTransform.localPosition);
+        arrowIMG.rectTransform.localPosition = transform.position;
     }
 
-    
+    // Controla a rotação usando comandos do teclado
     void RotationArrow()
     {
         arrowIMG.rectTransform.eulerAngles = new Vector3(0,0, zRotate);
-        //arrowIMG.rectTransform.eulerAngles = Vector3.zero;
     }
 
     void RotationLimit()
@@ -69,4 +64,10 @@ public class Rotation : MonoBehaviour
             zRotate = 0;
         }
     }
+
+    void OnMouseDown()
+    {
+        arrowGo.SetActive(true);
+    }
+
 }
