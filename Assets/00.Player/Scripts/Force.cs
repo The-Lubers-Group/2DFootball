@@ -11,9 +11,8 @@ public class Force : MonoBehaviour
     [SerializeField] private Image arrowImg;
     [SerializeField] private float flt_force;
     [SerializeField] private InputAction action;
-    //[SerializeField] private GameInput gameinput;
     [SerializeField] private GameInput gameinput;
-    [SerializeField] private float force = 0; //1000f
+    [SerializeField] private float force = 0;
 
     private Rigidbody2D ball;
     private Rotation rotation;
@@ -29,18 +28,15 @@ public class Force : MonoBehaviour
         rotation = GetComponent<Rotation>();
     }
 
-
     // Update is called once per frame 
     void Update()
     {
         holdDownStartTime = Time.time;
-        //Timer();
     }
 
     //private void Gameinput_OnForceActions(object sender, System.EventArgs e)
     private void Gameinput_OnForceActions(object sender, GameInput.OnEventArgs e)
     {
-        //Debug.Log("Gameinput_OnForceActions ----> " + e.currentTime);
         if (ball != null)
         {
             ForceControl(e.currentTime);
@@ -48,14 +44,15 @@ public class Force : MonoBehaviour
         }
     }
 
+
+    // Função - Que define a animação de carregar a flecha de acordo com o tempo que o botão de força foi pressionado
     void ForceControl(float currentTime)
     {
-        //arrowImg.fillAmount += 1 * Time.deltaTime;
         arrowImg.fillAmount += 1 * currentTime;
         force = arrowImg.fillAmount * 1000;
     }
 
-
+    // Função - Que define a força total do chute de acordo com o tempo que o botão de força foi pressionado
     void ApplyForce()
     {
         float x = force * Mathf.Cos(rotation.zRotate * Mathf.Deg2Rad);
@@ -74,7 +71,4 @@ public class Force : MonoBehaviour
             //ball.AddForce(new int(force));
         }
     }
-
-   
-
 }
