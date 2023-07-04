@@ -14,6 +14,7 @@ public class CoinsControl : MonoBehaviour
         if(collision.gameObject.CompareTag(TAG))
         {
             ScoreManager.instance.CollectCoins(NCOIN);
+            AudioManager.instance.SongsFXPlay(0);
             Destroy(this.gameObject);
         }
     }

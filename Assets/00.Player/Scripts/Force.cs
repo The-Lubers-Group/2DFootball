@@ -40,6 +40,7 @@ public class Force : MonoBehaviour
         if (ball != null)
         {
             ForceControl(e.currentTime);
+            AudioManager.instance.SongsFXPlay(1);
             ApplyForce();
         }
     }
