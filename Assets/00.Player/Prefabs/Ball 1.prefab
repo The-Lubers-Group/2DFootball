@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7888918122496786561}
   - component: {fileID: 3358993031181052560}
   - component: {fileID: 1970586812472706692}
+  - component: {fileID: 6321039610806202899}
   - component: {fileID: 3532379426379864954}
-  - component: {fileID: 2313389061527154070}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: Ball 1
   m_TagString: ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7616833933492281997}
   m_Father: {fileID: 0}
@@ -98,6 +98,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6321039610806202899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956383154222617521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2244a997f01400a43945911b28e0eaef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posStart: {fileID: 0}
+  arrowIMG: {fileID: 0}
+  gameInput: {fileID: 0}
+  zRotate: 0
+  Shoot: 0
 --- !u!114 &3532379426379864954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,13 +122,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956383154222617521}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a6371fb799583e448242fb2022b7136, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowImg: {fileID: 0}
-  flt_force: 0
+  gameinput: {fileID: 0}
   action:
     m_Name: Action
     m_Type: 0
@@ -121,26 +137,6 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
-  gameinput: {fileID: 0}
-  force: 0
---- !u!114 &2313389061527154070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956383154222617521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aef1e6653d594794087916bf5d667253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  posStart: {fileID: 0}
-  arrowIMG: {fileID: 0}
-  arrowGo: {fileID: 0}
-  gameInput: {fileID: 0}
-  zRotate: 0
-  Shoot: 0
 --- !u!1 &6591125092461827439
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +147,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7616833933492281997}
   - component: {fileID: 5627304512500430242}
-  - component: {fileID: 7073208769232479576}
   m_Layer: 0
   m_Name: ball01
   m_TagString: ball
@@ -168,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 6591125092461827439}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7888918122496786561}
@@ -214,9 +209,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3deb7ebf7ddf4f2478379a4e483aeb46, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -226,24 +221,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7073208769232479576
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6591125092461827439}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 741a599af2b4c014c83783701df3480e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0

@@ -11,7 +11,7 @@ public class Force : MonoBehaviour
     [SerializeField] private Image arrowImg;
     [SerializeField] private float flt_force;
     [SerializeField] private InputAction action;
-    [SerializeField] private GameInput gameinput;
+    [SerializeField] private GameInput gameInput;
     [SerializeField] private float force = 0;
 
     private Rigidbody2D ball;
@@ -22,7 +22,7 @@ public class Force : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameinput.OnForceActions += Gameinput_OnForceActions;
+        gameInput.OnForceActions += Gameinput_OnForceActions;
         //gameinput.OnForceActions += Gameinput_OnForceActions<GameInput>();
         ball = GetComponent<Rigidbody2D>();
         rotation = GetComponent<Rotation>();
