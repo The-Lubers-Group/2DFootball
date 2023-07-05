@@ -98,7 +98,6 @@ public class UIManager : MonoBehaviour
     void LoadData()
     {
 
-
         if (IdLevel.instance.level != ID_MENU_LEVEL)
         {
             pointsUI = GameObject.Find(TAG_COIN).GetComponent<TMP_Text>();
