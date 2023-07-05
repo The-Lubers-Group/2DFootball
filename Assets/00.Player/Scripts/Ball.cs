@@ -16,6 +16,7 @@ public class Ball : MonoBehaviour
     const string TAG_RW = "RightWall";
 
     const string TAG_HIT = "hit";
+    const string TAG_WIN = "win";
 
     // Rotation
     //private Transform posStart;
@@ -169,14 +170,20 @@ public class Ball : MonoBehaviour
         }
     }
 
-    // Se a bola atingir uma armadilha, ela sofre dano.
+    // Função para verificar se a bola colidiu
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Se a bola atingir uma armadilha, ela sofre dano.
         if (collision.gameObject.CompareTag(TAG_HIT))
         {
             Destroy(this.gameObject);
             GameManager.instance.ballInGame -= 1;
             GameManager.instance.ballNum -= 1;
+        }
+
+        if (collision.gameObject.CompareTag(TAG_WIN))
+        {
+            GameManager.instance.win = true;
         }
     }
 }

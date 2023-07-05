@@ -9,13 +9,18 @@ public class UIManager : MonoBehaviour
 {
     const string TAG_COIN = "NCoins";
     const string TAG_BALL = "NBall";
+
     const string TAG_LOSE_PANEL = "PopUp_Lose";
+    const string TAG_Win_PANEL = "PopUp_Win";
+    const string TAG_PAUSE_PANEL = "PopUP_Pause";
     
     public static UIManager instance;
     private TMP_Text pointsUI;
     private TMP_Text ballUI;
 
     private GameObject losePanel;
+    private GameObject winPanel;
+    private GameObject pausePanel;
 
 
     private void Awake()
@@ -42,6 +47,8 @@ public class UIManager : MonoBehaviour
 
         // Menus
         losePanel = GameObject.Find(TAG_LOSE_PANEL);
+        winPanel = GameObject.Find(TAG_Win_PANEL);
+        //pausePanel = GameObject.Find(TAG_PAUSE_PANEL);
     }
 
     // Atualizar o UItexto com a quantidade do moeda do jogador 
@@ -57,6 +64,12 @@ public class UIManager : MonoBehaviour
         losePanel.SetActive(true);
     }
 
+    // O Player ganhou a fase
+    public void WinGameUI()
+    {
+        winPanel.SetActive(true);
+    }
+
     // Ativa e desliga o Panel de Game Over
     void SwitchPanel()
     {
@@ -68,5 +81,7 @@ public class UIManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.001f);
         losePanel.SetActive(false);
+        winPanel.SetActive(false);
     }
 }
+

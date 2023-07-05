@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public Transform pos;
     public int ballNum = 2;
     public int ballInGame = 0;
+    public bool win;
 
     private void Awake()
     {
@@ -58,6 +59,11 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
 
+        if(win == true)
+        {
+            WinGame();
+        }
+
     }
 
     // Cria o objeto bola no jogo
@@ -75,5 +81,12 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         UIManager.instance.GameOverUI();
+    }
+
+    // O Player ganhou a fase
+    void WinGame()
+    {
+        UIManager.instance.WinGameUI();
+
     }
 }
