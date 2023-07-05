@@ -5,12 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class IdLevel : MonoBehaviour
 {
-    public int level;
+    const int ID_MENU_LEVEL = 4;
+    public int level = -1;
+
+    [SerializeField] private GameObject uIManagerGO;
+    [SerializeField] private GameObject gameManagerGO;
+
     public static IdLevel instance;
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
@@ -19,13 +24,19 @@ public class IdLevel : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //SceneManager.sceneLoaded += checkLevel;
-        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
+
+        SceneManager.sceneLoaded += checkLevel;
     }
 
     // Verificar o nível
-    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
+    private void checkLevel(Scene arg0, LoadSceneMode modo)
     {
         level = SceneManager.GetActiveScene().buildIndex;
+
+        if(level != ID_MENU_LEVEL)
+        {
+            Instantiate(uIManagerGO);
+            Instantiate(gameManagerGO);
+        }
     }
 }

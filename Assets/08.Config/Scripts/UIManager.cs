@@ -34,8 +34,6 @@ public class UIManager : MonoBehaviour
     const string TAG_WIN_BTN_RETRY = "BtnRetryWin";
     const string TAG_WIN_BTN_MENU = "BtnMenuWin";
 
-    
-
     // Tag das Animações
     const string TAG_PAUSE_ANIM = "PauseAnim";
     const string TAG_PAUSE_CLOSE_ANIM = "PauseCloseAnim";
@@ -88,12 +86,20 @@ public class UIManager : MonoBehaviour
         }
 
         SceneManager.sceneLoaded += Load;
+        LoadData();
     }
 
     //Passar o método e procurar o objeto TEXT com o nome NCoins
     void Load(Scene scene, LoadSceneMode mode)
     {
-        if(IdLevel.instance.level != ID_MENU_LEVEL)
+        LoadData();
+    }
+
+    void LoadData()
+    {
+
+
+        if (IdLevel.instance.level != ID_MENU_LEVEL)
         {
             pointsUI = GameObject.Find(TAG_COIN).GetComponent<TMP_Text>();
             ballUI = GameObject.Find(TAG_BALL).GetComponent<TMP_Text>();
@@ -116,7 +122,7 @@ public class UIManager : MonoBehaviour
             retryBtnWin = GameObject.Find(TAG_WIN_BTN_RETRY).GetComponent<Button>();
             levelBtnWin = GameObject.Find(TAG_WIN_BTN_MENU).GetComponent<Button>();
 
-            
+
 
             pauseBtn.onClick.AddListener(Pause);
             pauseBtnReturn.onClick.AddListener(PauseReturn);

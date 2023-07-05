@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     //Ball Variables
-    private bool isBallDeath = false;
+    //private bool isBallDeath = false;
     [SerializeField] private GameObject ball;
 
     public int kick = 1;
@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     public bool win;
 
     // Index das Fases
-    //public int idLevel;
     public bool beginGame;
 
     private void Awake()
@@ -40,14 +39,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
         SceneManager.sceneLoaded += Load;
+        pos = GameObject.Find(TAG).GetComponent<Transform>();
     }
 
     //Passar o método e procurar o objeto TEXT com o nome NCoins
     void Load(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log(IdLevel.instance.level);
-        if(IdLevel.instance.level != ID_MENU_LEVEL)
+        if (IdLevel.instance.level != ID_MENU_LEVEL)
         {
             pos = GameObject.Find(TAG).GetComponent<Transform>();
             StartGame();
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartGame();
         ScoreManager.instance.GameStartScoreM();
     }
 

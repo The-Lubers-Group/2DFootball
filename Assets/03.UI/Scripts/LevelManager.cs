@@ -11,8 +11,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
 
-    const string UI_MANAGER = "UIManager";
-    const string GAME_MANAGER = "GameManager";
+    const string UI_MANAGER = "UIManager(Clone)";
+    const string GAME_MANAGER = "GameManager(Clone)";
 
     //Classe que contém as informações básicas do objeto level
     [System.Serializable]public class Level

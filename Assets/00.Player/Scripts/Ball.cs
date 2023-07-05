@@ -184,6 +184,9 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.CompareTag(TAG_WIN))
         {
             GameManager.instance.win = true;
+            int temp = IdLevel.instance.level + 1;
+            temp++;
+            PlayerPrefs.SetInt("Level"+temp,1);
         }
     }
 }
