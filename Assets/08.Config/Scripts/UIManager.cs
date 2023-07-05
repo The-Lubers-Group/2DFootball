@@ -8,7 +8,9 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     // O índice do menu de seleção de fases  
-    const int ID_MENU_LEVEL = 4;
+    const int ID_START_LEVEL = 0;
+    const int ID_MENU_LEVEL = 1;
+    const int ID_STORE_LEVEL = 2;
 
     // Tag dos labels
     const string TAG_COIN = "NCoins";
@@ -98,7 +100,7 @@ public class UIManager : MonoBehaviour
     void LoadData()
     {
 
-        if (IdLevel.instance.level != ID_MENU_LEVEL)
+        if (IdLevel.instance.level != ID_START_LEVEL && IdLevel.instance.level != ID_MENU_LEVEL && IdLevel.instance.level != ID_STORE_LEVEL)
         {
             pointsUI = GameObject.Find(TAG_COIN).GetComponent<TMP_Text>();
             ballUI = GameObject.Find(TAG_BALL).GetComponent<TMP_Text>();

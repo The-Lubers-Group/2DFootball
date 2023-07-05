@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Store : MonoBehaviour
 {
     // Id do menu da loja
-    const int ID_STORE = 5;
+    const int ID_STORE = 2;
     public void StoreGo()
     {
         SceneManager.LoadScene(ID_STORE);

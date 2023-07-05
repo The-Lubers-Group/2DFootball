@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class StartManager : MonoBehaviour
 {
     // Id do menu da loja
-    const int ID_MENU = 4;
+    const int ID_MENU = 1;
     const string TAG = "BtnPlay";
 
     public void PlayGame()

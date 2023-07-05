@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     const string TAG = "StartPoint";
 
     // O índice do menu de seleção de fases  
-    const int ID_MENU_LEVEL = 4;
+    const int ID_MENU_LEVEL = 1;
 
     public static GameManager instance;
 
