@@ -46,10 +46,10 @@ public class GameManager : MonoBehaviour
     //Passar o método e procurar o objeto TEXT com o nome NCoins
     void Load(Scene scene, LoadSceneMode mode)
     {
+        Debug.Log(IdLevel.instance.level);
         if(IdLevel.instance.level != ID_MENU_LEVEL)
         {
             pos = GameObject.Find(TAG).GetComponent<Transform>();
-            //idLevel = SceneManager.GetActiveScene().buildIndex;
             StartGame();
         }
     }

@@ -11,6 +11,9 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
 
+    const string UI_MANAGER = "UIManager";
+    const string GAME_MANAGER = "GameManager";
+
     //Classe que contém as informações básicas do objeto level
     [System.Serializable]public class Level
     {
@@ -56,6 +59,12 @@ public class LevelManager : MonoBehaviour
     void ClickLevel(string level)
     {
         SceneManager.LoadScene(level);
+    }
+
+    private void Awake()
+    {
+        Destroy(GameObject.Find(UI_MANAGER));
+        Destroy(GameObject.Find(GAME_MANAGER));
     }
 
     void Start()

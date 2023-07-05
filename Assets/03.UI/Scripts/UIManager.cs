@@ -22,10 +22,19 @@ public class UIManager : MonoBehaviour
     // Tag dos botões de Pause
     const string TAG_PAUSE_BTN = "PauseButton";
     const string TAG_PAUSE_BTN_RETURN = "BtnResume";
+    const string TAG_PAUSE_BTN_MENU = "BtnMenuPause";
+    const string TAG_PAUSE_BTN_RETRY = "BtnRetryPause";
 
     // Tag dos botões de Game Over
-    const string TAG_GAMEOVER_BTN_MENU = "BtnMenu";
-    const string TAG_GAMEOVER_BTN_RETRY = "BtnRetry";
+    const string TAG_GAMEOVER_BTN_MENU = "BtnMenuGameOver";
+    const string TAG_GAMEOVER_BTN_RETRY = "BtnRetryGameOver";
+
+    // Tag dos botões de WIN
+    const string TAG_WIN_BTN_NEXT = "BtnNextWin";
+    const string TAG_WIN_BTN_RETRY = "BtnRetryWin";
+    const string TAG_WIN_BTN_MENU = "BtnMenuWin";
+
+    
 
     // Tag das Animações
     const string TAG_PAUSE_ANIM = "PauseAnim";
@@ -48,10 +57,17 @@ public class UIManager : MonoBehaviour
     // Button ref pause
     private Button pauseBtn;
     private Button pauseBtnReturn;
+    private Button menuBtnPause;
+    private Button retryBtnPause;
 
     // Button ref btn game over
-    private Button menuBtn;
-    private Button retryBtn;
+    private Button menuBtnGameOver;
+    private Button retryBtnGameOver;
+
+    // Button ref btn win
+    private Button levelBtnWin;
+    private Button retryBtnWin;
+    private Button nextBtnWin;
 
     // Calcular a quantidade de moeda do jogador
     public int coinsNumBefore;
@@ -90,16 +106,29 @@ public class UIManager : MonoBehaviour
             // Botões
             pauseBtn = GameObject.Find(TAG_PAUSE_BTN).GetComponent<Button>();
             pauseBtnReturn = GameObject.Find(TAG_PAUSE_BTN_RETURN).GetComponent<Button>();
+            menuBtnPause = GameObject.Find(TAG_PAUSE_BTN_MENU).GetComponent<Button>();
+            retryBtnPause = GameObject.Find(TAG_PAUSE_BTN_RETRY).GetComponent<Button>();
 
-            menuBtn = GameObject.Find(TAG_GAMEOVER_BTN_MENU).GetComponent<Button>();
-            retryBtn = GameObject.Find(TAG_GAMEOVER_BTN_RETRY).GetComponent<Button>();
+            menuBtnGameOver = GameObject.Find(TAG_GAMEOVER_BTN_MENU).GetComponent<Button>();
+            retryBtnGameOver = GameObject.Find(TAG_GAMEOVER_BTN_RETRY).GetComponent<Button>();
 
+            nextBtnWin = GameObject.Find(TAG_WIN_BTN_NEXT).GetComponent<Button>();
+            retryBtnWin = GameObject.Find(TAG_WIN_BTN_RETRY).GetComponent<Button>();
+            levelBtnWin = GameObject.Find(TAG_WIN_BTN_MENU).GetComponent<Button>();
+
+            
 
             pauseBtn.onClick.AddListener(Pause);
             pauseBtnReturn.onClick.AddListener(PauseReturn);
+            retryBtnPause.onClick.AddListener(PlayAgain);
+            menuBtnPause.onClick.AddListener(Levels);
 
-            retryBtn.onClick.AddListener(PlayAgain);
-            menuBtn.onClick.AddListener(Levels); 
+            retryBtnGameOver.onClick.AddListener(PlayAgain);
+            menuBtnGameOver.onClick.AddListener(Levels);
+
+            nextBtnWin.onClick.AddListener(NextLevel);
+            retryBtnWin.onClick.AddListener(PlayAgain);
+            levelBtnWin.onClick.AddListener(Levels);
 
             coinsNumBefore = PlayerPrefs.GetInt(TAG_PLAYER_COINS);
         }
@@ -173,7 +202,7 @@ public class UIManager : MonoBehaviour
     // Jogar novamente - a fase usando o id 
     void PlayAgain()
     {
-        if(!GameManager.instance.win)
+        if(GameManager.instance.win == false)
         {
             SceneManager.LoadScene(IdLevel.instance.level);
             // Se o jogador morrer, as moedas que pegou na fase são descontadas.
@@ -191,7 +220,7 @@ public class UIManager : MonoBehaviour
     // Chama o menu de seleção de fases  
     void Levels()
     {
-        if(!GameManager.instance.win)
+        if(GameManager.instance.win == false)
         {
             coinsNumResult = coinsNumAfter - coinsNumBefore;
             ScoreManager.instance.LoseCoins(coinsNumResult);
@@ -201,6 +230,17 @@ public class UIManager : MonoBehaviour
         else
         {
             coinsNumResult = 0;
+            SceneManager.LoadScene(ID_MENU_LEVEL);
+        }
+    }
+
+    // Proxima fase
+    void NextLevel()
+    {
+        if(GameManager.instance.win)
+        {
+            int temp = IdLevel.instance.level +1;
+            SceneManager.LoadScene (temp);
         }
     }
 }

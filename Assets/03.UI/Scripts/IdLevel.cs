@@ -19,10 +19,12 @@ public class IdLevel : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        //SceneManager.sceneLoaded += checkLevel;
+        SceneManager.sceneLoaded += SceneManager_sceneLoaded;
     }
 
     // Verificar o nível
-    void checkLevel(Scene scene, LoadSceneMode mode)
+    private void SceneManager_sceneLoaded(Scene arg0, LoadSceneMode arg1)
     {
         level = SceneManager.GetActiveScene().buildIndex;
     }
