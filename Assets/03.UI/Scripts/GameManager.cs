@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    // Tag da posição de iniciar
     const string TAG = "StartPoint";
+
+    // O índice do menu de seleção de fases  
+    const int ID_MENU_LEVEL = 4;
 
     public static GameManager instance;
 
@@ -21,7 +25,7 @@ public class GameManager : MonoBehaviour
     public bool win;
 
     // Index das Fases
-    public int idLevel;
+    //public int idLevel;
     public bool beginGame;
 
     private void Awake()
@@ -42,9 +46,12 @@ public class GameManager : MonoBehaviour
     //Passar o método e procurar o objeto TEXT com o nome NCoins
     void Load(Scene scene, LoadSceneMode mode)
     {
-        pos = GameObject.Find(TAG).GetComponent<Transform>();
-        idLevel = SceneManager.GetActiveScene().buildIndex;
-        StartGame();
+        if(IdLevel.instance.level != ID_MENU_LEVEL)
+        {
+            pos = GameObject.Find(TAG).GetComponent<Transform>();
+            //idLevel = SceneManager.GetActiveScene().buildIndex;
+            StartGame();
+        }
     }
 
     // Start is called before the first frame update
@@ -103,6 +110,7 @@ public class GameManager : MonoBehaviour
         beginGame = true;
         ballNum = 2;
         ballInGame = 0;
+        win = false;
         UIManager.instance.StartUI();
     }
 }

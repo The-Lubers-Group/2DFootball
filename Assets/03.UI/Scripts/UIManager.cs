@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    // O índice do menu de seleção de fases  
+    const int ID_MENU_LEVEL = 4;
+
     // Tag dos labels
     const string TAG_COIN = "NCoins";
     const string TAG_BALL = "NBall";
@@ -74,28 +77,32 @@ public class UIManager : MonoBehaviour
     //Passar o método e procurar o objeto TEXT com o nome NCoins
     void Load(Scene scene, LoadSceneMode mode)
     {
-        pointsUI = GameObject.Find(TAG_COIN).GetComponent<TMP_Text> ();
-        ballUI = GameObject.Find(TAG_BALL).GetComponent<TMP_Text> ();
+        if(IdLevel.instance.level != ID_MENU_LEVEL)
+        {
+            pointsUI = GameObject.Find(TAG_COIN).GetComponent<TMP_Text>();
+            ballUI = GameObject.Find(TAG_BALL).GetComponent<TMP_Text>();
 
-        // Menus
-        winPanel = GameObject.Find(TAG_Win_PANEL);
-        losePanel = GameObject.Find(TAG_LOSE_PANEL);
-        pausePanel = GameObject.Find(TAG_PAUSE_PANEL);
+            // Menus
+            winPanel = GameObject.Find(TAG_Win_PANEL);
+            losePanel = GameObject.Find(TAG_LOSE_PANEL);
+            pausePanel = GameObject.Find(TAG_PAUSE_PANEL);
 
-        // Botões
-        pauseBtn = GameObject.Find(TAG_PAUSE_BTN).GetComponent<Button>();
-        pauseBtnReturn = GameObject.Find(TAG_PAUSE_BTN_RETURN).GetComponent<Button>();
+            // Botões
+            pauseBtn = GameObject.Find(TAG_PAUSE_BTN).GetComponent<Button>();
+            pauseBtnReturn = GameObject.Find(TAG_PAUSE_BTN_RETURN).GetComponent<Button>();
 
-        menuBtn = GameObject.Find(TAG_GAMEOVER_BTN_MENU).GetComponent<Button>();
-        retryBtn = GameObject.Find(TAG_GAMEOVER_BTN_RETRY).GetComponent<Button>();
+            menuBtn = GameObject.Find(TAG_GAMEOVER_BTN_MENU).GetComponent<Button>();
+            retryBtn = GameObject.Find(TAG_GAMEOVER_BTN_RETRY).GetComponent<Button>();
 
 
-        pauseBtn.onClick.AddListener (Pause);
-        pauseBtnReturn.onClick.AddListener (PauseReturn);
+            pauseBtn.onClick.AddListener(Pause);
+            pauseBtnReturn.onClick.AddListener(PauseReturn);
 
-        retryBtn.onClick.AddListener(PlayAgain);
+            retryBtn.onClick.AddListener(PlayAgain);
+            menuBtn.onClick.AddListener(Levels); 
 
-        coinsNumBefore = PlayerPrefs.GetInt(TAG_PLAYER_COINS);
+            coinsNumBefore = PlayerPrefs.GetInt(TAG_PLAYER_COINS);
+        }
     }
 
     public void StartUI()
@@ -166,12 +173,35 @@ public class UIManager : MonoBehaviour
     // Jogar novamente - a fase usando o id 
     void PlayAgain()
     {
-        SceneManager.LoadScene(GameManager.instance.idLevel);
+        if(!GameManager.instance.win)
+        {
+            SceneManager.LoadScene(IdLevel.instance.level);
+            // Se o jogador morrer, as moedas que pegou na fase são descontadas.
+            coinsNumResult = coinsNumAfter - coinsNumBefore;
+            ScoreManager.instance.LoseCoins(coinsNumResult);
+            coinsNumResult = 0;
+        } else
+        {
+            // Se o jogador vencer, ele apenas recarrega a fase.
+            SceneManager.LoadScene(IdLevel.instance.level);
+            coinsNumResult = 0;
+        }
+    }
 
-        // Se o jogador morrer, as moedas que pegou na fase são descontadas.
-        coinsNumResult = coinsNumAfter - coinsNumBefore;
-        ScoreManager.instance.LoseCoins(coinsNumResult);
-        coinsNumResult = 0;
+    // Chama o menu de seleção de fases  
+    void Levels()
+    {
+        if(!GameManager.instance.win)
+        {
+            coinsNumResult = coinsNumAfter - coinsNumBefore;
+            ScoreManager.instance.LoseCoins(coinsNumResult);
+            coinsNumResult = 0;
+            SceneManager.LoadScene(ID_MENU_LEVEL);
+        }
+        else
+        {
+            coinsNumResult = 0;
+        }
     }
 }
 
