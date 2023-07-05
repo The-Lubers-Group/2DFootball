@@ -57,8 +57,6 @@ public class Ball : MonoBehaviour
 
     void Update()
     {
-        
-        
         RotationArrow();
         
         Vector2 inputVector = gameInput.GetArrowRotationNormalized();
@@ -115,8 +113,6 @@ public class Ball : MonoBehaviour
     //private void Gameinput_OnForceActions(object sender, System.EventArgs e)
     private void Gameinput_OnForcePerformed(object sender, System.EventArgs e)
     {
-        //GameManager.instance.ballInGame -= 1;
-        
         // Verifica se o jogador tem mais tentativas
         if (GameManager.instance.kick == 0)
         {
@@ -137,7 +133,6 @@ public class Ball : MonoBehaviour
     // Função - Que define a força total do chute de acordo com o tempo que o botão de força foi pressionado
     void ApplyForce()
     {
-        
         float x = force * Mathf.Cos(zRotate * Mathf.Deg2Rad);
         float y = force * Mathf.Sin(zRotate * Mathf.Deg2Rad);
         
@@ -145,7 +140,6 @@ public class Ball : MonoBehaviour
         {
             ball.AddForce(new Vector2(x, y));
         }
-
     }
 
     // Função - Que define a animação de carregar a flecha de acordo com o tempo que o botão de força foi pressionado
@@ -160,16 +154,18 @@ public class Ball : MonoBehaviour
     // Limite de tela se a bola passar a bola é destruída
     void Wall()
     {
-        if(this.gameObject.transform.position.x < leftWall.position.x )
+        if(this.gameObject.transform.position.x > rightWall.position.x )
         {
             Destroy(this.gameObject);
             GameManager.instance.ballInGame -= 1;
+            GameManager.instance.ballNum -= 1;
         }
 
-        if (this.gameObject.transform.position.x > rightWall.position.x)
+        if (this.gameObject.transform.position.x < leftWall.position.x)
         {
             Destroy(this.gameObject);
             GameManager.instance.ballInGame -= 1;
+            GameManager.instance.ballNum -= 1;
         }
     }
 
@@ -179,6 +175,7 @@ public class Ball : MonoBehaviour
         {
             Destroy(this.gameObject);
             GameManager.instance.ballInGame -= 1;
+            GameManager.instance.ballNum -= 1;
         }
     }
 }

@@ -11,12 +11,12 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     //Ball Variables
-    private int ballNum = 2;
     private bool isBallDeath = false;
     [SerializeField] private GameObject ball;
 
-    public int kick = 0;
+    public int kick = 1;
     public Transform pos;
+    public int ballNum = 2;
     public int ballInGame = 0;
 
     private void Awake()

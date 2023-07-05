@@ -7,9 +7,12 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    const string TAG_COIN = "NCoins";
+    const string TAG_BALL = "NBall";
+    
     public static UIManager Instance;
-    public TMP_Text pointsUI;
-    const string TAG = "NCoins";
+    private TMP_Text pointsUI;
+    private TMP_Text ballUI;
 
 
     private void Awake()
@@ -31,12 +34,14 @@ public class UIManager : MonoBehaviour
     //Passar o método e procurar o objeto TEXT com o nome NCoins
     void Load(Scene scene, LoadSceneMode mode)
     {
-        pointsUI = GameObject.Find(TAG).GetComponent<TMP_Text> ();
+        pointsUI = GameObject.Find(TAG_COIN).GetComponent<TMP_Text> ();
+        ballUI = GameObject.Find(TAG_BALL).GetComponent<TMP_Text> ();
     }
 
     // Atualizar o UItexto com a quantidade do moeda do jogador 
     public void UpdateUI()
     {
         pointsUI.text = ScoreManager.instance.coins.ToString();
+        ballUI.text = GameManager.instance.ballNum.ToString();
     }
 }
