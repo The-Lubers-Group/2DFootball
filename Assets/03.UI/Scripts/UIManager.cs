@@ -13,10 +13,14 @@ public class UIManager : MonoBehaviour
     const string TAG_LOSE_PANEL = "PopUp_Lose";
     const string TAG_Win_PANEL = "PopUp_Win";
     const string TAG_PAUSE_PANEL = "PopUP_Pause";
-    
+    const string TAG_PAUSE_BTN = "PauseButton";
+
+    const string TAG_PAUSE_ANIM = "PauseAnim";
+
     public static UIManager instance;
     private TMP_Text pointsUI;
     private TMP_Text ballUI;
+    private Button pauseBtn;
 
     private GameObject losePanel;
     private GameObject winPanel;
@@ -36,7 +40,7 @@ public class UIManager : MonoBehaviour
         }
 
         SceneManager.sceneLoaded += Load;
-        SwitchPanel();
+        //SwitchPanel();
     }
 
     //Passar o método e procurar o objeto TEXT com o nome NCoins
@@ -46,9 +50,14 @@ public class UIManager : MonoBehaviour
         ballUI = GameObject.Find(TAG_BALL).GetComponent<TMP_Text> ();
 
         // Menus
-        losePanel = GameObject.Find(TAG_LOSE_PANEL);
         winPanel = GameObject.Find(TAG_Win_PANEL);
-        //pausePanel = GameObject.Find(TAG_PAUSE_PANEL);
+        losePanel = GameObject.Find(TAG_LOSE_PANEL);
+        pausePanel = GameObject.Find(TAG_PAUSE_PANEL);
+        pauseBtn = GameObject.Find(TAG_PAUSE_BTN).GetComponent<Button>();
+        SwitchPanel();
+
+        pauseBtn.onClick.AddListener (Pause);
+
     }
 
     // Atualizar o UItexto com a quantidade do moeda do jogador 
@@ -76,12 +85,21 @@ public class UIManager : MonoBehaviour
         StartCoroutine(temp());
     }
 
+    // Pausa o jogo e chama o menu de pause
+    void Pause()
+    {
+        pausePanel.SetActive(true);
+        pausePanel.GetComponent<Animator>().Play(TAG_PAUSE_ANIM);
+        Time.timeScale = 0;
+    }
+
     // Desativar o panel depois de pegar as informções
     IEnumerator temp()
     {
         yield return new WaitForSeconds(0.001f);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
+        pausePanel.SetActive(false);
     }
 }
 
