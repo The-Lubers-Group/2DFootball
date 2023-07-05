@@ -100,6 +100,7 @@ public class Ball : MonoBehaviour
         }
     }
 
+    // Enquanto o botão de força esticar pressionado - carrega o medidor de força
     private void Gameinput_OnForceStarted(object sender, System.EventArgs e)
     {
         if (GameManager.instance.kick == 0)
@@ -109,8 +110,7 @@ public class Ball : MonoBehaviour
             ArrowUpdateForce();
         }
     }
-
-    //private void Gameinput_OnForceActions(object sender, System.EventArgs e)
+    // Enquanto o botão é liberado - chute a bola
     private void Gameinput_OnForcePerformed(object sender, System.EventArgs e)
     {
         // Verifica se o jogador tem mais tentativas
@@ -169,6 +169,7 @@ public class Ball : MonoBehaviour
         }
     }
 
+    // Se a bola atingir uma armadilha, ela sofre dano.
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(TAG_HIT))

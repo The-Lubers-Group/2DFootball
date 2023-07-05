@@ -50,10 +50,17 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         ScoreManager.instance.UpdateScore();
-        UIManager.Instance.UpdateUI();
+        UIManager.instance.UpdateUI();
         BallBorn();
+
+        if(ballNum <= 0)
+        {
+            GameOver();
+        }
+
     }
 
+    // Cria o objeto bola no jogo
     void BallBorn()
     {
         if(ballNum > 0 && ballInGame == 0 )
@@ -62,5 +69,11 @@ public class GameManager : MonoBehaviour
             ballInGame++;
             kick = 0;
         }
+    }
+    
+    // O Player morreu e chama o panel de Game Over
+    void GameOver()
+    {
+        UIManager.instance.GameOverUI();
     }
 }
