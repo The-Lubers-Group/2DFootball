@@ -20,6 +20,10 @@ public class GameManager : MonoBehaviour
     public int ballInGame = 0;
     public bool win;
 
+    // Index das Fases
+    public int idLevel;
+    public bool beginGame;
+
     private void Awake()
     {
         // Certifique-se de que não há duplicatas e mantenha os dados quando mudar de fases
@@ -39,6 +43,8 @@ public class GameManager : MonoBehaviour
     void Load(Scene scene, LoadSceneMode mode)
     {
         pos = GameObject.Find(TAG).GetComponent<Transform>();
+        idLevel = SceneManager.GetActiveScene().buildIndex;
+        StartGame();
     }
 
     // Start is called before the first frame update
@@ -81,12 +87,22 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         UIManager.instance.GameOverUI();
+        beginGame= false;
     }
 
     // O Player ganhou a fase
     void WinGame()
     {
         UIManager.instance.WinGameUI();
+        beginGame = false;
+    }
 
+    //Start game
+    void StartGame()
+    {
+        beginGame = true;
+        ballNum = 2;
+        ballInGame = 0;
+        UIManager.instance.StartUI();
     }
 }
