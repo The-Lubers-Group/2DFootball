@@ -15,6 +15,9 @@ public class IdLevel : MonoBehaviour
 
     public static IdLevel instance;
 
+    private float orthoSize = 5;
+    [SerializeField] private float aspect = 1.66f;
+
     private void Awake()
     {
         if (instance == null)
@@ -39,6 +42,9 @@ public class IdLevel : MonoBehaviour
         {
             Instantiate(uIManagerGO);
             Instantiate(gameManagerGO);
+
+            //Ajuste da camera e dos objetos
+           //Camera.main.projectionMatrix = Matrix4x4.Ortho(-orthoSize * aspect, orthoSize * aspect,-orthoSize, orthoSize, Camera.main.nearClipPlane, Camera.main.farClipPlane);    
         }
     }
 }

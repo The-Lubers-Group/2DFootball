@@ -1026,6 +1026,7 @@ MonoBehaviour:
   level: -1
   uIManagerGO: {fileID: 2078431535345349819, guid: 8560069637503a74e880ceeee1346134, type: 3}
   gameManagerGO: {fileID: 7461080399768315194, guid: 4fa5b6336ee6f784ba93dda7c3d84530, type: 3}
+  aspect: 1.8
 --- !u!4 &1245314195
 Transform:
   m_ObjectHideFlags: 0
@@ -1034,7 +1035,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1245314193}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.24, y: 1.41, z: 0}
+  m_LocalPosition: {x: -11.62, y: 1.44, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
