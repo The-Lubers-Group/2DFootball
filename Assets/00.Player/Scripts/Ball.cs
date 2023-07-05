@@ -36,6 +36,9 @@ public class Ball : MonoBehaviour
     private Transform leftWall;
     private Transform rightWall;
 
+    // Animação de morte da bola
+    [SerializeField] private GameObject ballDeathAnim;
+
     private void Awake()
     {
         gameInput = GameObject.Find(TAG_GI).GetComponent<GameInput>();
@@ -176,6 +179,7 @@ public class Ball : MonoBehaviour
         // Se a bola atingir uma armadilha, ela sofre dano.
         if (collision.gameObject.CompareTag(TAG_HIT))
         {
+            Instantiate(ballDeathAnim, transform.position,Quaternion.identity);
             Destroy(this.gameObject);
             GameManager.instance.ballInGame -= 1;
             GameManager.instance.ballNum -= 1;

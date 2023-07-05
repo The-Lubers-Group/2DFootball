@@ -111,6 +111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zRotate: 0
   shoot: 0
+  force: 0
+  ballDeathAnim: {fileID: 1192529644611734885, guid: fdce22aa325c65648b92a57de21d4c6d, type: 3}
 --- !u!1 &6591125092461827439
 GameObject:
   m_ObjectHideFlags: 0
