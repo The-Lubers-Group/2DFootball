@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - ball
+  - hit
   layers:
   - Default
   - TransparentFX

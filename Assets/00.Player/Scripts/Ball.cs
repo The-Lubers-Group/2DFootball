@@ -12,6 +12,11 @@ public class Ball : MonoBehaviour
     const string TAG_GI = "GameInput";
     const string TAG_PS = "StartPoint";
 
+    const string TAG_LW = "LeftWall";
+    const string TAG_RW = "RightWall";
+
+    const string TAG_HIT = "hit";
+
     // Rotation
     //private Transform posStart;
     private GameObject arrowGo;
@@ -26,30 +31,36 @@ public class Ball : MonoBehaviour
 
     private Rigidbody2D ball;
 
+    // Wall 
+    private Transform leftWall;
+    private Transform rightWall;
+
     private void Awake()
     {
         gameInput = GameObject.Find(TAG_GI).GetComponent<GameInput>();
         arrowGo = GameObject.Find(TAG_ARROW);
         arrow2IMG = arrowGo.transform.GetChild(0).gameObject;
-        //arrowGo.SetActive(true);
         arrowGo.GetComponent<Image>().enabled = false;
         arrow2IMG.GetComponent<Image>().enabled = false;
+
+        leftWall = GameObject.Find(TAG_LW).GetComponent<Transform>();
+        rightWall = GameObject.Find(TAG_RW).GetComponent<Transform>();
     }
 
     void Start()
     {
         // Force
-        //gameInput.OnForcePerformed += Gameinput_OnForcePerformed;
         gameInput.OnForceStarted += Gameinput_OnForceStarted;
         gameInput.OnForcePerformed += Gameinput_OnForcePerformed;
-
         ball = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+        
+        
         RotationArrow();
-
+        
         Vector2 inputVector = gameInput.GetArrowRotationNormalized();
         if (inputVector.y == 1 || zRotate > 90)
         {
@@ -62,6 +73,8 @@ public class Ball : MonoBehaviour
 
         RotationLimit();
         OnSetArrow();
+
+        Wall();
     }
 
     // Posicionar a Img da Seta
@@ -87,25 +100,23 @@ public class Ball : MonoBehaviour
         {
             zRotate = 0;
         }
-        
     }
 
     private void Gameinput_OnForceStarted(object sender, System.EventArgs e)
     {
-        arrowGo.GetComponent<Image>().enabled = true;
-        arrow2IMG.GetComponent<Image>().enabled = true;
-
-        ArrowUpdateForce();
-
+        if (GameManager.instance.kick == 0)
+        {
+            arrowGo.GetComponent<Image>().enabled = true;
+            arrow2IMG.GetComponent<Image>().enabled = true;
+            ArrowUpdateForce();
+        }
     }
 
     //private void Gameinput_OnForceActions(object sender, System.EventArgs e)
     private void Gameinput_OnForcePerformed(object sender, System.EventArgs e)
     {
-
-        //Destroy(this.gameObject);
         //GameManager.instance.ballInGame -= 1;
-
+        
         // Verifica se o jogador tem mais tentativas
         if (GameManager.instance.kick == 0)
         {
@@ -144,5 +155,30 @@ public class Ball : MonoBehaviour
         arrow2IMG.GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
         force = arrow2IMG.GetComponent<Image>().fillAmount * 1000;
 
+    }
+
+    // Limite de tela se a bola passar a bola é destruída
+    void Wall()
+    {
+        if(this.gameObject.transform.position.x < leftWall.position.x )
+        {
+            Destroy(this.gameObject);
+            GameManager.instance.ballInGame -= 1;
+        }
+
+        if (this.gameObject.transform.position.x > rightWall.position.x)
+        {
+            Destroy(this.gameObject);
+            GameManager.instance.ballInGame -= 1;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(TAG_HIT))
+        {
+            Destroy(this.gameObject);
+            GameManager.instance.ballInGame -= 1;
+        }
     }
 }
