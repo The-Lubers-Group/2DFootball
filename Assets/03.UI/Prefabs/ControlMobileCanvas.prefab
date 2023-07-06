@@ -34,7 +34,7 @@ RectTransform:
   - {fileID: 2907480922692276943}
   - {fileID: 3720605820549635918}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -216,9 +216,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 310, y: 530}
+  m_AnchoredPosition: {x: 130, y: 338}
   m_SizeDelta: {x: 240, y: 256}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &5524179182513115138
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -275,19 +275,19 @@ MonoBehaviour:
   m_Behaviour: 0
   m_UseIsolatedInputActions: 0
   m_PointerDownAction:
-    m_Name: 
+    m_Name: Pointer Down
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: fab84ad6-0f45-4908-8253-7574661532bc
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
   m_PointerMoveAction:
-    m_Name: 
+    m_Name: Pointer Move
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 4be357f3-573e-4b35-ad04-dbaf3d0f82dc
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

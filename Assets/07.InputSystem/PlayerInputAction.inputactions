@@ -104,6 +104,17 @@
                 },
                 {
                     "name": "",
+                    "id": "a16fe194-1fc8-48d8-83b8-f906091b41c7",
+                    "path": "<AndroidGamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ArrowRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a1c766a0-4c6f-4a50-8431-13cccb3c869d",
                     "path": "<Keyboard>/space",
                     "interactions": "",
