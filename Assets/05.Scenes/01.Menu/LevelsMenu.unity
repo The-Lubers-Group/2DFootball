@@ -840,16 +840,20 @@ MonoBehaviour:
   levelBtn: {fileID: 6670515317663090249, guid: a1b93f8a477eaac478938f3ddb743fcb, type: 3}
   localBtn: {fileID: 1192751109}
   levelsList:
-  - levelName: 1
+  - levelID: 1
+    levelName: 1
     isEnable: 1
     unlock: 0
-  - levelName: 2
+  - levelID: 2
+    levelName: 2
     isEnable: 0
     unlock: 0
-  - levelName: 3
+  - levelID: 3
+    levelName: 3
     isEnable: 0
     unlock: 0
-  - levelName: 4
+  - levelID: 4
+    levelName: 4
     isEnable: 0
     unlock: 0
 --- !u!4 &1278412661

@@ -13,10 +13,15 @@ public class LevelManager : MonoBehaviour
 
     const string UI_MANAGER = "UIManager(Clone)";
     const string GAME_MANAGER = "GameManager(Clone)";
+    const string GAME_LEVEL = "Level_";
+
+    private UIManager uiManager;
+    private GameManager gameManager;
 
     //Classe que contém as informações básicas do objeto level
     [System.Serializable]public class Level
     {
+        public int levelID;
         public string levelName;
         public bool isEnable;
         public int unlock;
@@ -36,19 +41,28 @@ public class LevelManager : MonoBehaviour
 
             //Instanciando à classe BtnLevel
             BtnLevel btnNew = newBtn.GetComponent<BtnLevel>();
-            btnNew.levelTextBTN.text = level.levelName;
+            //btnNew.levelTextBTN.text = level.levelName;
+            btnNew.levelTextBTN.text = level.levelID.ToString();
+            
+            //if(PlayerPrefs.GetInt(GAME_LEVEL + btnNew.levelTextBTN.text) == 1)
 
-            if(PlayerPrefs.GetInt("Level"+ btnNew.levelTextBTN.text) == 1)
+            
+            if(PlayerPrefs.GetInt(GAME_LEVEL + level.levelID) == 1)
             {
                 level.unlock = 1;
                 level.isEnable = true;
             }
 
+            //Debug.Log(GAME_LEVEL + btnNew.levelTextBTN.text + " <--- levelTextBTN.text ");
+
+            //Debug.Log(GAME_LEVEL + level.levelName + " --- isEnable: " + level.isEnable);
+
             btnNew.unlockBTN = level.unlock;
             btnNew.GetComponent<Button>().interactable = level.isEnable;
 
             // Quando disparar o evento click no btn - chama o método ClickLevel()
-            btnNew.GetComponent<Button>().onClick.AddListener(() => ClickLevel("Level"+btnNew.levelTextBTN.text));
+            //btnNew.GetComponent<Button>().onClick.AddListener(() => ClickLevel(GAME_LEVEL + btnNew.levelTextBTN.text));
+            btnNew.GetComponent<Button>().onClick.AddListener(() => ClickLevel(GAME_LEVEL + btnNew.levelTextBTN.text));
 
             newBtn.transform.SetParent(localBtn,false);
  
@@ -63,12 +77,22 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        Destroy(GameObject.Find(UI_MANAGER));
-        Destroy(GameObject.Find(GAME_MANAGER));
+        uiManager = FindObjectOfType<UIManager>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Start()
     {
         ListAdd();
+
+        if(uiManager != null)
+        {
+            Destroy(uiManager.gameObject);
+        }
+        if(gameManager != null)
+        {
+            Destroy(gameManager.gameObject);
+        }
+
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,15 +38,31 @@ public class IdLevel : MonoBehaviour
     // Verificar o nível
     private void checkLevel(Scene arg0, LoadSceneMode modo)
     {
+        /*
+         * 
+        string levelName = SceneManager.GetActiveScene().name;
+        if (levelName.Contains("Level_"))
+        {
+            return;
+        }
+        string levelID = levelName.Split('_')[1];
+       
+        level = Convert.ToInt32(levelID);
+        
+        Instantiate(uIManagerGO);
+        Instantiate(gameManagerGO);
+        */
         level = SceneManager.GetActiveScene().buildIndex;
-
-        if(level != ID_START_LEVEL && level != ID_MENU_LEVEL && level != ID_STORE_LEVEL)
+        if (level != ID_START_LEVEL && level != ID_MENU_LEVEL && level != ID_STORE_LEVEL)
         {
             Instantiate(uIManagerGO);
             Instantiate(gameManagerGO);
-
-            //Ajuste da camera e dos objetos
-           //Camera.main.projectionMatrix = Matrix4x4.Ortho(-orthoSize * aspect, orthoSize * aspect,-orthoSize, orthoSize, Camera.main.nearClipPlane, Camera.main.farClipPlane);    
         }
+
+
+
+        //Ajuste da camera e dos objetos
+        //Camera.main.projectionMatrix = Matrix4x4.Ortho(-orthoSize * aspect, orthoSize * aspect,-orthoSize, orthoSize, Camera.main.nearClipPlane, Camera.main.farClipPlane);    
+
     }
 }

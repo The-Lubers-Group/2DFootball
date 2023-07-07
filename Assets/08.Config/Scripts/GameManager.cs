@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
 
     public int kick = 1;
     public Transform pos;
-    public int ballNum = 2;
-    public int ballInGame = 0;
+    [SerializeField] public int ballNum = 2;
+    [SerializeField] public int ballInGame = 0;
     public bool win;
 
     // Index das Fases

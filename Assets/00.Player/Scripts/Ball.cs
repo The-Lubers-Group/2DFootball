@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
@@ -188,9 +189,21 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.CompareTag(TAG_WIN))
         {
             GameManager.instance.win = true;
-            int temp = IdLevel.instance.level + 1;
+            int temp = IdLevel.instance.level - 3 + 1;
             temp++;
-            PlayerPrefs.SetInt("Level"+temp,1);
+
+            PlayerPrefs.SetInt("Level_" + temp, 1);
+            /*
+             * 
+            if (temp <= 6)
+            {
+                PlayerPrefs.SetInt("Level_"+temp,1);
+            }
+            else if(temp > 6)
+            {
+                SceneManager.LoadScene(1);
+            }
+            */
         }
     }
 }
