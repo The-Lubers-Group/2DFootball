@@ -8,22 +8,34 @@ public class CameraManager : MonoBehaviour
     const string TAG_BALL = "Ball(Clone)";
     const string TAG_GAME_INPUT = "GameInput";
     
-    [SerializeField]private Transform objLeft;
-    [SerializeField] private Transform objRight;
-    [SerializeField] private Transform ball;
+    private Transform objLeft;
+    private Transform objRight;
+    private Transform ball;
+
+    private float t = 1;
     
     // Update is called once per frame
     void Update()
     {
         if(GameManager.instance.beginGame == true)
         {
-            if(ball == null && GameManager.instance.ballInGame > 0)
+            if (ball == null && objLeft == null && objRight == null && GameManager.instance.ballInGame > 0)
             {
                 ball = GameObject.Find(TAG_BALL).GetComponent<Transform>();
                 objRight = GameObject.Find(TAG_GOAL).GetComponent<Transform>();
                 objLeft = GameObject.Find(TAG_GAME_INPUT).GetComponent<Transform>();
             }
-            else if(GameManager.instance.ballInGame > 0)
+            
+            // Controlar o retorno suave de camera para o ponto inicial
+            if (objLeft != null && transform.position.x != objLeft.position.x)
+            {
+                t -= .08f * Time.deltaTime;
+               
+                //update the position
+                transform.position = new Vector3(Mathf.SmoothStep(objLeft.position.x, Camera.main.transform.position.x, t), this.transform.position.y, transform.position.z);
+            }
+
+            if (ball != null && GameManager.instance.ballInGame > 0)
             {
                 Vector3 posCam = transform.position;
                 // Passo a posição da bola para camera

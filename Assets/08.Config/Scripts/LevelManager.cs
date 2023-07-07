@@ -11,8 +11,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
 
-    const string UI_MANAGER = "UIManager(Clone)";
-    const string GAME_MANAGER = "GameManager(Clone)";
+    //const string UI_MANAGER = "UIManager(Clone)";
+    //const string GAME_MANAGER = "GameManager(Clone)";
     const string GAME_LEVEL = "Level_";
 
     private UIManager uiManager;

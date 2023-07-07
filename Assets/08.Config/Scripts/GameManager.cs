@@ -83,12 +83,28 @@ public class GameManager : MonoBehaviour
     // Cria o objeto bola no jogo
     void BallBorn()
     {
-        if(ballNum > 0 && ballInGame == 0 )
-        {
-            Instantiate(ball, new Vector2(pos.position.x, pos.position.y), Quaternion.identity);
-            ballInGame++;
-            kick = 0;
-        }
+
+       // if(IdLevel.instance.level >= 3)
+       // {
+
+            if (ballNum > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
+            {
+                Instantiate(ball, new Vector2 (pos.position.x, pos.position.y), Quaternion.identity);
+                ballInGame += 1;
+                kick = 0;
+            }
+            else
+            {
+                if (ballNum > 0 && ballInGame == 0)
+                {
+                    Instantiate(ball, new Vector2(pos.position.x, pos.position.y), Quaternion.identity);
+                    ballInGame++;
+                    kick = 0;
+                }
+            }
+       // }
+
+        
     }
     
     // O Player morreu e chama o panel de Game Over
