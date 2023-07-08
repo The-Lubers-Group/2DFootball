@@ -41,7 +41,7 @@ public class CameraManager : MonoBehaviour
                 // Passo a posição da bola para camera
                 posCam.x = ball.position.x;
                 // Colocar limite para não deixar a camera fugir do centro
-                posCam.x = Mathf.Clamp(posCam.x, objLeft.position.x - 2f, objRight.position.x - 7f );
+                posCam.x = Mathf.Clamp(posCam.x, objLeft.position.x, objRight.position.x - 7f );
                 transform.position = posCam;
             }
         }    

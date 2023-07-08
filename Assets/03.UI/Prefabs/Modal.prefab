@@ -891,7 +891,7 @@ GameObject:
   - component: {fileID: 2644391581993297198}
   - component: {fileID: 8538378937221632437}
   m_Layer: 5
-  m_Name: 05.Modal
+  m_Name: Modal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
