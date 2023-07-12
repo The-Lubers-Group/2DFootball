@@ -911,6 +911,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cone
       objectReference: {fileID: 0}
+    - target: {fileID: 2606759360499512817, guid: f123f5ae2f9cb4148989737033332902, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.7
+      objectReference: {fileID: 0}
     - target: {fileID: 5326646404521510893, guid: f123f5ae2f9cb4148989737033332902, type: 3}
       propertyPath: m_RootOrder
       value: 15
