@@ -8,6 +8,9 @@ using UnityEngine.UI;
 
 public class Ball : MonoBehaviour
 {
+
+    public BallData BallSO;
+
     // TAG
     const string TAG_ARROW = "Arrow";
     const string TAG_GI = "GameInput";
@@ -37,11 +40,51 @@ public class Ball : MonoBehaviour
     private Transform leftWall;
     private Transform rightWall;
 
+    // Default Data
+    private Animator anim;
+    private SpriteRenderer imgIcon;
+
     // Animação de morte da bola
     [SerializeField] private GameObject ballDeathAnim;
 
     private void Awake()
     {
+
+        anim = GetComponentInChildren<Animator>();
+        anim.runtimeAnimatorController = BallSO.animController;
+
+
+
+        imgIcon = GetComponentInChildren<SpriteRenderer>();
+        imgIcon.sprite = BallSO.imgIcon;
+
+        //imgIcon = GetComponentInChildren<SpriteRenderer>();
+
+
+
+        //anim = GetComponent<Animator>();
+        //imgIcon = GetComponent<Sprite>();
+
+        //Debug.Log("anim: " + anim + "imgIcon: " + imgIcon);
+
+        //imgIcon = Data.imgIcon;
+
+
+
+
+
+
+
+
+        //GetComponentInChildren<GameObject>(true);
+
+
+
+
+
+
+
+
         gameInput = GameObject.Find(TAG_GI).GetComponent<GameInput>();
         arrowGo = GameObject.Find(TAG_ARROW);
         arrow2IMG = arrowGo.transform.GetChild(0).gameObject;
@@ -50,6 +93,7 @@ public class Ball : MonoBehaviour
 
         leftWall = GameObject.Find(TAG_LW).GetComponent<Transform>();
         rightWall = GameObject.Find(TAG_RW).GetComponent<Transform>();
+
     }
 
     void Start()

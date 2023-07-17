@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7888918122496786561}
+  - component: {fileID: 2313389061527154070}
   - component: {fileID: 3358993031181052560}
   - component: {fileID: 1970586812472706692}
-  - component: {fileID: 2313389061527154070}
   - component: {fileID: 5753125576263674261}
   m_Layer: 0
   m_Name: Ball
@@ -36,6 +36,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2313389061527154070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956383154222617521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aef1e6653d594794087916bf5d667253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BallSO: {fileID: 11400000, guid: 2fbd96901e0b2664a80417bf019be731, type: 2}
+  zRotate: 0
+  shoot: 0
+  force: 2.97
+  ballDeathAnim: {fileID: 1192529644611734885, guid: fdce22aa325c65648b92a57de21d4c6d, type: 3}
 --- !u!58 &3358993031181052560
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -98,22 +115,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &2313389061527154070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956383154222617521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aef1e6653d594794087916bf5d667253, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zRotate: 0
-  shoot: 0
-  force: 0
-  ballDeathAnim: {fileID: 1192529644611734885, guid: fdce22aa325c65648b92a57de21d4c6d, type: 3}
 --- !u!96 &5753125576263674261
 TrailRenderer:
   serializedVersion: 3
