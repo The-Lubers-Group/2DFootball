@@ -1,12 +1,12 @@
 <div align="center">
-    <img src="/Assets/04.Resources/Icons/Logo.png" width="full" height="128" style="display: block; margin: 0 auto"/>
+    <img src="/Assets/04.Art/01.MainMenu/MainScreen/Sprites/UI/title.png" width="full" height="128" style="display: block; margin: 0 auto"/>
     <h1>2DFootball</h1>
     <p align="center">
     <a href="https://github.com/kaiogama18"><strong>kaiogama18</strong></a>
   </p>
   <h2 align="center">Lab Luby Game 2023 Unity Program</h2>
   <div align="center">
-    <img src="/Assets/04.Resources/Screen/Level01.png" width="full" height="full" style="display: block; margin: 0 auto"/>
+    <img src="/Assets/04.Art/00.Common/about/Level01.png" width="full" height="full" style="display: block; margin: 0 auto"/>
   </div>
 </div>
  
