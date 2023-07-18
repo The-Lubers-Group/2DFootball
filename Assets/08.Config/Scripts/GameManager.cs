@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 
     //Ball Variables
     //private bool isBallDeath = false;
-    [SerializeField] private GameObject ball;
+    [SerializeField] private GameObject ballObject;
 
     public int kick = 1;
     public Transform pos;
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
 
             if (ballNum > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
             {
-                Instantiate(ball, new Vector2 (pos.position.x, pos.position.y), Quaternion.identity);
+                Instantiate(ballObject, new Vector2 (pos.position.x, pos.position.y), Quaternion.identity);
                 ballInGame += 1;
                 kick = 0;
             }
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
             {
                 if (ballNum > 0 && ballInGame == 0)
                 {
-                    Instantiate(ball, new Vector2(pos.position.x, pos.position.y), Quaternion.identity);
+                    Instantiate(ballObject, new Vector2(pos.position.x, pos.position.y), Quaternion.identity);
                     ballInGame++;
                     kick = 0;
                 }

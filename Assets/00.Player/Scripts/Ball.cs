@@ -25,6 +25,7 @@ public class Ball : MonoBehaviour
     // Rotation
     //private Transform posStart;
     private GameObject arrowGo;
+    private GameObject arrowFill;
     private GameInput gameInput;
 
     public float zRotate;
@@ -32,8 +33,6 @@ public class Ball : MonoBehaviour
 
     // Force 
     [SerializeField] private float force = 0;
-    private GameObject arrow2IMG;
-
     private Rigidbody2D ball;
 
     // Wall 
@@ -49,51 +48,29 @@ public class Ball : MonoBehaviour
 
     private void Awake()
     {
-
+        // Set Anim
         anim = GetComponentInChildren<Animator>();
         anim.runtimeAnimatorController = BallSO.animController;
 
-
-
+        // Set Ball Icon
         imgIcon = GetComponentInChildren<SpriteRenderer>();
         imgIcon.sprite = BallSO.imgIcon;
 
-        //imgIcon = GetComponentInChildren<SpriteRenderer>();
-
-
-
-        //anim = GetComponent<Animator>();
-        //imgIcon = GetComponent<Sprite>();
-
-        //Debug.Log("anim: " + anim + "imgIcon: " + imgIcon);
-
-        //imgIcon = Data.imgIcon;
-
-
-
-
-
-
-
-
-        //GetComponentInChildren<GameObject>(true);
-
-
-
-
-
-
-
-
+        // Set GameInput
         gameInput = GameObject.Find(TAG_GI).GetComponent<GameInput>();
-        arrowGo = GameObject.Find(TAG_ARROW);
-        arrow2IMG = arrowGo.transform.GetChild(0).gameObject;
-        arrowGo.GetComponent<Image>().enabled = false;
-        arrow2IMG.GetComponent<Image>().enabled = false;
 
+        // Set Arrow
+        arrowGo = transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject;
+        arrowFill = arrowGo.transform.GetChild(0).gameObject;
+
+        // Disable arrow 
+        arrowGo.GetComponent<Image>().enabled = false;
+        arrowFill.GetComponent<Image>().enabled = false;
+
+
+        // Set Left and Right Wall
         leftWall = GameObject.Find(TAG_LW).GetComponent<Transform>();
         rightWall = GameObject.Find(TAG_RW).GetComponent<Transform>();
-
     }
 
     void Start()
@@ -152,10 +129,11 @@ public class Ball : MonoBehaviour
     // Enquanto o botão de força esticar pressionado - carrega o medidor de força
     private void Gameinput_OnForceStarted(object sender, System.EventArgs e)
     {
-        if (GameManager.instance.kick == 0)
+        if (GameManager.instance.kick == 0 && arrowGo)
         {
+
             arrowGo.GetComponent<Image>().enabled = true;
-            arrow2IMG.GetComponent<Image>().enabled = true;
+            arrowFill.GetComponent<Image>().enabled = true;
             ArrowUpdateForce();
         }
     }
@@ -172,9 +150,9 @@ public class Ball : MonoBehaviour
             }
             force = 0;
             //GameManager.instance.kick = 1;
-            arrowGo.GetComponent<Image>().enabled = false;
-            arrow2IMG.GetComponent<Image>().enabled = false;
-            arrow2IMG.GetComponent<Image>().fillAmount = 0;
+            //arrowEnable.GetComponent<Image>().enabled = false;
+            //arrowDisable.GetComponent<Image>().enabled = false;
+            //arrowDisable.GetComponent<Image>().fillAmount = 0;
         }
 
     }
@@ -194,10 +172,12 @@ public class Ball : MonoBehaviour
     // Função - Que define a animação de carregar a flecha de acordo com o tempo que o botão de força foi pressionado
     void ArrowUpdateForce()
     {
-        //arrow2IMG.GetComponent<Image>().fillAmount += 0.08f * Time.deltaTime;
-        arrow2IMG.GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
-        force = arrow2IMG.GetComponent<Image>().fillAmount * 1000;
-
+        if(arrowGo)
+        {
+            arrowGo.transform.GetChild(0).GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
+            force = arrowFill.GetComponent<Image>().fillAmount * 1000;
+            //force = arrowGO.transform.GetChild(0).GetComponent<Image>().fillAmount * 1000;
+        }
     }
 
     // Limite de tela se a bola passar a bola é destruída

@@ -17,7 +17,7 @@ public class IdLevel : MonoBehaviour
 
     public static IdLevel instance;
 
-    private float orthoSize = 5;
+    //private float orthoSize = 5;
     [SerializeField] private float aspect = 1.66f;
 
     private void Awake()
