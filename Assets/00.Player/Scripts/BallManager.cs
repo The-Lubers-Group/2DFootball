@@ -166,9 +166,12 @@ public class BallManager : MonoBehaviour
             }
             force = 0;
             //GameManager.instance.kick = 1;
-            arrowGo.GetComponent<Image>().enabled = false;
-            arrowFill.GetComponent<Image>().enabled = false;
-            arrowFill.GetComponent<Image>().fillAmount = 0;
+            if(arrowGo)
+            {
+                arrowGo.GetComponent<Image>().enabled = false;
+                arrowFill.GetComponent<Image>().enabled = false;
+                arrowFill.GetComponent<Image>().fillAmount = 0;
+            }
         }
 
     }
