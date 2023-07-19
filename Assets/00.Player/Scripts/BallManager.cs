@@ -111,7 +111,7 @@ public class BallManager : MonoBehaviour
             zRotate += inputVector.y;
         }
 
-        RotationLimit();
+        //RotationLimit();
         OnSetArrow();
 
         Wall();
@@ -166,9 +166,9 @@ public class BallManager : MonoBehaviour
             }
             force = 0;
             //GameManager.instance.kick = 1;
-            //arrowEnable.GetComponent<Image>().enabled = false;
-            //arrowDisable.GetComponent<Image>().enabled = false;
-            //arrowDisable.GetComponent<Image>().fillAmount = 0;
+            arrowGo.GetComponent<Image>().enabled = false;
+            arrowFill.GetComponent<Image>().enabled = false;
+            arrowFill.GetComponent<Image>().fillAmount = 0;
         }
 
     }
