@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,20 +6,31 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     const string TAG_GOAL = "GoalObject";
-    const string TAG_BALL = "Ball(Clone)";
+    const string TAG_BALL = "BallPrefabs(Clone)";
     const string TAG_GAME_INPUT = "GameInput";
     
     private Transform objLeft;
     private Transform objRight;
-    private Transform ball;
+    [SerializeField] private Transform ball;
 
     private float t = 1;
-    
+
+    [SerializeField] private CinemachineVirtualCamera myCinemachine;
+
     // Update is called once per frame
     void Update()
     {
         if(GameManager.instance.beginGame == true)
         {
+            if (ball == null && GameManager.instance.ballInGame > 0)
+                ball = GameObject.Find(TAG_BALL).GetComponent<Transform>();
+
+            if (ball && myCinemachine)
+                myCinemachine.Follow = ball.transform;
+
+
+
+            /*
             if (ball == null && objLeft == null && objRight == null && GameManager.instance.ballInGame > 0)
             {
                 ball = GameObject.Find(TAG_BALL).GetComponent<Transform>();
@@ -44,6 +56,8 @@ public class CameraManager : MonoBehaviour
                 posCam.x = Mathf.Clamp(posCam.x, objLeft.position.x, objRight.position.x - 7f );
                 transform.position = posCam;
             }
-        }    
+
+            */
+        }
     }
 }
