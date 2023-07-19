@@ -22,11 +22,17 @@ public class CameraManager : MonoBehaviour
     {
         if(GameManager.instance.beginGame == true)
         {
+            if(myCinemachine)
+            {
+                myCinemachine.m_Lens.OrthographicSize = 5f;
+            }
+
             if (ball == null && GameManager.instance.ballInGame > 0)
                 ball = GameObject.Find(TAG_BALL).GetComponent<Transform>();
 
-            if (ball && myCinemachine)
+            if (ball && myCinemachine) { 
                 myCinemachine.Follow = ball.transform;
+            }
 
 
 
