@@ -6,10 +6,13 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Ball : MonoBehaviour
+public class BallManager : MonoBehaviour
 {
 
-    public BallData BallSO;
+    public BallObjectSO BallSO;
+
+  
+
 
     // TAG
     const string TAG_ARROW = "Arrow";
@@ -21,6 +24,19 @@ public class Ball : MonoBehaviour
 
     const string TAG_HIT = "hit";
     const string TAG_WIN = "win";
+
+    public int ballID;
+    public string nameIcon;
+    public float ballPrice;
+    public bool WasBought;
+
+
+
+
+
+
+
+
 
     // Rotation
     //private Transform posStart;
