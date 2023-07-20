@@ -23,7 +23,8 @@ public class BallObjectSO : ScriptableObject
     public float ballPrice;
 
     [Label("Bola já foi comprada")]
-    [ReadOnly] public bool WasBought;
+    //[ReadOnly] public bool WasBought;
+    public bool WasBought;
     //[Label("Dano da Bola")]
     //public float ballDamage;
 

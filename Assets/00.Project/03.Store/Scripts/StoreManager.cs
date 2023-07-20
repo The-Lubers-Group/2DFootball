@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,6 +15,7 @@ public class StoreManager : MonoBehaviour
     
     public GameObject cardItens;
     public Transform content;
+    
 
     /*
     public int ballID;
@@ -41,21 +43,19 @@ public class StoreManager : MonoBehaviour
         foreach(BallObjectSO ball in ballList)
         {
             GameObject cardItem = Instantiate(cardItens) as GameObject;
+            
             cardItem.transform.SetParent(content, false);
+            
             CardItem item = cardItem.GetComponent<CardItem>();
 
             item.ballId = ball.ballId;
-
-            //item.ballIcon = ball.imgIcon;
-
+            item.ballIcon.sprite = ball.imgIcon;
             item.ballName.text = ball.ballName;
             item.ballPrice.text = ball.ballPrice.ToString();
-           
-
 
             if(ball.WasBought)
             {
-                //cardItem.GetComponent<Button>(). = false;
+                item.btnBuy.interactable = false;
             }
         }
         
