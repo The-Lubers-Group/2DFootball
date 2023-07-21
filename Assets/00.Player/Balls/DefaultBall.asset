@@ -16,6 +16,7 @@ MonoBehaviour:
   imgIcon: {fileID: 21300000, guid: 3deb7ebf7ddf4f2478379a4e483aeb46, type: 3}
   ballName: "Bola Padr\xE3o"
   ballPrice: 100
+  WasBought: 1
   ballVelocity: 70
   ballWeight: 30
   animController: {fileID: 9100000, guid: 741a599af2b4c014c83783701df3480e, type: 2}

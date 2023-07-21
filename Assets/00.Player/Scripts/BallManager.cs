@@ -10,8 +10,9 @@ public class BallManager : MonoBehaviour
 {
 
     public BallObjectSO BallSO;
+    //public BallSelection ballSelection;
 
-  
+
 
 
     // TAG
@@ -64,6 +65,14 @@ public class BallManager : MonoBehaviour
 
     private void Awake()
     {
+        /*
+        if(ballSelection)
+        {
+            ballSO = ballSelection.selectBall;
+            Debug.Log(ballSO);
+        }
+        */
+
         // Set Anim
         anim = GetComponentInChildren<Animator>();
         anim.runtimeAnimatorController = BallSO.animController;
