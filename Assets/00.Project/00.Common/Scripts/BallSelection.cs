@@ -16,9 +16,11 @@ public class BallSelection : MonoBehaviour
     
     [SerializeField] private Transform content;
     [SerializeField] private GameObject cardItens;
-    [SerializeField] private GameObject ballSelectionPanel;
 
+    [SerializeField] private GameObject ballSelectionPanel;
     [SerializeField] private BallManager ballManager;
+
+    [SerializeField] private Transform ballNoJogo;
 
     public BallObjectSO selectBall;
 
@@ -30,14 +32,31 @@ public class BallSelection : MonoBehaviour
         }
         else
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
         }
     }
 
-    private void Start()
+    void Start()
     {
+        //ballManager =  GetComponent<BallManager>();
+
+
+       // Debug.Log(ballManager);
+        
         FillList();
+
+
+
+        //ballManager = GetComponent<BallManager>();
+        //ballList
     }
+
+    void Update()
+    {
+       
+    }
+
+
 
     void FillList()
     {
@@ -66,9 +85,29 @@ public class BallSelection : MonoBehaviour
     // Função responsável por enviar o jogador para o nível selecionado
     void ClickLevel(BallObjectSO ball)
     {
-        ballSelectionPanel.SetActive(false);
         Time.timeScale = 1;
         selectBall = ball;
+        //Debug.Log(selectBall);
+
+
+
+
+        if (selectBall)
+        {
+            Debug.Log(selectBall);
+            //ballManager = GetComponent<BallManager>();
+            ballNoJogo = GameObject.Find("BallPrefabs(Clone)").GetComponent<Transform>();
+            Debug.Log(ballNoJogo);
+            //ballManager = GetComponent<BallManager>();
+
+
+            ballManager = GameObject.Find("BallPrefabs(Clone)").GetComponent<BallManager>();
+            Debug.Log(ballManager);
+
+            ballManager.BallSO = selectBall;
+            Debug.Log(ballManager.BallSO);
+
+        }
 
 
 
@@ -76,6 +115,17 @@ public class BallSelection : MonoBehaviour
 
 
 
+
+
+
+
+
+
+
+
+
+        ballSelectionPanel.SetActive(false);
+        //Destroy(gameObject);
 
         //ballManager.BallSO = ball.GetComponent<BallObjectSO>;
         //Debug.Log(ballManager);
@@ -83,5 +133,11 @@ public class BallSelection : MonoBehaviour
         // balls.imgIcon = s
         //SceneManager.LoadScene(level);
     }
+
+    public BallObjectSO GetSelectBall()
+    {
+        return selectBall;
+    }
+
 }
 

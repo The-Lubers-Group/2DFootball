@@ -10,6 +10,7 @@ public class BallManager : MonoBehaviour
 {
 
     public BallObjectSO BallSO;
+    public BallObjectSO ballAtual;
     [SerializeField] private BallSelection ballSelection;
 
     // TAG
@@ -62,7 +63,7 @@ public class BallManager : MonoBehaviour
 
     private void Awake()
     {
-
+        ballAtual = BallSO;
         /*
         if(ballSelection)
         {
@@ -70,15 +71,9 @@ public class BallManager : MonoBehaviour
             Debug.Log(ballSO);
         }
         */
-      
 
-        // Set Anim
-        anim = GetComponentInChildren<Animator>();
-        anim.runtimeAnimatorController = BallSO.animController;
 
-        // Set Ball Icon
-        imgIcon = GetComponentInChildren<SpriteRenderer>();
-        imgIcon.sprite = BallSO.imgIcon;
+
 
         // Set GameInput
         gameInput = GameObject.Find(TAG_GI).GetComponent<GameInput>();
@@ -107,10 +102,17 @@ public class BallManager : MonoBehaviour
 
     void Update()
     {
-        if (ballSelection)
+        if(ballAtual != BallSO)
         {
-            Debug.Log(ballSelection.selectBall);
+            // Set Anim
+            anim = GetComponentInChildren<Animator>();
+            anim.runtimeAnimatorController = BallSO.animController;
+
+            // Set Ball Icon
+            imgIcon = GetComponentInChildren<SpriteRenderer>();
+            imgIcon.sprite = BallSO.imgIcon;
         }
+        
 
 
         RotationArrow();
