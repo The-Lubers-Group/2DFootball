@@ -28,6 +28,10 @@ public class BallSelection : MonoBehaviour
         {
             instance = this;
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void Start()
@@ -64,8 +68,6 @@ public class BallSelection : MonoBehaviour
     {
         ballSelectionPanel.SetActive(false);
         Time.timeScale = 1;
-
-
         selectBall = ball;
 
 

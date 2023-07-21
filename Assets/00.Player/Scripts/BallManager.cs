@@ -10,10 +10,7 @@ public class BallManager : MonoBehaviour
 {
 
     public BallObjectSO BallSO;
-    //public BallSelection ballSelection;
-
-
-
+    [SerializeField] private BallSelection ballSelection;
 
     // TAG
     const string TAG_ARROW = "Arrow";
@@ -65,6 +62,7 @@ public class BallManager : MonoBehaviour
 
     private void Awake()
     {
+
         /*
         if(ballSelection)
         {
@@ -72,6 +70,7 @@ public class BallManager : MonoBehaviour
             Debug.Log(ballSO);
         }
         */
+      
 
         // Set Anim
         anim = GetComponentInChildren<Animator>();
@@ -108,6 +107,12 @@ public class BallManager : MonoBehaviour
 
     void Update()
     {
+        if (ballSelection)
+        {
+            Debug.Log(ballSelection.selectBall);
+        }
+
+
         RotationArrow();
         
         Vector2 inputVector = gameInput.GetArrowRotationNormalized();
