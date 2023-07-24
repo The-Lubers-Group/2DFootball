@@ -11,8 +11,11 @@ public class CameraManager : MonoBehaviour
     
     private Transform objLeft;
     private Transform objRight;
-    [SerializeField] private Transform ball;
-
+    //[SerializeField] private Transform ball;
+    [SerializeField] private BaseBall ball;
+   
+    public GameObject otherGameObject;
+    
     private float t = 1;
 
     [SerializeField] private CinemachineVirtualCamera myCinemachine;
@@ -28,7 +31,12 @@ public class CameraManager : MonoBehaviour
             }
 
             if (ball == null && GameManager.instance.ballInGame > 0)
-                ball = GameObject.Find(TAG_BALL).GetComponent<Transform>();
+            {
+                //ball = GameObject.Find(TAG_BALL).GetComponent<Transform>();
+
+                ball = GetComponent<BaseBall>();
+
+            }
 
             if (ball && myCinemachine) { 
                 myCinemachine.Follow = ball.transform;

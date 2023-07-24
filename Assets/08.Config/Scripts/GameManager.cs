@@ -7,6 +7,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static GameManager;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,7 +21,8 @@ public class GameManager : MonoBehaviour
 
     //Ball Variables
     //private bool isBallDeath = false;
-    [SerializeField] private GameObject GO;
+    //[SerializeField] private GameObject GO;
+    public BaseBall ballObject;
 
     public int kick = 1;
     public Transform pos;
@@ -28,13 +30,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int ballInGame = 0;
     public bool win;
 
+    CardItem cardItem;
+
     // Index das Fases
     public bool beginGame;
 
     //List of the scenes to load from Main Menu
     //List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
     AsyncOperation asyncUnload;
-
 
 
     [SerializeField] private BallSelection ballSelection;
@@ -73,15 +76,11 @@ public class GameManager : MonoBehaviour
         //Chama a tela de seleção de bola
         if (IdLevel.instance.level >= 4)
         {
-            asyncUnload = SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
-
-
-
-
-
-
+           asyncUnload = SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
+            //SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
             //asyncUnload = SceneManager.UnloadSceneAsync("SelectBall");
 
+           // Instantiate(BallSelection.instance, new Vector2(pos.position.x, pos.position.y), Quaternion.identity);
 
             //scenesToLoad.Add(SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive));
 
@@ -94,15 +93,30 @@ public class GameManager : MonoBehaviour
             //ballSelection = GameObject.Find("BallSelectionPanel").GetComponent<BallSelection>();
 
 
+
+          
+
+
+
+
+
+            
         }
+       // cardItem = GameObject.Find("CardItemS(Clone)").GetComponent<CardItem>();
+
+        //ballObject = GetComponent<BaseBall>();
+
+        /*
+        if(ballSelection.selectBall)
+        {
+            Instantiate(ballSelection.selectBall, new Vector2(pos.position.x, pos.position.y), Quaternion.identity);
+
+        }
+        */
 
 
-
-
-
-
-          //  StartGame();
-       // ScoreManager.instance.GameStartScoreM();
+         StartGame();
+         ScoreManager.instance.GameStartScoreM();
     }
 
    
@@ -110,17 +124,53 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
+        if (asyncUnload.isDone)
+        {
+            Debug.Log("asyncUnload.isDone");
+        }
+        */
+
+
+        /*
+        if(BallSelection.instance)
+        {
+            Instantiate(BallSelection.instance.selectBall, new Vector2(pos.position.x, pos.position.y), Quaternion.identity);
+
+        }
+        else
+        {
+            Debug.Log(" BallSelection.instance.selectBall -->" + BallSelection.instance);
+
+        }
+
+        */
+
+
+        /*
+        if (BallSelection.instance.selectBall)
+        {
+            Debug.Log("iiiiiiiiii ");
+            //Debug.Log("A bola selecionada foi: " + ballSelection.selectBall.ballName);
+
+        }
+        else
+        {
+            Debug.Log(ballSelection);
+        }
+        */
+
+        if(ballObject)
+        {
+           BallBorn();
+        }
 
 
 
 
 
-        //BallBorn();
-
-
-
-        //ScoreManager.instance.UpdateScore();
-        //UIManager.instance.UpdateUI();
+        ScoreManager.instance.UpdateScore();
+        UIManager.instance.UpdateUI();
 
         if (ballNum <= 0)
         {
@@ -138,27 +188,31 @@ public class GameManager : MonoBehaviour
     void BallBorn()
     {
 
-       // if(IdLevel.instance.level >= 3)
-       // {
+        // if(IdLevel.instance.level >= 3)
+        // {
+        if (ballNum > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
+        {
+            Instantiate(ballObject, new Vector2(pos.position.x, pos.position.y), Quaternion.identity,pos);
+           // ballObject.transform.parent = gameObject.transform;
 
-            if (ballNum > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
+            ballInGame += 1;
+            kick = 0;
+        }
+        else
+        {
+            if (ballNum > 0 && ballInGame == 0)
             {
-                Instantiate(GO, new Vector2 (pos.position.x, pos.position.y), Quaternion.identity);
-                ballInGame += 1;
+                Instantiate(ballObject, new Vector2(pos.position.x, pos.position.y), Quaternion.identity,pos);
+                //ballObject.transform.parent = gameObject.transform;
+
+                ballInGame++;
                 kick = 0;
             }
-            else
-            {
-                if (ballNum > 0 && ballInGame == 0)
-                {
-                    Instantiate(GO, new Vector2(pos.position.x, pos.position.y), Quaternion.identity);
-                    ballInGame++;
-                    kick = 0;
-                }
-            }
-       // }
+        }
 
-        
+        // }
+
+
     }
     
     // O Player morreu e chama o panel de Game Over

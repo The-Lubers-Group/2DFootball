@@ -18,8 +18,9 @@ public class BallSelection : MonoBehaviour
     [SerializeField] private List<BaseBall> ballList = new List<BaseBall>();
 
 
+    [SerializeField] private GameManager gameManager;
 
-    
+
     [SerializeField] private Transform content;
     [SerializeField] private GameObject cardItens;
 
@@ -40,12 +41,15 @@ public class BallSelection : MonoBehaviour
         {
             //Destroy(gameObject);
         }
+
+       // DontDestroyOnLoad(selectBall);
     }
 
     void Start()
     {
         //ballManager =  GetComponent<BallManager>();
 
+        gameManager = GameObject.Find("GameManager(Clone)").GetComponent<GameManager>();
 
        // Debug.Log(ballManager);
         
@@ -106,8 +110,11 @@ public class BallSelection : MonoBehaviour
     {
         Time.timeScale = 1;
         selectBall = ball;
+        gameManager.ballObject = ball;
 
 
+
+        //PlayerPrefs.("ball", ball);
 
         //Debug.Log(selectBall);
 
@@ -116,7 +123,11 @@ public class BallSelection : MonoBehaviour
 
         if (selectBall)
         {
-            Debug.Log("A bola selecionada foi: "+ selectBall.ballName);
+            //Debug.Log("A bola selecionada foi: "+ selectBall.ballName);
+            //ballNoJogo = GameObject.Find("BallPrefabs(Clone)").GetComponent<Transform>();
+
+
+
             /*
             Debug.Log(selectBall);
             //ballManager = GetComponent<BallManager>();
@@ -152,10 +163,10 @@ public class BallSelection : MonoBehaviour
 
 
 
-
+       SceneManager.UnloadSceneAsync("SelectBall");
 
         //ballSelectionPanel.SetActive(false);
-        Destroy(gameObject);
+        //Destroy(gameObject);
 
         //ballManager.BallSO = ball.GetComponent<BallObjectSO>;
         //Debug.Log(ballManager);
