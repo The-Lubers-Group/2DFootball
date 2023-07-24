@@ -34,7 +34,10 @@ public class CameraManager : MonoBehaviour
             {
                 //ball = GameObject.Find(TAG_BALL).GetComponent<Transform>();
 
-                ball = GetComponent<BaseBall>();
+                //ball = GameObject.Find("StartPoint").GetComponent<BaseBall>();
+                ball = GameObject.Find("StartPoint").GetComponentInChildren<BaseBall>();
+
+                //ball = GetComponent<BaseBall>();
 
             }
 

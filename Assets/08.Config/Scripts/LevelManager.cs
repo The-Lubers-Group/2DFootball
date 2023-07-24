@@ -79,10 +79,13 @@ public class LevelManager : MonoBehaviour
     {
         uiManager = FindObjectOfType<UIManager>();
         gameManager = FindObjectOfType<GameManager>();
+
+
     }
 
     void Start()
     {
+        //SceneManager.UnloadSceneAsync(0);
         ListAdd();
 
         if(uiManager != null)

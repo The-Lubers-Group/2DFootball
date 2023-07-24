@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
         if (IdLevel.instance.level >= 4)
         {
            asyncUnload = SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
+
             //SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
             //asyncUnload = SceneManager.UnloadSceneAsync("SelectBall");
 

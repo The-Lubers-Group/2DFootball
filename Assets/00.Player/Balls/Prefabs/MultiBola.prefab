@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7888918122496786561}
-  - component: {fileID: 2313389061527154070}
+  - component: {fileID: 3410303014688454575}
   - component: {fileID: 3358993031181052560}
   - component: {fileID: 1970586812472706692}
   - component: {fileID: 5753125576263674261}
@@ -36,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2313389061527154070
+--- !u!114 &3410303014688454575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,12 +45,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 956383154222617521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aef1e6653d594794087916bf5d667253, type: 3}
+  m_Script: {fileID: 11500000, guid: 3f5365bfc143616418a516a720a0611a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ballID: 0
   icon: {fileID: 21300000, guid: d448d12e537348044a54c8a6a337faad, type: 3}
-  ballName: 3 Bolas
+  ballName: Multi-Bola
   ballPrice: 300
   WasBought: 1
   ballVelocity: 5
@@ -59,6 +59,7 @@ MonoBehaviour:
   animController: {fileID: 9100000, guid: 741a599af2b4c014c83783701df3480e, type: 2}
   ballDeathAnim: {fileID: 1192529644611734885, guid: fdce22aa325c65648b92a57de21d4c6d, type: 3}
   zRotate: 0
+  ballPerKick: 2
 --- !u!58 &3358993031181052560
 CircleCollider2D:
   m_ObjectHideFlags: 0

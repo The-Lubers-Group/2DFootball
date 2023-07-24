@@ -44,6 +44,15 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Kick"",
+                    ""type"": ""Button"",
+                    ""id"": ""cbffdb9d-4c1f-4117-a677-463b654cc069"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -156,6 +165,17 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
                     ""action"": ""BallForce"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""138d785e-d17e-4adf-8464-dbd066c2f006"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Kick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -166,6 +186,7 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_ArrowRotation = m_Player.FindAction("ArrowRotation", throwIfNotFound: true);
         m_Player_BallForce = m_Player.FindAction("BallForce", throwIfNotFound: true);
+        m_Player_Kick = m_Player.FindAction("Kick", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -229,12 +250,14 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_ArrowRotation;
     private readonly InputAction m_Player_BallForce;
+    private readonly InputAction m_Player_Kick;
     public struct PlayerActions
     {
         private @PlayerInputAction m_Wrapper;
         public PlayerActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @ArrowRotation => m_Wrapper.m_Player_ArrowRotation;
         public InputAction @BallForce => m_Wrapper.m_Player_BallForce;
+        public InputAction @Kick => m_Wrapper.m_Player_Kick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -250,6 +273,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @BallForce.started += instance.OnBallForce;
             @BallForce.performed += instance.OnBallForce;
             @BallForce.canceled += instance.OnBallForce;
+            @Kick.started += instance.OnKick;
+            @Kick.performed += instance.OnKick;
+            @Kick.canceled += instance.OnKick;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -260,6 +286,9 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
             @BallForce.started -= instance.OnBallForce;
             @BallForce.performed -= instance.OnBallForce;
             @BallForce.canceled -= instance.OnBallForce;
+            @Kick.started -= instance.OnKick;
+            @Kick.performed -= instance.OnKick;
+            @Kick.canceled -= instance.OnKick;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -281,5 +310,6 @@ public partial class @PlayerInputAction: IInputActionCollection2, IDisposable
     {
         void OnArrowRotation(InputAction.CallbackContext context);
         void OnBallForce(InputAction.CallbackContext context);
+        void OnKick(InputAction.CallbackContext context);
     }
 }

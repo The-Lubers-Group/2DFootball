@@ -255,7 +255,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1480, y: -143.9274}
+  m_AnchoredPosition: {x: 1480, y: -143.92743}
   m_SizeDelta: {x: 2760, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &106488655
@@ -1651,7 +1651,7 @@ GameObject:
   - component: {fileID: 1018869976}
   m_Layer: 0
   m_Name: MainLayer
-  m_TagString: Untagged
+  m_TagString: Grid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5686,13 +5686,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballList:
-  - {fileID: 11400000, guid: 2fbd96901e0b2664a80417bf019be731, type: 2}
-  - {fileID: 11400000, guid: 9706999e7d681ab4c983811c231c3644, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  ballLisst: []
+  gameManager: {fileID: 0}
   content: {fileID: 1015559999}
   cardItens: {fileID: 4214322786919084696, guid: 11088245678100446968aeacb95e483f, type: 3}
   ballSelectionPanel: {fileID: 1124311106}
-  ballManager: {fileID: 0}
-  ballNoJogo: {fileID: 0}
   selectBall: {fileID: 0}
 --- !u!1 &1152648759
 GameObject:
@@ -7333,6 +7333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 0}
+  otherGameObject: {fileID: 0}
   myCinemachine: {fileID: 764346321}
 --- !u!1 &1712233903
 GameObject:

@@ -690,7 +690,9 @@ MonoBehaviour:
   ballList:
   - {fileID: 2313389061527154070, guid: e9ca82e875c4f224eae605cbaf7cd6ec, type: 3}
   - {fileID: 2313389061527154070, guid: 29f012d39f0e7934fa2f84ed36aa7c82, type: 3}
-  - {fileID: 2313389061527154070, guid: d55974e8eae875c4e8cb463e7180220c, type: 3}
+  - {fileID: 3410303014688454575, guid: d55974e8eae875c4e8cb463e7180220c, type: 3}
+  ballLisst: []
+  gameManager: {fileID: 0}
   content: {fileID: 435359965}
   cardItens: {fileID: 4214322786919084696, guid: 11088245678100446968aeacb95e483f, type: 3}
   ballSelectionPanel: {fileID: 81880068}

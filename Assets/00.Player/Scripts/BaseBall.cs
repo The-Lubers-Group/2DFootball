@@ -1,6 +1,8 @@
 using NaughtyAttributes;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -8,7 +10,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class BaseBall : MonoBehaviour
+public  class BaseBall : MonoBehaviour
 {
     //public BallObjectSO BallSO;
     //public BallObjectSO ballAtual;
@@ -52,11 +54,11 @@ public class BaseBall : MonoBehaviour
 
     private GameObject arrowGo;
     private GameObject arrowFill;
-    private GameInput gameInput;
+    protected GameInput gameInput;
 
     [HideInInspector] public float zRotate;
     //[HideInInspector] public bool shoot = false;
-    private Rigidbody2D ball;
+    protected Rigidbody2D ballRigdbody2D;
 
     // Wall 
     private Transform leftWall;
@@ -64,6 +66,9 @@ public class BaseBall : MonoBehaviour
 
     // Default Data
     private Animator anim;
+
+
+    public bool IsClone;
 
 
     // TAG
@@ -76,70 +81,10 @@ public class BaseBall : MonoBehaviour
 
     const string TAG_HIT = "hit";
     const string TAG_WIN = "win";
+    const string TAG_GRID = "Grid";
 
 
     //[SerializeField] private BallSelection ballSelection;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     private void Awake()
@@ -185,7 +130,8 @@ public class BaseBall : MonoBehaviour
         // Force
         gameInput.OnForceStarted += Gameinput_OnForceStarted;
         gameInput.OnForcePerformed += Gameinput_OnForcePerformed;
-        ball = GetComponent<Rigidbody2D>();
+        gameInput.OnKickPressed += Gameinput_OnKickPressed;
+        ballRigdbody2D = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -223,6 +169,8 @@ public class BaseBall : MonoBehaviour
         OnSetArrow();
 
         Wall();
+
+        Status();
     }
 
     // Posicionar a Img da Seta
@@ -255,7 +203,6 @@ public class BaseBall : MonoBehaviour
     {
         if (GameManager.instance.kick == 0 && arrowGo)
         {
-
             arrowGo.GetComponent<Image>().enabled = true;
             arrowFill.GetComponent<Image>().enabled = true;
             ArrowUpdateForce();
@@ -267,7 +214,7 @@ public class BaseBall : MonoBehaviour
         // Verifica se o jogador tem mais tentativas
         if (GameManager.instance.kick == 0)
         {
-            if (ball != null)
+            if (ballRigdbody2D != null)
             {
                 AudioManager.instance.SongsFXPlay(1);
                 ApplyForce();
@@ -284,15 +231,22 @@ public class BaseBall : MonoBehaviour
 
     }
 
+    private void Gameinput_OnKickPressed(object sender, System.EventArgs e)
+    {
+        OnKick();
+
+    }
+
+
     // Função - Que define a força total do chute de acordo com o tempo que o botão de força foi pressionado
     void ApplyForce()
     {
         float x = force * Mathf.Cos(zRotate * Mathf.Deg2Rad);
         float y = force * Mathf.Sin(zRotate * Mathf.Deg2Rad);
         
-        if (ball != null)
+        if (ballRigdbody2D != null)
         {
-            ball.AddForce(new Vector2(x, y));
+            ballRigdbody2D.AddForce(new Vector2(x, y));
         }
     }
 
@@ -328,33 +282,62 @@ public class BaseBall : MonoBehaviour
     // Função para verificar se a bola colidiu
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+
+
         // Se a bola atingir uma armadilha, ela sofre dano.
         if (collision.gameObject.CompareTag(TAG_HIT))
-        {
-            Instantiate(ballDeathAnim, transform.position,Quaternion.identity);
-            Destroy(this.gameObject);
-            GameManager.instance.ballInGame -= 1;
-            GameManager.instance.ballNum -= 1;
-        }
-
-        if (collision.gameObject.CompareTag(TAG_WIN))
-        {
-            GameManager.instance.win = true;
-            int temp = IdLevel.instance.level - 3 + 1;
-            temp++;
-
-            PlayerPrefs.SetInt("Level_" + temp, 1);
-            /*
-             * 
-            if (temp <= 6)
             {
-                PlayerPrefs.SetInt("Level_"+temp,1);
+                Instantiate(ballDeathAnim, transform.position, Quaternion.identity);
+                Destroy(this.gameObject);
+                OnDestroy();
+                GameManager.instance.ballInGame -= 1;
+                GameManager.instance.ballNum -= 1;
             }
-            else if(temp > 6)
+
+            if (collision.gameObject.CompareTag(TAG_WIN))
             {
-                SceneManager.LoadScene(1);
+                GameManager.instance.win = true;
+                int temp = IdLevel.instance.level - 3 + 1;
+                temp++;
+
+                PlayerPrefs.SetInt("Level_" + temp, 1);
+                /*
+                 * 
+                if (temp <= 6)
+                {
+                    PlayerPrefs.SetInt("Level_"+temp,1);
+                }
+                else if(temp > 6)
+                {
+                    SceneManager.LoadScene(1);
+                }
+                */
             }
-            */
-        }
+      
+   
+
+      
+
+
+
+
     }
+
+    public void OnDestroy()
+    {
+        Destroy(this.gameObject); 
+    }
+
+    public virtual void OnKick()
+    {
+        Debug.Log(" OnKick ---> Bola Base 1 ");
+
+    }
+    public virtual void Status()
+    {
+
+
+    }
+    //public void OnKick();
 }

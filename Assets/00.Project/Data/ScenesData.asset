@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9808a656f16410e4f8091cca152a0ea0, type: 3}
   m_Name: ScenesData
   m_EditorClassIdentifier: 
-  levels: []
-  menus: []
+  levels:
+  - {fileID: 0}
+  - {fileID: 0}
+  menus:
+  - {fileID: 0}
+  - {fileID: 0}
   CurrentLevelIndex: 4

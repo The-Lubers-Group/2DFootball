@@ -15,7 +15,12 @@ public class BallSelection : MonoBehaviour
     public static BallSelection instance;
 
     //[SerializeField] private List<BallObjectSO> ballList = new List<BallObjectSO>();
-    [SerializeField] private List<BaseBall> ballList = new List<BaseBall>();
+    // [SerializeField] private List<BaseBall> ballList = new List<BaseBall>();
+    [SerializeReference] private List<BaseBall> ballList = new List<BaseBall>();
+
+
+    [SerializeField] private List<BaseBall> ballLisst = new List<BaseBall>();
+
 
 
     [SerializeField] private GameManager gameManager;

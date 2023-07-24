@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BombBall : BaseBall
 {
-    public void OnKick()
+    public override void OnKick()
     {
-        Debug.Log("GOOOOOOOOOOOOOOOOO");
+        //base.OnKick();
+        Debug.Log(" OnKick ---> Bola Bomba 2");
     }
 }

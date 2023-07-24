@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballID: 0
-  icon: {fileID: 21300000, guid: c78d8d1e84218824dace7a7b69f056bf, type: 3}
+  icon: {fileID: 21300000, guid: 20a04dab74e0b10498a4d7c1a893bbdb, type: 3}
   ballName: Bola Bomba
   ballPrice: 200
   WasBought: 1
@@ -59,6 +59,7 @@ MonoBehaviour:
   animController: {fileID: 9100000, guid: 741a599af2b4c014c83783701df3480e, type: 2}
   ballDeathAnim: {fileID: 1192529644611734885, guid: fdce22aa325c65648b92a57de21d4c6d, type: 3}
   zRotate: 0
+  IsClone: 0
 --- !u!58 &3358993031181052560
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -565,7 +566,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: 3deb7ebf7ddf4f2478379a4e483aeb46, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20a04dab74e0b10498a4d7c1a893bbdb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0

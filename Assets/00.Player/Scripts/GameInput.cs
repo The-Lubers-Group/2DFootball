@@ -10,6 +10,7 @@ public class GameInput : MonoBehaviour
 {
     public event EventHandler OnForceStarted;
     public event EventHandler OnForcePerformed;
+    public event EventHandler OnKickPressed;
 
     private PlayerInputAction playerInputActions;
 
@@ -29,6 +30,11 @@ public class GameInput : MonoBehaviour
         {
             Force_performed();
         }
+        if (playerInputActions.Player.Kick.WasReleasedThisFrame())
+        {
+            OnKick_Pressed();
+        }
+
     }
 
     //Quando o jogador clicar no botão 
@@ -49,5 +55,11 @@ public class GameInput : MonoBehaviour
         inputVector = inputVector.normalized;
 
         return inputVector;
+    }
+
+
+    private void OnKick_Pressed()
+    {
+        OnKickPressed?.Invoke(this, EventArgs.Empty);
     }
 }
