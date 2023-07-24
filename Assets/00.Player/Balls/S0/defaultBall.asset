@@ -20,3 +20,4 @@ MonoBehaviour:
   ballVelocity: 70
   ballWeight: 30
   animController: {fileID: 9100000, guid: 741a599af2b4c014c83783701df3480e, type: 2}
+  prefabBall: {fileID: 2313389061527154070, guid: e9ca82e875c4f224eae605cbaf7cd6ec, type: 3}

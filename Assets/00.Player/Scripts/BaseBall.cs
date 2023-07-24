@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,64 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class BallManager : MonoBehaviour
-{
 
-    public BallObjectSO BallSO;
-    public BallObjectSO ballAtual;
-    [SerializeField] private BallSelection ballSelection;
+public class BaseBall : MonoBehaviour
+{
+    //public BallObjectSO BallSO;
+    //public BallObjectSO ballAtual;
+
+
+
+    [HideInInspector] public int ballID;
+
+    [Header("Valores padrões")]
+    [Label("Image da Bola")]
+    public Sprite icon;
+    private SpriteRenderer imgIcon;
+
+    [Label("Nome da Bola")]
+    public string ballName;
+
+    [Label("Preço da Bola")]
+    public float ballPrice;
+
+    [Label("Bola já foi comprada?")]
+    public bool WasBought;
+
+    [Space(5)]
+    [Label("Velocidade máxima da Bola")]
+    [SerializeField] private float ballVelocity;
+
+    [Label("Peso da Bola")]
+    [SerializeField] private float ballWeight;
+
+    [Label("Força da Bola")]
+    [SerializeField] private float force;
+
+    [Space(5)]
+    [Header("Animação")]
+    public RuntimeAnimatorController animController;
+
+    [Label("Animação de morte da bola")]
+    [SerializeField] private GameObject ballDeathAnim;
+
+    //public string nameIcon;
+
+    private GameObject arrowGo;
+    private GameObject arrowFill;
+    private GameInput gameInput;
+
+    [HideInInspector] public float zRotate;
+    //[HideInInspector] public bool shoot = false;
+    private Rigidbody2D ball;
+
+    // Wall 
+    private Transform leftWall;
+    private Transform rightWall;
+
+    // Default Data
+    private Animator anim;
+
 
     // TAG
     const string TAG_ARROW = "Arrow";
@@ -24,10 +77,8 @@ public class BallManager : MonoBehaviour
     const string TAG_HIT = "hit";
     const string TAG_WIN = "win";
 
-    public int ballID;
-    public string nameIcon;
-    public float ballPrice;
-    public bool WasBought;
+
+    //[SerializeField] private BallSelection ballSelection;
 
 
 
@@ -37,33 +88,63 @@ public class BallManager : MonoBehaviour
 
 
 
-    // Rotation
-    //private Transform posStart;
-    private GameObject arrowGo;
-    private GameObject arrowFill;
-    private GameInput gameInput;
 
-    public float zRotate;
-    public bool shoot = false;
 
-    // Force 
-    [SerializeField] private float force = 0;
-    private Rigidbody2D ball;
 
-    // Wall 
-    private Transform leftWall;
-    private Transform rightWall;
 
-    // Default Data
-    private Animator anim;
-    private SpriteRenderer imgIcon;
 
-    // Animação de morte da bola
-    [SerializeField] private GameObject ballDeathAnim;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     private void Awake()
     {
-        ballAtual = BallSO;
+        //ballAtual = BallSO;
         /*
         if(ballSelection)
         {
@@ -72,6 +153,13 @@ public class BallManager : MonoBehaviour
         }
         */
 
+        // Set Anim
+        anim = GetComponentInChildren<Animator>();
+        anim.runtimeAnimatorController = animController;
+
+        // Set Ball Icon
+        imgIcon = GetComponentInChildren<SpriteRenderer>();
+        imgIcon.sprite = icon;
 
 
 
@@ -102,6 +190,7 @@ public class BallManager : MonoBehaviour
 
     void Update()
     {
+        /*
         if(ballAtual != BallSO)
         {
             // Set Anim
@@ -111,8 +200,11 @@ public class BallManager : MonoBehaviour
             // Set Ball Icon
             imgIcon = GetComponentInChildren<SpriteRenderer>();
             imgIcon.sprite = BallSO.imgIcon;
+
+
+            ballAtual = BallSO;
         }
-        
+        */
 
 
         RotationArrow();

@@ -13,6 +13,9 @@ public class BallObjectSO : ScriptableObject
     [HideInInspector] public int ballId;
 
     [Header("Valores padrões")]
+    [Label("Prefab da Bola")]
+    public BaseBall prefabBall;
+
     [Label("Image da Bola")]
     public Sprite imgIcon;
 
@@ -37,4 +40,6 @@ public class BallObjectSO : ScriptableObject
     [Space(5)]
     [Header("Animação")]
     public RuntimeAnimatorController animController;
+
+   
 }

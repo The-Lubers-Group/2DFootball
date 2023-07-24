@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SceneTemplate;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static GameManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     //Ball Variables
     //private bool isBallDeath = false;
-    [SerializeField] private GameObject ballObject;
+    [SerializeField] private GameObject GO;
 
     public int kick = 1;
     public Transform pos;
@@ -26,6 +30,14 @@ public class GameManager : MonoBehaviour
 
     // Index das Fases
     public bool beginGame;
+
+    //List of the scenes to load from Main Menu
+    //List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+    AsyncOperation asyncUnload;
+
+
+
+    [SerializeField] private BallSelection ballSelection;
 
     private void Awake()
     {
@@ -57,18 +69,60 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartGame();
-        ScoreManager.instance.GameStartScoreM();
+
+        //Chama a tela de seleção de bola
+        if (IdLevel.instance.level >= 4)
+        {
+            asyncUnload = SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
+
+
+
+
+
+
+            //asyncUnload = SceneManager.UnloadSceneAsync("SelectBall");
+
+
+            //scenesToLoad.Add(SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive));
+
+            //scenesToLoad.Remove(SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("SelectBall")));
+
+            //AsyncOperation asyncUnload = SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("game"));
+
+            //scenesToLoad.UnloadSceneAsync(GameObject, "SelectBall");
+            //UnloadSceneOptions
+            //ballSelection = GameObject.Find("BallSelectionPanel").GetComponent<BallSelection>();
+
+
+        }
+
+
+
+
+
+
+          //  StartGame();
+       // ScoreManager.instance.GameStartScoreM();
     }
+
+   
 
     // Update is called once per frame
     void Update()
     {
-        ScoreManager.instance.UpdateScore();
-        UIManager.instance.UpdateUI();
-        BallBorn();
 
-        if(ballNum <= 0)
+
+
+
+
+        //BallBorn();
+
+
+
+        //ScoreManager.instance.UpdateScore();
+        //UIManager.instance.UpdateUI();
+
+        if (ballNum <= 0)
         {
             GameOver();
         }
@@ -89,7 +143,7 @@ public class GameManager : MonoBehaviour
 
             if (ballNum > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
             {
-                Instantiate(ballObject, new Vector2 (pos.position.x, pos.position.y), Quaternion.identity);
+                Instantiate(GO, new Vector2 (pos.position.x, pos.position.y), Quaternion.identity);
                 ballInGame += 1;
                 kick = 0;
             }
@@ -97,7 +151,7 @@ public class GameManager : MonoBehaviour
             {
                 if (ballNum > 0 && ballInGame == 0)
                 {
-                    Instantiate(ballObject, new Vector2(pos.position.x, pos.position.y), Quaternion.identity);
+                    Instantiate(GO, new Vector2(pos.position.x, pos.position.y), Quaternion.identity);
                     ballInGame++;
                     kick = 0;
                 }

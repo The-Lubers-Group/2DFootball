@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/00.Project/04.Levels/Scenes/Level_4.unity
     guid: 9cc31f2eff887be46b14519a249166c8
+  - enabled: 1
+    path: Assets/00.Project/00.Common/Scenes/SelectBall.unity
+    guid: 12e0c56608c28864aa2e86ee243c91a2
   m_configObjects: {}

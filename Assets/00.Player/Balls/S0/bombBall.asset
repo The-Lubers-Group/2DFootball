@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: bombBall
   m_EditorClassIdentifier: 
   ballId: 0
+  prefabBall: {fileID: 2313389061527154070, guid: e9ca82e875c4f224eae605cbaf7cd6ec, type: 3}
   imgIcon: {fileID: 21300000, guid: d448d12e537348044a54c8a6a337faad, type: 3}
   ballName: Bola Bomba
   ballPrice: 200
