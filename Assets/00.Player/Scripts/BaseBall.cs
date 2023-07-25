@@ -1,3 +1,4 @@
+using DG.Tweening;
 using NaughtyAttributes;
 using System;
 using System.Collections;
@@ -48,7 +49,7 @@ public  class BaseBall : MonoBehaviour
     public RuntimeAnimatorController animController;
 
     [Label("Animação de morte da bola")]
-    [SerializeField] private GameObject ballDeathAnim;
+    [SerializeField] protected GameObject ballDeathAnim;
 
     //public string nameIcon;
 
@@ -70,6 +71,7 @@ public  class BaseBall : MonoBehaviour
 
     public bool IsClone;
 
+    protected bool startTimer = false;
 
     // TAG
     const string TAG_ARROW = "Arrow";
@@ -123,6 +125,8 @@ public  class BaseBall : MonoBehaviour
         // Set Left and Right Wall
         leftWall = GameObject.Find(TAG_LW).GetComponent<Transform>();
         rightWall = GameObject.Find(TAG_RW).GetComponent<Transform>();
+
+        startTimer = true;
     }
 
     void Start()
@@ -151,6 +155,7 @@ public  class BaseBall : MonoBehaviour
             ballAtual = BallSO;
         }
         */
+        SpecialUpdate();
 
 
         RotationArrow();
@@ -170,7 +175,6 @@ public  class BaseBall : MonoBehaviour
 
         Wall();
 
-        Status();
     }
 
     // Posicionar a Img da Seta
@@ -247,6 +251,7 @@ public  class BaseBall : MonoBehaviour
         if (ballRigdbody2D != null)
         {
             ballRigdbody2D.AddForce(new Vector2(x, y));
+            //ballRigdbody2D.transform.DOLocalMove(new Vector2(x, y), 1);
         }
     }
 
@@ -334,10 +339,11 @@ public  class BaseBall : MonoBehaviour
         Debug.Log(" OnKick ---> Bola Base 1 ");
 
     }
-    public virtual void Status()
+    public virtual void SpecialUpdate()
     {
 
-
     }
-    //public void OnKick();
+
+   
 }
+

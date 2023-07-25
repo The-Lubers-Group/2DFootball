@@ -65,7 +65,7 @@ public class MultiBall : BaseBall
     
     }
 
-    public override void Status()
+    public override void SpecialUpdate()
     {
         if (IsClone == true && ballRigdbody2D.velocity.x == 0)
         {
