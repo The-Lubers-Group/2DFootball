@@ -42,7 +42,6 @@ public class BombBall : BaseBall
         //Instantiate(explosion, transform.position, Quaternion.identity);
         Instantiate(ballDeathAnim, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
-        OnDestroy();
         GameManager.instance.ballInGame -= 1;
         GameManager.instance.ballNum -= 1;
     }

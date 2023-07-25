@@ -11,12 +11,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public  class BaseBall : MonoBehaviour
+public class BaseBall : MonoBehaviour
 {
-    //public BallObjectSO BallSO;
-    //public BallObjectSO ballAtual;
-
-
 
     [HideInInspector] public int ballID;
 
@@ -68,9 +64,6 @@ public  class BaseBall : MonoBehaviour
     // Default Data
     private Animator anim;
 
-
-    [HideInInspector] public bool IsClone;
-
     protected bool startTimer = false;
 
     // TAG
@@ -84,21 +77,10 @@ public  class BaseBall : MonoBehaviour
     const string TAG_HIT = "hit";
     const string TAG_WIN = "win";
 
-
-    //[SerializeField] private BallSelection ballSelection;
-
+    private bool isMoving = false;
 
     private void Awake()
     {
-        //ballAtual = BallSO;
-        /*
-        if(ballSelection)
-        {
-            ballSO = ballSelection.selectBall;
-            Debug.Log(ballSO);
-        }
-        */
-
         // Set Anim
         anim = GetComponentInChildren<Animator>();
         anim.runtimeAnimatorController = animController;
@@ -106,8 +88,6 @@ public  class BaseBall : MonoBehaviour
         // Set Ball Icon
         imgIcon = GetComponentInChildren<SpriteRenderer>();
         imgIcon.sprite = icon;
-
-
 
         // Set GameInput
         gameInput = GameObject.Find(TAG_GI).GetComponent<GameInput>();
@@ -139,26 +119,9 @@ public  class BaseBall : MonoBehaviour
 
     void Update()
     {
-        /*
-        if(ballAtual != BallSO)
-        {
-            // Set Anim
-            anim = GetComponentInChildren<Animator>();
-            anim.runtimeAnimatorController = BallSO.animController;
-
-            // Set Ball Icon
-            imgIcon = GetComponentInChildren<SpriteRenderer>();
-            imgIcon.sprite = BallSO.imgIcon;
-
-
-            ballAtual = BallSO;
-        }
-        */
         SpecialUpdate();
-
-
         RotationArrow();
-        
+
         Vector2 inputVector = gameInput.GetArrowRotationNormalized();
         if (inputVector.y == 1 || zRotate > 90)
         {
@@ -171,9 +134,7 @@ public  class BaseBall : MonoBehaviour
 
         //RotationLimit();
         OnSetArrow();
-
         Wall();
-
     }
 
     // Posicionar a Img da Seta
@@ -204,49 +165,49 @@ public  class BaseBall : MonoBehaviour
     // Enquanto o botão de força esticar pressionado - carrega o medidor de força
     private void Gameinput_OnForceStarted(object sender, System.EventArgs e)
     {
-        if (GameManager.instance.kick == 0 && arrowGo)
+        if (ballRigdbody2D != null)
         {
-            arrowGo.GetComponent<Image>().enabled = true;
-            arrowFill.GetComponent<Image>().enabled = true;
-            ArrowUpdateForce();
+            if (GameManager.instance.kick == 0 && ballRigdbody2D.velocity.magnitude == 0 && arrowGo)
+            {
+                arrowGo.GetComponent<Image>().enabled = true;
+                arrowFill.GetComponent<Image>().enabled = true;
+                ArrowUpdateForce();
+            }
         }
+            
     }
     // Enquanto o botão é liberado - chute a bola
     private void Gameinput_OnForcePerformed(object sender, System.EventArgs e)
     {
-        // Verifica se o jogador tem mais tentativas
-        if (GameManager.instance.kick == 0)
+        if (ballRigdbody2D != null)
         {
-            if (ballRigdbody2D != null)
+            if (GameManager.instance.kick == 0 && ballRigdbody2D.velocity.magnitude == 0 && arrowGo)
             {
                 AudioManager.instance.SongsFXPlay(1);
                 ApplyForce();
-            }
-            force = 0;
-            //GameManager.instance.kick = 1;
-            if(arrowGo)
-            {
+                //GameManager.instance.kick = 1;
+                force = 0;
                 arrowGo.GetComponent<Image>().enabled = false;
                 arrowFill.GetComponent<Image>().enabled = false;
                 arrowFill.GetComponent<Image>().fillAmount = 0;
             }
         }
-
     }
 
     private void Gameinput_OnKickPressed(object sender, System.EventArgs e)
     {
-        OnSpecialAttack();
-
+        if (ballRigdbody2D.velocity.magnitude != 0)
+        {
+            OnSpecialAttack();
+        }
     }
-
 
     // Função - Que define a força total do chute de acordo com o tempo que o botão de força foi pressionado
     void ApplyForce()
     {
         float x = force * Mathf.Cos(zRotate * Mathf.Deg2Rad);
         float y = force * Mathf.Sin(zRotate * Mathf.Deg2Rad);
-        
+
         if (ballRigdbody2D != null)
         {
             ballRigdbody2D.AddForce(new Vector2(x, y));
@@ -257,7 +218,7 @@ public  class BaseBall : MonoBehaviour
     // Função - Que define a animação de carregar a flecha de acordo com o tempo que o botão de força foi pressionado
     void ArrowUpdateForce()
     {
-        if(arrowGo)
+        if (arrowGo)
         {
             arrowGo.transform.GetChild(0).GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
             force = arrowFill.GetComponent<Image>().fillAmount * 1000;
@@ -268,7 +229,7 @@ public  class BaseBall : MonoBehaviour
     // Limite de tela se a bola passar a bola é destruída
     void Wall()
     {
-        if(this.gameObject.transform.position.x > rightWall.position.x )
+        if (this.gameObject.transform.position.x > rightWall.position.x)
         {
             Destroy(this.gameObject);
             GameManager.instance.ballInGame -= 1;
@@ -291,11 +252,9 @@ public  class BaseBall : MonoBehaviour
         {
             Instantiate(ballDeathAnim, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
-            OnDestroy();
             GameManager.instance.ballInGame -= 1;
             GameManager.instance.ballNum -= 1;
         }
-
 
         if (collision.gameObject.CompareTag(TAG_WIN))
         {
@@ -304,14 +263,6 @@ public  class BaseBall : MonoBehaviour
             temp++;
             PlayerPrefs.SetInt("Level_" + temp, 1);
         }
-
-        
-
-    }
-
-    public void OnDestroy()
-    {
-        Destroy(this.gameObject); 
     }
     
     public virtual void OnSpecialAttack() { }
