@@ -1649,9 +1649,9 @@ GameObject:
   - component: {fileID: 1018869978}
   - component: {fileID: 1018869977}
   - component: {fileID: 1018869976}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: MainLayer
-  m_TagString: Grid
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5685,14 +5685,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1c53bc3952f98142b5c2e0712fac8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballList:
-  - {fileID: 0}
-  - {fileID: 0}
-  ballLisst: []
   gameManager: {fileID: 0}
   content: {fileID: 1015559999}
   cardItens: {fileID: 4214322786919084696, guid: 11088245678100446968aeacb95e483f, type: 3}
   ballSelectionPanel: {fileID: 1124311106}
+  ballList:
+  - {fileID: 0}
+  - {fileID: 0}
   selectBall: {fileID: 0}
 --- !u!1 &1152648759
 GameObject:

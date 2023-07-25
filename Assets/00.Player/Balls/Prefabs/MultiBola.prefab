@@ -59,7 +59,11 @@ MonoBehaviour:
   animController: {fileID: 9100000, guid: 741a599af2b4c014c83783701df3480e, type: 2}
   ballDeathAnim: {fileID: 1192529644611734885, guid: fdce22aa325c65648b92a57de21d4c6d, type: 3}
   zRotate: 0
+  IsClone: 0
   ballPerKick: 2
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 32
 --- !u!58 &3358993031181052560
 CircleCollider2D:
   m_ObjectHideFlags: 0

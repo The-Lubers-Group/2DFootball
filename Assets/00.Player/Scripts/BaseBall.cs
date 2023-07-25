@@ -20,7 +20,7 @@ public  class BaseBall : MonoBehaviour
 
     [HideInInspector] public int ballID;
 
-    [Header("Valores padrões")]
+    [Header("Atributos: Base")]
     [Label("Image da Bola")]
     public Sprite icon;
     private SpriteRenderer imgIcon;
@@ -69,7 +69,7 @@ public  class BaseBall : MonoBehaviour
     private Animator anim;
 
 
-    public bool IsClone;
+    [HideInInspector] public bool IsClone;
 
     protected bool startTimer = false;
 
@@ -83,7 +83,6 @@ public  class BaseBall : MonoBehaviour
 
     const string TAG_HIT = "hit";
     const string TAG_WIN = "win";
-    const string TAG_GRID = "Grid";
 
 
     //[SerializeField] private BallSelection ballSelection;
@@ -237,7 +236,7 @@ public  class BaseBall : MonoBehaviour
 
     private void Gameinput_OnKickPressed(object sender, System.EventArgs e)
     {
-        OnKick();
+        OnSpecialAttack();
 
     }
 
@@ -287,45 +286,26 @@ public  class BaseBall : MonoBehaviour
     // Função para verificar se a bola colidiu
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
-
         // Se a bola atingir uma armadilha, ela sofre dano.
         if (collision.gameObject.CompareTag(TAG_HIT))
-            {
-                Instantiate(ballDeathAnim, transform.position, Quaternion.identity);
-                Destroy(this.gameObject);
-                OnDestroy();
-                GameManager.instance.ballInGame -= 1;
-                GameManager.instance.ballNum -= 1;
-            }
-
-            if (collision.gameObject.CompareTag(TAG_WIN))
-            {
-                GameManager.instance.win = true;
-                int temp = IdLevel.instance.level - 3 + 1;
-                temp++;
-
-                PlayerPrefs.SetInt("Level_" + temp, 1);
-                /*
-                 * 
-                if (temp <= 6)
-                {
-                    PlayerPrefs.SetInt("Level_"+temp,1);
-                }
-                else if(temp > 6)
-                {
-                    SceneManager.LoadScene(1);
-                }
-                */
-            }
-      
-   
-
-      
+        {
+            Instantiate(ballDeathAnim, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+            OnDestroy();
+            GameManager.instance.ballInGame -= 1;
+            GameManager.instance.ballNum -= 1;
+        }
 
 
+        if (collision.gameObject.CompareTag(TAG_WIN))
+        {
+            GameManager.instance.win = true;
+            int temp = IdLevel.instance.level - 3 + 1;
+            temp++;
+            PlayerPrefs.SetInt("Level_" + temp, 1);
+        }
 
+        
 
     }
 
@@ -333,17 +313,8 @@ public  class BaseBall : MonoBehaviour
     {
         Destroy(this.gameObject); 
     }
-
-    public virtual void OnKick()
-    {
-        Debug.Log(" OnKick ---> Bola Base 1 ");
-
-    }
-    public virtual void SpecialUpdate()
-    {
-
-    }
-
-   
+    
+    public virtual void OnSpecialAttack() { }
+    public virtual void SpecialUpdate() { }
 }
 
