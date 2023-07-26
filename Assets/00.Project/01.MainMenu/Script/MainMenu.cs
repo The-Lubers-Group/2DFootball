@@ -17,11 +17,11 @@ public class MainMenu : MonoBehaviour
     {
 
        SceneManager.LoadScene(1);
-      
+
         /*
         HideMenu();
         ShowLoadingScreen();
-
+      
         scenesToLoad.Add(SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive));
         //scenesToLoad.Add(SceneManager.LoadSceneAsync(1,LoadSceneMode.Additive));
         StartCoroutine(LoadingScreen());
