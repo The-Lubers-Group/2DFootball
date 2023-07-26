@@ -62,4 +62,9 @@ public class SettingsPanel : MonoBehaviour
         canvasGroup.DOFade(1, fadeTime);
         //canvasGroup.gameObject.SetActive(false);
     }
+
+    private void OnClickMenu()
+    {
+
+    }
 }
