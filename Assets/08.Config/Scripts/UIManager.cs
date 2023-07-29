@@ -250,5 +250,10 @@ public class UIManager : MonoBehaviour
             SceneManager.LoadScene (temp);
         }
     }
+
+    void SelectBall()
+    {
+        SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
+    }
 }
 

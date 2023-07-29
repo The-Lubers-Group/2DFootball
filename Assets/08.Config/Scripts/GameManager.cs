@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
     {
         if(ballObject)
         {
+
            BallBorn();
         }
 
