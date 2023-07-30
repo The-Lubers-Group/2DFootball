@@ -7,7 +7,11 @@ using System;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject menu;
+    //public GameObject PlayBtn;
+    //public GameObject SettingsBtn;
+    //public GameObject ExitBtn;
+    [SerializeField ] private List<GameObject> buttonsList = new List<GameObject>();
+
     public GameObject loadingInterface;
     public Image loadingProgressBar;
 
@@ -37,7 +41,11 @@ public class MainMenu : MonoBehaviour
 
     public void HideMenu()
     {
-        menu.SetActive(false);
+        //PlayBtn.SetActive(false);
+        foreach (GameObject btn in buttonsList)
+        {
+            btn.SetActive(false);   
+        }
     }
 
     public void ShowLoadingScreen()

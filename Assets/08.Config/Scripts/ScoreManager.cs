@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class ScoreManager : MonoBehaviour
         if (instance == null)
         {
             instance = new ScoreManager();
+            //instance =  this.gameObject.AddComponent<ScoreManager>();
             DontDestroyOnLoad(this.gameObject);
         }
         else

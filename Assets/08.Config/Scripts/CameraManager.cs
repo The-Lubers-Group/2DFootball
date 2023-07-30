@@ -16,7 +16,7 @@ public class CameraManager : MonoBehaviour
    
     public GameObject otherGameObject;
     
-    private float t = 1;
+    //private float t = 1;
 
     [SerializeField] private CinemachineVirtualCamera myCinemachine;
 

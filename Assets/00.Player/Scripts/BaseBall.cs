@@ -77,7 +77,7 @@ public class BaseBall : MonoBehaviour
     const string TAG_HIT = "hit";
     const string TAG_WIN = "win";
 
-    private bool isMoving = false;
+    //private bool isMoving = false;
 
     private void Awake()
     {
