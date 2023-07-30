@@ -7,13 +7,11 @@ using System;
 
 public class MainMenu : MonoBehaviour
 {
-    //public GameObject PlayBtn;
-    //public GameObject SettingsBtn;
-    //public GameObject ExitBtn;
-    [SerializeField ] private List<GameObject> buttonsList = new List<GameObject>();
+    private const String TAG_TRANSITION_SCREAN = "TransitionScrean";
+    [SerializeField] private List<GameObject> buttonsList = new List<GameObject>();
 
-    public GameObject loadingInterface;
-    public Image loadingProgressBar;
+    [SerializeField] private GameObject loadingInterface;
+    [SerializeField] private Image loadingProgressBar;
 
     List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
 
@@ -27,7 +25,7 @@ public class MainMenu : MonoBehaviour
         ShowLoadingScreen();
 
         scenesToLoad.Add(SceneManager.LoadSceneAsync(1));
-        //scenesToLoad.Add(SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive));
+        scenesToLoad.Add(SceneManager.LoadSceneAsync(TAG_TRANSITION_SCREAN, LoadSceneMode.Additive));
         StartCoroutine(LoadingScreen());
 
     }
