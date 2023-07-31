@@ -75,9 +75,19 @@ public class UIManager : MonoBehaviour
     public int coinsNumResult;
 
 
+    List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+
+
     private void Awake()
     {
         // Certifique-se de que não há duplicatas e mantenha os dados quando mudar de fases
+       /*
+        if (SceneManager.GetActiveScene().name == "WinGameUI")
+        {
+            Destroy(gameObject);
+        }
+       */
+
         if (instance == null)
         {
             instance = this;
@@ -100,7 +110,8 @@ public class UIManager : MonoBehaviour
     void LoadData()
     {
 
-        if (IdLevel.instance.level != ID_START_LEVEL && IdLevel.instance.level != ID_MENU_LEVEL && IdLevel.instance.level != ID_STORE_LEVEL)
+        //if (IdLevel.instance.level != ID_START_LEVEL && IdLevel.instance.level != ID_MENU_LEVEL && IdLevel.instance.level != ID_STORE_LEVEL)
+        if (SceneManager.GetActiveScene().name.Contains("Level_"))
         {
             pointsUI = GameObject.Find(TAG_COIN).GetComponent<TMP_Text>();
             ballUI = GameObject.Find(TAG_BALL).GetComponent<TMP_Text>();
@@ -166,6 +177,8 @@ public class UIManager : MonoBehaviour
     public void WinGameUI()
     {
         winPanel.SetActive(true);
+        //
+        //SceneManager.LoadSceneAsync("WinGameUI");
     }
 
     // Ativa e desliga o Panel de Game Over
@@ -177,6 +190,11 @@ public class UIManager : MonoBehaviour
     // Pausa o jogo e chama o menu de pause
     void Pause()
     {
+        //scenesToLoad.Add(SceneManager.LoadSceneAsync("MenuWinUI", LoadSceneMode.Additive));
+        //SceneManager.LoadScene("MenuWinUI");
+        //SceneManager.LoadScene("WinModal");
+        //SceneManager.LoadScene(ID_MENU_LEVEL);
+
         pausePanel.SetActive(true);
         pausePanel.GetComponent<Animator>().Play(TAG_PAUSE_ANIM);
         Time.timeScale = 0;

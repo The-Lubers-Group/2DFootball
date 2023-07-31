@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using DG.Tweening.Core.Easing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,9 +33,30 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] private Image starLeft;
     [SerializeField] private Image starCenter;
     [SerializeField] private Image starRight;
-     
+
+    private UIManager uiManager;
+    private GameManager gameManager;
+
+    //[SerializeField] private UIManager uIManager;
+    private void Awake()
+    {
+        //uiManager = FindObjectOfType<UIManager>();
+        //gameManager = FindObjectOfType<GameManager>();
+
+        Destroy(GameObject.Find("UIManager(Clone)").GetComponent<UIManager>());
+        Destroy(GameObject.Find("GameManager(Clone)").GetComponent<GameManager>());
+    }
     void Start()
     {
+        if (uiManager != null)
+        {
+            Destroy(uiManager.gameObject);
+        }
+        if (gameManager != null)
+        {
+            Destroy(gameManager.gameObject);
+        }
+
         PanelFadeIn();
         //canvasGroup.gameObject.SetActive(true);
     }

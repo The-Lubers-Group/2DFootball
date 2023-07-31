@@ -42,6 +42,14 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // Certifique-se de que não há duplicatas e mantenha os dados quando mudar de fases
+        /*
+        if (SceneManager.GetActiveScene().name == "WinGameUI")
+        {
+            Destroy(gameObject);
+        }
+        */
+
+        //if (SceneManager.GetActiveScene().buildIndex < 7)
         if (instance == null)
         {
             instance = this;
@@ -53,13 +61,14 @@ public class GameManager : MonoBehaviour
         }
 
         SceneManager.sceneLoaded += Load;
-        pos = GameObject.Find(TAG).GetComponent<Transform>();
+        //pos = GameObject.Find(TAG).GetComponent<Transform>();
     }
 
     //Passar o método e procurar o objeto TEXT com o nome NCoins
     void Load(Scene scene, LoadSceneMode mode)
     {
-        if (IdLevel.instance.level != ID_MENU_LEVEL)
+        //if (IdLevel.instance.level != ID_MENU_LEVEL)
+        if (SceneManager.GetActiveScene().name.Contains("Level_"))
         {
             pos = GameObject.Find(TAG).GetComponent<Transform>();
             StartGame();
@@ -69,6 +78,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        
+
         //Chama a tela de seleção de bola
         if (IdLevel.instance.level >= 4)
         {
@@ -91,7 +103,7 @@ public class GameManager : MonoBehaviour
         }
 
         ScoreManager.instance.UpdateScore();
-        UIManager.instance.UpdateUI();
+       UIManager.instance.UpdateUI();
 
         if (ballNum <= 0)
         {
