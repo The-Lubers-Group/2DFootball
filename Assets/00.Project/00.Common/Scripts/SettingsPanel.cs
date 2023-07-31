@@ -40,11 +40,11 @@ public class SettingsPanel : MonoBehaviour
     //[SerializeField] private UIManager uIManager;
     private void Awake()
     {
-        //uiManager = FindObjectOfType<UIManager>();
-        //gameManager = FindObjectOfType<GameManager>();
+        uiManager = FindObjectOfType<UIManager>();
+        gameManager = FindObjectOfType<GameManager>();
 
-        Destroy(GameObject.Find("UIManager(Clone)").GetComponent<UIManager>());
-        Destroy(GameObject.Find("GameManager(Clone)").GetComponent<GameManager>());
+       //Destroy(GameObject.Find("UIManager(Clone)").GetComponent<UIManager>());
+        //Destroy(GameObject.Find("GameManager(Clone)").GetComponent<GameManager>());
     }
     void Start()
     {

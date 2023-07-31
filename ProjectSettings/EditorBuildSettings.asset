@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/00.Project/03.Store/Scenes/StoreMenu.unity
     guid: 8a6ee3af33389dd49b9f639c3bdb280b
   - enabled: 1
+    path: Assets/00.Project/00.Common/Scenes/LoadingScene.unity
+    guid: 83fb93ec5b9e6cf4e88edfdd49b2f23d
+  - enabled: 1
     path: Assets/00.Project/00.Common/Scenes/MenuWinUI.unity
     guid: 989ede44d3a43704b96f1c717c8da1f0
   - enabled: 1

@@ -153,7 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   screenTransitionMaterial: {fileID: 2100000, guid: 4246f5d53fa4f45459bb79d798340f74, type: 2}
-  transitionTime: 1.5
+  transitionTime: 1
   propertyName: _Pregress
   OnTransitionDone:
     m_PersistentCalls:

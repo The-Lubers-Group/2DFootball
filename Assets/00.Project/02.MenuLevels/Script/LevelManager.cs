@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static System.TimeZoneInfo;
+using UnityEngine.Events;
 
 /*
  * LevelManager -- Criar e gerir a tela de seleção de nível
@@ -30,6 +32,11 @@ public class LevelManager : MonoBehaviour
     public GameObject levelBtn;
     public Transform localBtn;
     public List<Level> levelsList;
+
+    List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+    public UnityEvent OnTransitionDone;
+    [SerializeField] private float transitionTime = 9f;
+
 
     // Criação de uma lista de botões para mostrar as fases disponíveis
     void ListAdd()
@@ -72,7 +79,55 @@ public class LevelManager : MonoBehaviour
     // Função responsável por enviar o jogador para o nível selecionado
     void ClickLevel(string level)
     {
-        SceneManager.LoadScene(level);
+        //SceneManager.LoadScene(level);
+        SceneManager.LoadSceneAsync(level);
+        SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive);
+        StartCoroutine(LoadingScreen());
+
+
+
+
+        //SceneManager.LoadSceneAsync(level);
+        //SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive);
+
+        /*
+        SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);
+
+        LoadingManager lm = new LoadingManager();
+        lm.level = level;
+        //lm = FindObjectOfType<LoadingManager>();
+        //Debug.Log(lm);
+        Debug.Log(lm.level);
+        */
+
+
+
+        //LoadingManager.SetLevel(level);
+
+
+        //SceneManager.LoadSceneAsync(level);
+        //SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive);
+
+
+        //scenesToLoad.Add(SceneManager.LoadSceneAsync(level));
+        //scenesToLoad.Add(SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive));
+
+
+
+
+
+
+        //scenesToLoad.Add(SceneManager.LoadSceneAsync(level));
+        //scenesToLoad.Add(SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive));
+
+        //scenesToLoad.Add(SceneManager.LoadSceneAsync("LoadingScene"));
+        //(LoadingScreen());
+
+
+
+        // Transition Scene
+        //scenesToLoad.Add(SceneManager.LoadSceneAsync(TAG_TRANSITION_SCREAN, LoadSceneMode.Additive));
+
     }
 
     private void Awake()
@@ -98,4 +153,18 @@ public class LevelManager : MonoBehaviour
         }
 
     }
+
+    IEnumerator LoadingScreen()
+    {
+        float totalProgress = 0;
+        for (int i = 0; i < scenesToLoad.Count; ++i)
+        {
+            while (!scenesToLoad[i].isDone)
+            {
+                totalProgress += scenesToLoad[i].progress;
+                yield return null;
+            }
+        }
+    }
+  
 }

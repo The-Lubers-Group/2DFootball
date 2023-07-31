@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour
 
     AsyncOperation asyncUnload;
 
+    List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+
     private void Awake()
     {
         // Certifique-se de que não há duplicatas e mantenha os dados quando mudar de fases
@@ -49,6 +51,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        //scenesToLoad.Add(SceneManager.LoadSceneAsync("LoadingScene"));
 
         SceneManager.sceneLoaded += Load;
         //pos = GameObject.Find(TAG).GetComponent<Transform>();
@@ -71,15 +75,28 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
+        //scenesToLoad.Add(SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive));
         
+        //SceneManager.LoadSceneAsync("LoadingScene");
+        //LoadingManager
 
+        if (SceneManager.GetActiveScene().name.Contains("Level_"))
+        {
+            //SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
+         
+            
+            //scenesToLoad.Add(SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive));
+        }
+
+        /*
         //Chama a tela de seleção de bola
         if (IdLevel.instance.level >= 4)
         {
-           asyncUnload = SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
+            scenesToLoad.Add(SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive));
+           //asyncUnload = SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
         }
-
-         StartGame();
+        */
+        StartGame();
          ScoreManager.instance.GameStartScoreM();
     }
 
@@ -94,8 +111,11 @@ public class GameManager : MonoBehaviour
            BallBorn();
         }
 
-        ScoreManager.instance.UpdateScore();
-       UIManager.instance.UpdateUI();
+        if (ballObject)
+        {
+            ScoreManager.instance.UpdateScore();
+            UIManager.instance.UpdateUI();
+        }
 
         if (ballNum <= 0)
         {

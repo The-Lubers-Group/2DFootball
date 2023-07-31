@@ -98,13 +98,13 @@ public class UIManager : MonoBehaviour
         }
 
         SceneManager.sceneLoaded += Load;
-        LoadData();
+        //LoadData();
     }
 
     //Passar o método e procurar o objeto TEXT com o nome NCoins
     void Load(Scene scene, LoadSceneMode mode)
     {
-        LoadData();
+        //LoadData();
     }
 
     void LoadData()
@@ -184,7 +184,7 @@ public class UIManager : MonoBehaviour
     // Ativa e desliga o Panel de Game Over
     void SwitchPanel()
     {
-        StartCoroutine(temp());
+        //StartCoroutine(temp());
     }
 
     // Pausa o jogo e chama o menu de pause
