@@ -8,6 +8,8 @@ public class UIControl : MonoBehaviour
     const string TAG_COIN = "NCoins";
     private TMP_Text pointsUI;
 
+    [SerializeField] private GameObject selectBallMenu;
+
     private void Awake()
     {
         pointsUI = GameObject.Find(TAG_COIN).GetComponent<TMP_Text>();
@@ -23,5 +25,11 @@ public class UIControl : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void LoadSelectBallMenu()
+    {
+        Debug.Log("Load");
+        selectBallMenu.SetActive(true);
     }
 }

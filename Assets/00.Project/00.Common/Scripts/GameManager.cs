@@ -76,17 +76,27 @@ public class GameManager : MonoBehaviour
     {
 
         //scenesToLoad.Add(SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive));
-        
+
         //SceneManager.LoadSceneAsync("LoadingScene");
         //LoadingManager
 
-        if (SceneManager.GetActiveScene().name.Contains("Level_"))
+        UIControl uIControl = GameObject.FindObjectOfType<UIControl>();
+
+        if (ballObject == null && SceneManager.GetActiveScene().name.Contains("Level_"))
         {
+            //arrowCanvas.worldCamera = GameObject.FindObjectOfType<Camera>();
+            Debug.Log(" ---- uIControl.LoadSelectBallMenu() ---  ");
+            uIControl.LoadSelectBallMenu();
+            //LoadSelectBallMenu();
+        }
+
+        //if (SceneManager.GetActiveScene().name.Contains("Level_"))
+        //{
             //SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
          
             
             //scenesToLoad.Add(SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive));
-        }
+        //}
 
         /*
         //Chama a tela de seleção de bola
@@ -176,4 +186,6 @@ public class GameManager : MonoBehaviour
         win = false;
         UIManager.instance.StartUI();
     }
+
+    
 }

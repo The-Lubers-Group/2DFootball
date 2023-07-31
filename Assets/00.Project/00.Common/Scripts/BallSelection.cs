@@ -72,7 +72,10 @@ public class BallSelection : MonoBehaviour
         selectBall = ball;
         gameManager.ballObject = ball;
         
-        SceneManager.UnloadSceneAsync("SelectBall");
+        //GameObject.setV
+        this.gameObject.SetActive(false);
+
+        //SceneManager.UnloadSceneAsync("SelectBall");
     }
 
     public BaseBall GetSelectBall()
