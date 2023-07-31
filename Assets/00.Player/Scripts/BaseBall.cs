@@ -49,8 +49,9 @@ public class BaseBall : MonoBehaviour
 
     //public string nameIcon;
 
-    private GameObject arrowGo;
-    private GameObject arrowFill;
+    [SerializeField] private Canvas arrowCanvas;
+    [SerializeField] private Image arrow;
+    //[SerializeField] private Image arrowFull;
     protected GameInput gameInput;
 
     [HideInInspector] public float zRotate;
@@ -67,7 +68,7 @@ public class BaseBall : MonoBehaviour
     protected bool startTimer = false;
 
     // TAG
-    const string TAG_ARROW = "Arrow";
+    //const string TAG_ARROW = "Arrow";
     const string TAG_GI = "GameInput";
     const string TAG_PS = "StartPoint";
 
@@ -93,12 +94,24 @@ public class BaseBall : MonoBehaviour
         gameInput = GameObject.Find(TAG_GI).GetComponent<GameInput>();
 
         // Set Arrow
-        arrowGo = transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject;
-        arrowFill = arrowGo.transform.GetChild(0).gameObject;
+        //arrowDisable = transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject;
+        //arrowFull = arrowDisable.transform.GetChild(0).gameObject;
 
+
+        //update the position
+
+
+        //transform.position = transform.position + new Vector3(horizontalInput * movementSpeed * Time.deltaTime, verticalInput * movementSpeed * Time.deltaTime, 0);
+
+        //arrowCanvas.renderMode = RenderMode.ScreenSpaceCamera;
+        arrowCanvas.worldCamera = GameObject.FindObjectOfType<Camera>();
+        Debug.Log(GameObject.FindObjectOfType<Camera>());
+        
         // Disable arrow 
-        arrowGo.GetComponent<Image>().enabled = false;
-        arrowFill.GetComponent<Image>().enabled = false;
+        arrow.enabled = false;
+        arrow.transform.GetChild(0).GetComponent<Image>().enabled = false;
+        
+        //arrowFull.enabled = false;
 
 
         // Set Left and Right Wall
@@ -115,6 +128,7 @@ public class BaseBall : MonoBehaviour
         gameInput.OnForcePerformed += Gameinput_OnForcePerformed;
         gameInput.OnKickPressed += Gameinput_OnKickPressed;
         ballRigdbody2D = GetComponent<Rigidbody2D>();
+
     }
 
     void Update()
@@ -135,18 +149,23 @@ public class BaseBall : MonoBehaviour
         //RotationLimit();
         OnSetArrow();
         Wall();
+
     }
 
     // Posicionar a Img da Seta
     void OnSetArrow()
     {
-        arrowGo.GetComponent<Image>().rectTransform.localPosition = transform.position;
+        //arrow.rectTransform.localPosition = transform.position;
+        arrow.transform.position = transform.position;
+        //arrow.transform.position = new Vector2(transform.position.x, transform.position.y);
+
     }
 
     // Controla a rotação usando comandos do teclado
     void RotationArrow()
     {
-        arrowGo.GetComponent<Image>().rectTransform.eulerAngles = new Vector3(0, 0, zRotate);
+        //arrowDisable.GetComponent<Image>().rectTransform.eulerAngles = new Vector3(0, 0, zRotate);
+        arrow.rectTransform.eulerAngles = new Vector3(0, 0, zRotate);
     }
 
     // Limite do ângulo que a flecha pode ir
@@ -167,10 +186,20 @@ public class BaseBall : MonoBehaviour
     {
         if (ballRigdbody2D != null)
         {
-            if (GameManager.instance.kick == 0 && ballRigdbody2D.velocity.magnitude == 0 && arrowGo)
+            //if (GameManager.instance.kick == 0 && ballRigdbody2D.velocity.magnitude == 0 && arrowGo)
+            if (GameManager.instance.kick == 0 && arrow)
             {
-                arrowGo.GetComponent<Image>().enabled = true;
-                arrowFill.GetComponent<Image>().enabled = true;
+                //arrowDisable.GetComponent<Image>().enabled = true;
+                //arrowFull.GetComponent<Image>().enabled = true;
+
+                //arrowDisable.GetComponent<Image>().enabled = true;
+                //arrowFull.GetComponent<Image>().enabled = true;
+
+                arrow.enabled = true;
+                arrow.transform.GetChild(0).GetComponent<Image>().enabled = true;
+                //arrowFull.enabled = true;
+
+
                 ArrowUpdateForce();
             }
         }
@@ -181,15 +210,25 @@ public class BaseBall : MonoBehaviour
     {
         if (ballRigdbody2D != null)
         {
-            if (GameManager.instance.kick == 0 && ballRigdbody2D.velocity.magnitude == 0 && arrowGo)
+            //if (GameManager.instance.kick == 0 && ballRigdbody2D.velocity.magnitude == 0 && arrowGo)
+            if (GameManager.instance.kick == 0 && arrow)
             {
                 AudioManager.instance.SongsFXPlay(1);
                 ApplyForce();
                 //GameManager.instance.kick = 1;
                 force = 0;
-                arrowGo.GetComponent<Image>().enabled = false;
-                arrowFill.GetComponent<Image>().enabled = false;
-                arrowFill.GetComponent<Image>().fillAmount = 0;
+
+                //arrowDisable.GetComponent<Image>().enabled = false;
+                //arrowFull.GetComponent<Image>().enabled = false;
+                //arrowFull.GetComponent<Image>().fillAmount = 0;
+
+                arrow.enabled = false;
+                arrow.transform.GetChild(0).GetComponent<Image>().enabled = false;
+                arrow.transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
+                
+                //arrowFull.enabled = false;
+                //arrowFull.fillAmount = 0;
+
             }
         }
     }
@@ -218,10 +257,20 @@ public class BaseBall : MonoBehaviour
     // Função - Que define a animação de carregar a flecha de acordo com o tempo que o botão de força foi pressionado
     void ArrowUpdateForce()
     {
-        if (arrowGo)
+        if (arrow)
         {
-            arrowGo.transform.GetChild(0).GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
-            force = arrowFill.GetComponent<Image>().fillAmount * 1000;
+
+            arrow.transform.GetChild(0).GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
+            force = arrow.transform.GetChild(0).GetComponent<Image>().fillAmount * 1000;
+
+
+
+            //arrowDisable.transform.GetChild(0).GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
+            //force = arrowFull.GetComponent<Image>().fillAmount * 1000;
+            //force = arrow.transform.GetChild(0).GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
+            //force = arrow.transform.GetChild(0).GetComponent<Image>().fillAmount * 1000;
+            //force = arrowFull.fillAmount * 1000;
+            //force = arrow.transform.GetChild(0).GetComponent<Image>().fillAmount * 1000;
             //force = arrowGO.transform.GetChild(0).GetComponent<Image>().fillAmount * 1000;
         }
     }
