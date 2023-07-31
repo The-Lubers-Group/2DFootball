@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static System.TimeZoneInfo;
+using DG.Tweening;
+using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
+using UnityEngine.UI;
+
+
 
 public class LoadingManager : MonoBehaviour
 {
-   
-
     private UIManager uiManager;
     private GameManager gameManager;
 
@@ -19,11 +22,25 @@ public class LoadingManager : MonoBehaviour
     [SerializeField] private float transitionTime = 5f;
     public UnityEvent OnTransitionDone;
 
+    [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private Image loadingProgressBar;
+    //[SerializeField] private GameObject btn;
+
+
+
     private void Awake()
     {
         uiManager = FindObjectOfType<UIManager>();
         gameManager = FindObjectOfType<GameManager>();
         Time.timeScale = 1;
+    }
+
+    private void Update()
+    {
+        text.transform.DOScale(new Vector3(1.25f, 1.5f, 1), 1f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+        //text.transform.DOScale(new Vector3(1.25f, 1.5f, 1), 1f).SetEase(Ease.Linear).SetLoops(-1, LoopType.Yoyo);
+        //tweener = transform.DOScale(1.6f, 1.5f).SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo);
+
     }
 
     private void Start()
@@ -46,10 +63,15 @@ public class LoadingManager : MonoBehaviour
         while (currentTime < transitionTime)
         {
             currentTime += Time.deltaTime;
+
+            loadingProgressBar.fillAmount = Mathf.Clamp01(currentTime / transitionTime);
+            Debug.Log(currentTime);
+
             //Debug.Log(currentTime);
             yield return null;
         }
-       OnClose(); 
+        //btn.SetActive(true);
+        OnClose(); 
        //OnTransitionDone?.Invoke();
        //SceneManager.UnloadSceneAsync("LoadingScene");
        //SceneManager.LoadScene(level);
