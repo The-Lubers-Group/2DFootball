@@ -23,33 +23,23 @@ public class GameManager : MonoBehaviour
     //private bool isBallDeath = false;
     //[SerializeField] private GameObject GO;
     public BaseBall ballObject;
+    [SerializeField] private UIControl interfaceUI;
 
     public int kick = 1;
-    public Transform pos;
+    [HideInInspector] public Transform pos;
     [SerializeField] public int ballNum = 2;
     [SerializeField] public int ballInGame = 0;
     public bool win;
 
-    CardItem cardItem;
 
     // Index das Fases
     public bool beginGame;
 
     AsyncOperation asyncUnload;
 
-    [SerializeField] private BallSelection ballSelection;
-
     private void Awake()
     {
         // Certifique-se de que não há duplicatas e mantenha os dados quando mudar de fases
-        /*
-        if (SceneManager.GetActiveScene().name == "WinGameUI")
-        {
-            Destroy(gameObject);
-        }
-        */
-
-        //if (SceneManager.GetActiveScene().buildIndex < 7)
         if (instance == null)
         {
             instance = this;
@@ -64,6 +54,7 @@ public class GameManager : MonoBehaviour
         //pos = GameObject.Find(TAG).GetComponent<Transform>();
     }
 
+
     //Passar o método e procurar o objeto TEXT com o nome NCoins
     void Load(Scene scene, LoadSceneMode mode)
     {
@@ -71,6 +62,7 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Contains("Level_"))
         {
             pos = GameObject.Find(TAG).GetComponent<Transform>();
+            //Instantiate(interfaceUI, new Vector2(pos.position.x, pos.position.y), Quaternion.identity, pos);
             StartGame();
         }
     }

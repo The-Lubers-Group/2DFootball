@@ -5612,7 +5612,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ball: {fileID: 0}
-  otherGameObject: {fileID: 0}
   myCinemachine: {fileID: 764346321}
 --- !u!1 &1712233903
 GameObject:
@@ -6402,7 +6401,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4983948795508199483, guid: 353e7c4a32eb79a4ab3f4cdc57c99a5d, type: 3}
       propertyPath: m_Name
-      value: LevelScreen
+      value: InterfaceUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983948795508199483, guid: 353e7c4a32eb79a4ab3f4cdc57c99a5d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5241353818213440251, guid: 353e7c4a32eb79a4ab3f4cdc57c99a5d, type: 3}
       propertyPath: m_AnchorMax.y

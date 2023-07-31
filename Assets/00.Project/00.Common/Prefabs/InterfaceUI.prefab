@@ -1423,7 +1423,7 @@ GameObject:
   - component: {fileID: 7305554418790310344}
   - component: {fileID: 6883251316854367925}
   m_Layer: 5
-  m_Name: LevelScreen
+  m_Name: InterfaceUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
