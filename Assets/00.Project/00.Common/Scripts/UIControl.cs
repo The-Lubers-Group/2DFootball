@@ -18,7 +18,6 @@ public class UIControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("asdsdsdsdsdsdsdsdsdsdsdsdsd");
     }
 
     // Update is called once per frame
@@ -29,7 +28,6 @@ public class UIControl : MonoBehaviour
 
     public void LoadSelectBallMenu()
     {
-        Debug.Log("Load");
         selectBallMenu.SetActive(true);
     }
 }

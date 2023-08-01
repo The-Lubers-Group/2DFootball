@@ -23,8 +23,9 @@ public class BallSelection : MonoBehaviour
 
     private BaseBall ballManager;
     private Transform ballNoJogo;
-    [HideInInspector] public BaseBall selectBall;
+    [SerializeField] public BaseBall selectBall;
 
+    /*
     private void Awake()
     {
         if (instance = null)
@@ -38,10 +39,14 @@ public class BallSelection : MonoBehaviour
 
        // DontDestroyOnLoad(selectBall);
     }
+    */
 
     void Start()
     {
-        gameManager = GameObject.Find("GameManager(Clone)").GetComponent<GameManager>();
+        //gameManager = GameObject.Find("GameManager(Clone)").GetComponent<GameManager>();
+        gameManager = GameObject.FindObjectOfType<GameManager>();
+
+
         FillList();
     }
     void FillList()
@@ -70,8 +75,14 @@ public class BallSelection : MonoBehaviour
     {
         Time.timeScale = 1;
         selectBall = ball;
-        gameManager.ballObject = ball;
+
+        GameObject.FindObjectOfType<GameManager>().ballObject = ball;
+        //gameManager.ballObject = ball;
         
+        //Debug.Log(gameManager.ballObject);
+        //Debug.Log(ball);
+
+
         //GameObject.setV
         this.gameObject.SetActive(false);
 

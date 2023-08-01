@@ -31,7 +31,7 @@ public class LoadingManager : MonoBehaviour
     private void Awake()
     {
         uiManager = FindObjectOfType<UIManager>();
-        gameManager = FindObjectOfType<GameManager>();
+        //gameManager = FindObjectOfType<GameManager>();
         Time.timeScale = 1;
     }
 
@@ -63,11 +63,7 @@ public class LoadingManager : MonoBehaviour
         while (currentTime < transitionTime)
         {
             currentTime += Time.deltaTime;
-
             loadingProgressBar.fillAmount = Mathf.Clamp01(currentTime / transitionTime);
-            Debug.Log(currentTime);
-
-            //Debug.Log(currentTime);
             yield return null;
         }
         //btn.SetActive(true);

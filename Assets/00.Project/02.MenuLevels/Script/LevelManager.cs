@@ -35,7 +35,7 @@ public class LevelManager : MonoBehaviour
 
     List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
     public UnityEvent OnTransitionDone;
-    [SerializeField] private float transitionTime = 9f;
+    //[SerializeField] private float transitionTime = 9f;
 
 
     // Criação de uma lista de botões para mostrar as fases disponíveis
@@ -83,51 +83,6 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadSceneAsync(level);
         SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive);
         StartCoroutine(LoadingScreen());
-
-
-
-
-        //SceneManager.LoadSceneAsync(level);
-        //SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive);
-
-        /*
-        SceneManager.LoadScene("LoadingScene", LoadSceneMode.Additive);
-
-        LoadingManager lm = new LoadingManager();
-        lm.level = level;
-        //lm = FindObjectOfType<LoadingManager>();
-        //Debug.Log(lm);
-        Debug.Log(lm.level);
-        */
-
-
-
-        //LoadingManager.SetLevel(level);
-
-
-        //SceneManager.LoadSceneAsync(level);
-        //SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive);
-
-
-        //scenesToLoad.Add(SceneManager.LoadSceneAsync(level));
-        //scenesToLoad.Add(SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive));
-
-
-
-
-
-
-        //scenesToLoad.Add(SceneManager.LoadSceneAsync(level));
-        //scenesToLoad.Add(SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive));
-
-        //scenesToLoad.Add(SceneManager.LoadSceneAsync("LoadingScene"));
-        //(LoadingScreen());
-
-
-
-        // Transition Scene
-        //scenesToLoad.Add(SceneManager.LoadSceneAsync(TAG_TRANSITION_SCREAN, LoadSceneMode.Additive));
-
     }
 
     private void Awake()

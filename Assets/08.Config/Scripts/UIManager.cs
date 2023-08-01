@@ -160,8 +160,8 @@ public class UIManager : MonoBehaviour
     // Atualizar o UItexto com a quantidade do moeda do jogador 
     public void UpdateUI()
     {
-        pointsUI.text = ScoreManager.instance.coins.ToString();
-        ballUI.text = GameManager.instance.ballNum.ToString();
+        //pointsUI.text = ScoreManager.instance.coins.ToString();
+        //ballUI.text = GameManager.instance.ballNum.ToString();
 
         //Carregar quantidade de moeda do jogador
         coinsNumAfter = ScoreManager.instance.coins;

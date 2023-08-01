@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     //Ball Variables
     //private bool isBallDeath = false;
     //[SerializeField] private GameObject GO;
-    public BaseBall ballObject;
+    [SerializeField] public BaseBall ballObject;
     [SerializeField] private UIControl interfaceUI;
 
     public int kick = 1;
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public int ballNum = 2;
     [SerializeField] public int ballInGame = 0;
     public bool win;
-
+    private UIControl uIControl;
 
     // Index das Fases
     public bool beginGame;
@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     AsyncOperation asyncUnload;
 
     List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
+
+    [SerializeField] private BallSelection ballSelection;
 
     private void Awake()
     {
@@ -75,50 +77,29 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
-        //scenesToLoad.Add(SceneManager.LoadSceneAsync("LoadingScene", LoadSceneMode.Additive));
-
-        //SceneManager.LoadSceneAsync("LoadingScene");
-        //LoadingManager
-
-        UIControl uIControl = GameObject.FindObjectOfType<UIControl>();
+        uIControl = GameObject.FindObjectOfType<UIControl>();
+        //ballSelection = GameObject.FindObjectOfType<BallSelection>();
 
         if (ballObject == null && SceneManager.GetActiveScene().name.Contains("Level_"))
         {
-            //arrowCanvas.worldCamera = GameObject.FindObjectOfType<Camera>();
-            Debug.Log(" ---- uIControl.LoadSelectBallMenu() ---  ");
             uIControl.LoadSelectBallMenu();
-            //LoadSelectBallMenu();
         }
 
-        //if (SceneManager.GetActiveScene().name.Contains("Level_"))
-        //{
-            //SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
-         
-            
-            //scenesToLoad.Add(SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive));
-        //}
-
-        /*
-        //Chama a tela de seleção de bola
-        if (IdLevel.instance.level >= 4)
-        {
-            scenesToLoad.Add(SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive));
-           //asyncUnload = SceneManager.LoadSceneAsync("SelectBall", LoadSceneMode.Additive);
-        }
-        */
         StartGame();
-         ScoreManager.instance.GameStartScoreM();
+        //ScoreManager.instance.GameStartScoreM();
+
     }
 
-   
+
 
     // Update is called once per frame
     void Update()
     {
-        if(ballObject)
-        {
+        Debug.Log(ballObject);
 
-           BallBorn();
+        if (ballObject != null)
+        {
+            BallBorn();
         }
 
         if (ballObject)

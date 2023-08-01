@@ -93,19 +93,9 @@ public class BaseBall : MonoBehaviour
         // Set GameInput
         gameInput = GameObject.Find(TAG_GI).GetComponent<GameInput>();
 
-        // Set Arrow
-        //arrowDisable = transform.GetChild(0).transform.GetChild(0).transform.GetChild(0).gameObject;
-        //arrowFull = arrowDisable.transform.GetChild(0).gameObject;
-
-
-        //update the position
-
-
-        //transform.position = transform.position + new Vector3(horizontalInput * movementSpeed * Time.deltaTime, verticalInput * movementSpeed * Time.deltaTime, 0);
-
         //arrowCanvas.renderMode = RenderMode.ScreenSpaceCamera;
         arrowCanvas.worldCamera = GameObject.FindObjectOfType<Camera>();
-        Debug.Log(GameObject.FindObjectOfType<Camera>());
+        //Debug.Log(GameObject.FindObjectOfType<Camera>());
         
         // Disable arrow 
         arrow.enabled = false;
@@ -155,16 +145,12 @@ public class BaseBall : MonoBehaviour
     // Posicionar a Img da Seta
     void OnSetArrow()
     {
-        //arrow.rectTransform.localPosition = transform.position;
         arrow.transform.position = transform.position;
-        //arrow.transform.position = new Vector2(transform.position.x, transform.position.y);
-
     }
 
     // Controla a rotação usando comandos do teclado
     void RotationArrow()
     {
-        //arrowDisable.GetComponent<Image>().rectTransform.eulerAngles = new Vector3(0, 0, zRotate);
         arrow.rectTransform.eulerAngles = new Vector3(0, 0, zRotate);
     }
 
@@ -189,16 +175,8 @@ public class BaseBall : MonoBehaviour
             //if (GameManager.instance.kick == 0 && ballRigdbody2D.velocity.magnitude == 0 && arrowGo)
             if (GameManager.instance.kick == 0 && arrow)
             {
-                //arrowDisable.GetComponent<Image>().enabled = true;
-                //arrowFull.GetComponent<Image>().enabled = true;
-
-                //arrowDisable.GetComponent<Image>().enabled = true;
-                //arrowFull.GetComponent<Image>().enabled = true;
-
                 arrow.enabled = true;
                 arrow.transform.GetChild(0).GetComponent<Image>().enabled = true;
-                //arrowFull.enabled = true;
-
 
                 ArrowUpdateForce();
             }
@@ -218,16 +196,9 @@ public class BaseBall : MonoBehaviour
                 //GameManager.instance.kick = 1;
                 force = 0;
 
-                //arrowDisable.GetComponent<Image>().enabled = false;
-                //arrowFull.GetComponent<Image>().enabled = false;
-                //arrowFull.GetComponent<Image>().fillAmount = 0;
-
                 arrow.enabled = false;
                 arrow.transform.GetChild(0).GetComponent<Image>().enabled = false;
                 arrow.transform.GetChild(0).GetComponent<Image>().fillAmount = 0;
-                
-                //arrowFull.enabled = false;
-                //arrowFull.fillAmount = 0;
 
             }
         }
@@ -250,7 +221,6 @@ public class BaseBall : MonoBehaviour
         if (ballRigdbody2D != null)
         {
             ballRigdbody2D.AddForce(new Vector2(x, y));
-            //ballRigdbody2D.transform.DOLocalMove(new Vector2(x, y), 1);
         }
     }
 
@@ -259,19 +229,8 @@ public class BaseBall : MonoBehaviour
     {
         if (arrow)
         {
-
             arrow.transform.GetChild(0).GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
             force = arrow.transform.GetChild(0).GetComponent<Image>().fillAmount * 1000;
-
-
-
-            //arrowDisable.transform.GetChild(0).GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
-            //force = arrowFull.GetComponent<Image>().fillAmount * 1000;
-            //force = arrow.transform.GetChild(0).GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
-            //force = arrow.transform.GetChild(0).GetComponent<Image>().fillAmount * 1000;
-            //force = arrowFull.fillAmount * 1000;
-            //force = arrow.transform.GetChild(0).GetComponent<Image>().fillAmount * 1000;
-            //force = arrowGO.transform.GetChild(0).GetComponent<Image>().fillAmount * 1000;
         }
     }
 
