@@ -75,6 +75,9 @@ public class SettingsPanel : MonoBehaviour
         rectTransform.DOAnchorPos(new Vector2(0f, -60f), fadeTime, false).SetEase(Ease.InOutQuart);
         //canvasGroup.DOFade(1, fadeTime);
         background.DOFade(2, fadeTime);
+
+        //background.transform.DORotate(new Vector2(0f, -60f), 2f, RotateMode.Fast).SetLoops(-1).SetEase(Ease.Linear);
+        background.transform.DOLocalRotate(new Vector3(0, 0, 360), 10, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear).SetLoops(-1);
     }
 
     public void PanelFadeOut()

@@ -787,7 +787,7 @@ MonoBehaviour:
   canvasGroup: {fileID: 0}
   fadeTime: 1
   rectTransform: {fileID: 237756112239287076}
-  background: {fileID: 0}
+  background: {fileID: 3117193893917479771}
   starLeft: {fileID: 3655315468742224639}
   starCenter: {fileID: 6267815220253648410}
   starRight: {fileID: 7826837423286241979}
@@ -2027,16 +2027,16 @@ RectTransform:
   m_GameObject: {fileID: 8182166993810568043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7380361462389232546}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1364544534092449378
 CanvasRenderer:
@@ -2066,7 +2066,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c5440262198874d4dae03c960692059f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cdbfd3562ef036743afe5233d4c81009, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
