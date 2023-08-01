@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(ballObject);
+        //Debug.Log(ballObject);
 
         if (ballObject != null)
         {
@@ -147,14 +147,15 @@ public class GameManager : MonoBehaviour
     // O Player morreu e chama o panel de Game Over
     void GameOver()
     {
-        UIManager.instance.GameOverUI();
+        //UIManager.instance.GameOverUI();
         beginGame= false;
     }
 
     // O Player ganhou a fase
     void WinGame()
     {
-        UIManager.instance.WinGameUI();
+        //UIManager.instance.WinGameUI();
+        uIControl.LoadWinGameMenu();
         beginGame = false;
     }
 
@@ -165,7 +166,9 @@ public class GameManager : MonoBehaviour
         ballNum = 2;
         ballInGame = 0;
         win = false;
-        UIManager.instance.StartUI();
+        //UIManager.instance.StartUI();
+        // Criar a UI Control
+
     }
 
     

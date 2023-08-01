@@ -9,25 +9,19 @@ public class UIControl : MonoBehaviour
     private TMP_Text pointsUI;
 
     [SerializeField] private GameObject selectBallMenu;
+    [SerializeField] private GameObject WinGameMenu;
 
     private void Awake()
     {
         pointsUI = GameObject.Find(TAG_COIN).GetComponent<TMP_Text>();
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void LoadSelectBallMenu()
     {
         selectBallMenu.SetActive(true);
+    }
+
+    public void LoadWinGameMenu()
+    {
+        WinGameMenu.SetActive(true);
     }
 }
