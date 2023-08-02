@@ -13,7 +13,7 @@ public class MultiBall : BaseBall
     {
         for (int i = 0; i < ballPerKick; i++)
         {
-            BaseBall duplicate = Instantiate(GameManager.instance.ballObject, new Vector2(ballRigdbody2D.position.x, ballRigdbody2D.position.y), Quaternion.identity, GameManager.instance.pos);
+            BaseBall duplicate = Instantiate(GameManager.instance.ballObject, new Vector2(ballRigdbody2D.position.x, ballRigdbody2D.position.y), Quaternion.identity, GameManager.instance.startPoint);
 
             duplicate.GetComponentInChildren<SpriteRenderer>().DOColor(Color.blue, 0.3f);
             duplicateList.Add(duplicate);

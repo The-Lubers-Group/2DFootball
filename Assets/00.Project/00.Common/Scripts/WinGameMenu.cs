@@ -17,10 +17,9 @@ public class WinGameMenu : MenuManager
     [SerializeField] private Image starRight;
     public override void PanelFadeIn()
     {
-
-        myPointsText.text = "+ " + ScoreManager.instance.coins.ToString();
+        //myPointsText.text = "+ " + ScoreManager.instance.coins.ToString();
+        //myPointsText.text = "+ " + coinsNumResult;
         //myPointsText.text = ScoreManager.instance.coins.ToString();
-
 
         rectTransform.transform.localPosition = new Vector3(0f, -10000f, 0f);
         rectTransform.DOAnchorPos(new Vector2(0f, -60f), fadeTime, false).SetEase(Ease.InOutQuart);

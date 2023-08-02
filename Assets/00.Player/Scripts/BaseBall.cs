@@ -1,4 +1,5 @@
 using DG.Tweening;
+using DG.Tweening.Core.Easing;
 using NaughtyAttributes;
 using System;
 using System.Collections;
@@ -78,6 +79,8 @@ public class BaseBall : MonoBehaviour
     const string TAG_HIT = "hit";
     const string TAG_WIN = "win";
 
+
+    private GameManager gameManager;
     //private bool isMoving = false;
 
     private void Awake()
@@ -119,6 +122,8 @@ public class BaseBall : MonoBehaviour
         gameInput.OnKickPressed += Gameinput_OnKickPressed;
         ballRigdbody2D = GetComponent<Rigidbody2D>();
 
+
+        gameManager = GameObject.FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -258,10 +263,28 @@ public class BaseBall : MonoBehaviour
         // Se a bola atingir uma armadilha, ela sofre dano.
         if (collision.gameObject.CompareTag(TAG_HIT))
         {
+            
             Instantiate(ballDeathAnim, transform.position, Quaternion.identity);
+
+            //GameManager.instance.ballObject = ;
+            BaseBall ball = GameManager.instance.ballObject;
             Destroy(this.gameObject);
+
             GameManager.instance.ballInGame -= 1;
             GameManager.instance.ballNum -= 1;
+            
+            //GameManager.instance.ballObject = ball;
+            GameObject.FindObjectOfType<GameManager>().ballObject = ball;
+            Debug.Log("FindObjectOfType" + ball);
+
+
+
+            //GameManager.instance.BallBorn();  
+            //gameManager.BallBorn();
+
+
+            Debug.Log("hit");
+
         }
 
         if (collision.gameObject.CompareTag(TAG_WIN))

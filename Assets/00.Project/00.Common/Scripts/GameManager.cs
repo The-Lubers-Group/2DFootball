@@ -23,14 +23,15 @@ public class GameManager : MonoBehaviour
     //private bool isBallDeath = false;
     //[SerializeField] private GameObject GO;
     [SerializeField] public BaseBall ballObject;
-    [SerializeField] private UIControl interfaceUI;
 
     public int kick = 1;
-    [HideInInspector] public Transform pos;
+    [SerializeField] public Transform startPoint;
     [SerializeField] public int ballNum = 2;
     [SerializeField] public int ballInGame = 0;
     public bool win;
+
     private UIControl uIControl;
+    //[SerializeField] private UIControl interfaceUI;
 
     // Index das Fases
     public bool beginGame;
@@ -67,7 +68,10 @@ public class GameManager : MonoBehaviour
         //if (IdLevel.instance.level != ID_MENU_LEVEL)
         if (SceneManager.GetActiveScene().name.Contains("Level_"))
         {
-            pos = GameObject.Find(TAG).GetComponent<Transform>();
+            
+            startPoint = GameObject.Find(TAG).GetComponent<Transform>();
+            
+            
             //Instantiate(interfaceUI, new Vector2(pos.position.x, pos.position.y), Quaternion.identity, pos);
             StartGame();
         }
@@ -85,41 +89,50 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(ballObject);
-        if(!uIControl)
+        Debug.Log(ballObject);
+        if (!uIControl)
         {   
             uIControl = GameObject.FindObjectOfType<UIControl>();
         }
 
-        if (ballObject != null)
+        if (ballObject == null && ballNum > 0)
+        {
+            uIControl.LoadSelectBallMenu();
+        }
+
+        if (ballNum > 0 && ballObject)
         {
             BallBorn();
         }
-
+        /*
+        if (ballObject)
+        {
+            BallBorn();
+        }
+        */
         if (ballObject)
         {
             ScoreManager.instance.UpdateScore();
-            UIManager.instance.UpdateUI();
         }
-
+     
         if (ballNum <= 0)
         {
             GameOver();
         }
+        
 
-        if(win == true)
+        if (win == true)
         {
             WinGame();
         }
     }
 
     // Cria o objeto bola no jogo
-    void BallBorn()
+    public void BallBorn()
     {
-
         if (ballNum > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
         {
-            ballObject = Instantiate(ballObject, new Vector2(pos.position.x, pos.position.y), Quaternion.identity,pos);
+            ballObject = Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity,startPoint);
 
             ballInGame += 1;
             kick = 0;
@@ -128,7 +141,7 @@ public class GameManager : MonoBehaviour
         {
             if (ballNum > 0 && ballInGame == 0)
             {
-                ballObject = Instantiate(ballObject, new Vector2(pos.position.x, pos.position.y), Quaternion.identity,pos);
+                ballObject = Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity,startPoint);
                 ballInGame++;
                 kick = 0;
             }
@@ -138,8 +151,10 @@ public class GameManager : MonoBehaviour
     // O Player morreu e chama o panel de Game Over
     void GameOver()
     {
+        Debug.Log("GameOver");
         //UIManager.instance.GameOverUI();
-        beginGame= false;
+        //uIControl.LoadGameOverMenu();
+        beginGame = false;
     }
 
     // O Player ganhou a fase
