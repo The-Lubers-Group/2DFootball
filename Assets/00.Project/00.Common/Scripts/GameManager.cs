@@ -77,17 +77,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         uIControl = GameObject.FindObjectOfType<UIControl>();
-        /*
-        //ballSelection = GameObject.FindObjectOfType<BallSelection>();
-
-        if (ballObject == null && SceneManager.GetActiveScene().name.Contains("Level_"))
-        {
-            uIControl.LoadSelectBallMenu();
-        }
-        */
         StartGame();
-        //ScoreManager.instance.GameStartScoreM();
-
     }
 
 
@@ -96,6 +86,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //Debug.Log(ballObject);
+        if(!uIControl)
+        {   
+            uIControl = GameObject.FindObjectOfType<UIControl>();
+        }
 
         if (ballObject != null)
         {
@@ -123,11 +117,9 @@ public class GameManager : MonoBehaviour
     void BallBorn()
     {
 
-        // if(IdLevel.instance.level >= 3)
-        // {
         if (ballNum > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
         {
-            Instantiate(ballObject, new Vector2(pos.position.x, pos.position.y), Quaternion.identity,pos);
+            ballObject = Instantiate(ballObject, new Vector2(pos.position.x, pos.position.y), Quaternion.identity,pos);
 
             ballInGame += 1;
             kick = 0;
@@ -136,8 +128,7 @@ public class GameManager : MonoBehaviour
         {
             if (ballNum > 0 && ballInGame == 0)
             {
-                Instantiate(ballObject, new Vector2(pos.position.x, pos.position.y), Quaternion.identity,pos);
-
+                ballObject = Instantiate(ballObject, new Vector2(pos.position.x, pos.position.y), Quaternion.identity,pos);
                 ballInGame++;
                 kick = 0;
             }
