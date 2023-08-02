@@ -76,8 +76,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*
         uIControl = GameObject.FindObjectOfType<UIControl>();
+        /*
         //ballSelection = GameObject.FindObjectOfType<BallSelection>();
 
         if (ballObject == null && SceneManager.GetActiveScene().name.Contains("Level_"))
@@ -155,7 +155,7 @@ public class GameManager : MonoBehaviour
     void WinGame()
     {
         //UIManager.instance.WinGameUI();
-        //uIControl.LoadWinGameMenu();
+        uIControl.LoadWinGameMenu();
         beginGame = false;
     }
 
