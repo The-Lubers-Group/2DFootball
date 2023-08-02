@@ -49,7 +49,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Pregress: 0.64177394
+    - _Pregress: 0.9104249
     m_Colors:
     - _TransitionColor: {r: 0.5372549, g: 0.8980393, b: 1, a: 1}
   m_BuildTextureStacks: []
