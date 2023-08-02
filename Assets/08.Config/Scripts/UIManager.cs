@@ -176,9 +176,9 @@ public class UIManager : MonoBehaviour
     // O Player ganhou a fase
     public void WinGameUI()
     {
-        winPanel.SetActive(true);
+        //winPanel.SetActive(true);
         //
-        //SceneManager.LoadSceneAsync("WinGameUI");
+        SceneManager.LoadSceneAsync("WinGameUI");
     }
 
     // Ativa e desliga o Panel de Game Over
