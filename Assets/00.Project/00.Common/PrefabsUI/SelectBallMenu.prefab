@@ -524,7 +524,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   content: {fileID: 6949482057153972087}
-  cardItens: {fileID: 4214322786919084696, guid: 11088245678100446968aeacb95e483f, type: 3}
+  cardItens: {fileID: 4214322786919084696, guid: 3f939e75ab0a68c4e9a4220a7642967e, type: 3}
   ballSelectionPanel: {fileID: 2550944211962196511}
   ballList:
   - {fileID: 2313389061527154070, guid: e9ca82e875c4f224eae605cbaf7cd6ec, type: 3}
@@ -696,7 +696,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 512, y: 624}
-  m_Spacing: {x: 60, y: 60}
+  m_CellSize: {x: 800, y: 1000}
+  m_Spacing: {x: 20, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 4
