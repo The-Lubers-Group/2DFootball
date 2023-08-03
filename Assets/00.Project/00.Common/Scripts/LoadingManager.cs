@@ -77,6 +77,7 @@ public class LoadingManager : MonoBehaviour
     {
         SceneManager.UnloadSceneAsync("LoadingScene");
         OnTransitionDone?.Invoke();
+        Time.timeScale = 0;
     }
 
 }
