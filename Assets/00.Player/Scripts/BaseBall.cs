@@ -131,6 +131,14 @@ public class BaseBall : MonoBehaviour
         SpecialUpdate();
         RotationArrow();
 
+        if (ballRigdbody2D == null)
+        {
+            //ballRigdbody2D = GetComponent<Rigidbody2D>();
+            ballRigdbody2D = GameObject.FindAnyObjectByType<Rigidbody2D>();
+        }
+
+
+
         Vector2 inputVector = gameInput.GetArrowRotationNormalized();
         if (inputVector.y == 1 || zRotate > 90)
         {
@@ -211,6 +219,12 @@ public class BaseBall : MonoBehaviour
 
     private void Gameinput_OnKickPressed(object sender, System.EventArgs e)
     {
+        if (ballRigdbody2D == null)
+        {
+            //ballRigdbody2D = GetComponent<Rigidbody2D>();
+            ballRigdbody2D = GameObject.FindAnyObjectByType<Rigidbody2D>();
+        }
+
         if (ballRigdbody2D.velocity.magnitude != 0)
         {
             OnSpecialAttack();
