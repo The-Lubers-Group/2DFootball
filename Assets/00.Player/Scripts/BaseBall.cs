@@ -275,15 +275,11 @@ public class BaseBall : MonoBehaviour
             
             //GameManager.instance.ballObject = ball;
             GameObject.FindObjectOfType<GameManager>().ballObject = ball;
-            Debug.Log("FindObjectOfType" + ball);
-
-
-
+            
+            //Debug.Log("FindObjectOfType" + ball);
             //GameManager.instance.BallBorn();  
             //gameManager.BallBorn();
-
-
-            Debug.Log("hit");
+            //Debug.Log("hit");
 
         }
 

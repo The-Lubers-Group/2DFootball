@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(ballObject);
+        //Debug.Log(ballObject);
         if (!uIControl)
         {   
             uIControl = GameObject.FindObjectOfType<UIControl>();
@@ -103,7 +103,12 @@ public class GameManager : MonoBehaviour
         if (ballNum > 0 && ballObject)
         {
             BallBorn();
+        }else if (ballNum <= 0)
+        {
+            GameOver();
         }
+
+
         /*
         if (ballObject)
         {
@@ -115,10 +120,7 @@ public class GameManager : MonoBehaviour
             ScoreManager.instance.UpdateScore();
         }
      
-        if (ballNum <= 0)
-        {
-            GameOver();
-        }
+        
         
 
         if (win == true)
@@ -151,9 +153,9 @@ public class GameManager : MonoBehaviour
     // O Player morreu e chama o panel de Game Over
     void GameOver()
     {
-        Debug.Log("GameOver");
+        //Debug.Log("GameOver");
         //UIManager.instance.GameOverUI();
-        //uIControl.LoadGameOverMenu();
+        uIControl.LoadGameOverMenu();
         beginGame = false;
     }
 

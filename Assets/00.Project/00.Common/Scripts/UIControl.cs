@@ -45,13 +45,17 @@ public class UIControl : MonoBehaviour
         //LoadSelectBallMenu();
         //Carregar quantidade de moeda do jogador no começo do jogo
         coinsNumAfter = ScoreManager.instance.coins;
-        
-        pointsUI.text = ScoreManager.instance.coins.ToString();
-        ballUI.text = "x" + GameManager.instance.ballNum.ToString();
+
+        winGameMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
+        pauseMenu.SetActive(false);
     }
 
     private void Update()
     {
+        pointsUI.text = ScoreManager.instance.coins.ToString();
+        ballUI.text = "x" + GameManager.instance.ballNum.ToString();
+
         // Se o jogador morrer, as moedas que pegou na fase são descontadas.
         coinsNumResult = coinsNumAfter - coinsNumBefore;
     }
