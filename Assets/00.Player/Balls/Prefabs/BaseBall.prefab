@@ -61,7 +61,6 @@ MonoBehaviour:
   ballDeathAnim: {fileID: 1192529644611734885, guid: fdce22aa325c65648b92a57de21d4c6d, type: 3}
   arrowCanvas: {fileID: 2229292651214679974}
   arrow: {fileID: 4934358304280449743}
-  arrowFull: {fileID: 2982541965279075895}
   zRotate: 0
 --- !u!58 &3358993031181052560
 CircleCollider2D:
@@ -467,7 +466,7 @@ GameObject:
   - component: {fileID: 5627304512500430242}
   - component: {fileID: 7073208769232479576}
   m_Layer: 0
-  m_Name: ballObj
+  m_Name: Unit_Ball
   m_TagString: ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

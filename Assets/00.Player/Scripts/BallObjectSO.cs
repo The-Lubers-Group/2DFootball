@@ -7,12 +7,13 @@ using UnityEngine;
 using NaughtyAttributes;
 
 
-[CreateAssetMenu(fileName ="BallObjectSO", menuName = "ScriptableObjects/BallObjectSO")]
+[CreateAssetMenu(fileName ="Data_BallSO", menuName = "ScriptableObjects/Unit/Info Data Ball SO", order = 1)]
 public class BallObjectSO : ScriptableObject
 {
     [HideInInspector] public int ballId;
 
     [Header("Valores padrões")]
+    
     [Label("Prefab da Bola")]
     public BaseBall prefabBall;
 
@@ -26,10 +27,7 @@ public class BallObjectSO : ScriptableObject
     public float ballPrice;
 
     [Label("Bola já foi comprada")]
-    //[ReadOnly] public bool WasBought;
     public bool WasBought;
-    //[Label("Dano da Bola")]
-    //public float ballDamage;
 
     [Label("Velocidade máxima da Bola")]
     public float ballVelocity;
@@ -37,9 +35,9 @@ public class BallObjectSO : ScriptableObject
     [Label("Peso da Bola")]
     public float ballWeight;
 
+    /*
     [Space(5)]
     [Header("Animação")]
     public RuntimeAnimatorController animController;
-
-   
+    */
 }

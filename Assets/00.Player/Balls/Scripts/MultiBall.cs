@@ -8,11 +8,17 @@ public class MultiBall : BaseBall
     [SerializeField] private int ballPerKick = 2;
     [SerializeField] private LayerMask m_LayerMask;
 
+    //BaseBall ball = GameObject.FindAnyObjectByType<BaseBall>();
+
+
     private List<BaseBall> duplicateList = new List<BaseBall>();
     public override void OnSpecialAttack()
     {
         for (int i = 0; i < ballPerKick; i++)
         {
+
+            //BaseBall duplicate = Instantiate(ball, new Vector2(ballRigdbody2D.position.x, ballRigdbody2D.position.y), Quaternion.identity, GameManager.instance.startPoint);
+
             BaseBall duplicate = Instantiate(GameManager.instance.ballObject, new Vector2(ballRigdbody2D.position.x, ballRigdbody2D.position.y), Quaternion.identity, GameManager.instance.startPoint);
 
             duplicate.GetComponentInChildren<SpriteRenderer>().DOColor(Color.blue, 0.3f);
