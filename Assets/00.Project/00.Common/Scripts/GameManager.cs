@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     //Ball Variables
-    //private bool isBallDeath = false;
-    //[SerializeField] private GameObject GO;
     [SerializeField] public BaseBall ballObject;
 
     public int kick = 1;
@@ -32,33 +30,12 @@ public class GameManager : MonoBehaviour
     public bool win;
 
     private UIControl uIControl;
-    //[SerializeField] private UIControl interfaceUI;
 
     // Index das Fases
     public bool beginGame;
-
     AsyncOperation asyncUnload;
-
     List<AsyncOperation> scenesToLoad = new List<AsyncOperation>();
-
-    [SerializeField] private BallSelection ballSelection;
-
-
-    //Passar o método e procurar o objeto TEXT com o nome NCoins
-   
-    /*
-    void Load(Scene scene, LoadSceneMode mode)
-    {
-        //if (IdLevel.instance.level != ID_MENU_LEVEL)
-        if (SceneManager.GetActiveScene().name.Contains("Level_"))
-        {
-           
-            //Instantiate(interfaceUI, new Vector2(pos.position.x, pos.position.y), Quaternion.identity, pos);
-            //StartGame();
-        }
-    }
-    */
-
+    //[SerializeField] private BallSelection ballSelection;
 
     private void Awake()
     {
@@ -72,30 +49,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        //scenesToLoad.Add(SceneManager.LoadSceneAsync("LoadingScene"));
-        //SceneManager.sceneLoaded += Load;
-        //pos = GameObject.Find(TAG).GetComponent<Transform>();
-        //uIControl.LoadSelectBallMenu();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         attempts = maxAttempts;
-        
         SelectBall();
-
-        //print("void Start()");
-        //print("sendo chamado" );
-        //StartGame();
-        //if (ballObject == null && ballNum > 0)
-        //print("ballNum: " + ballNum);
-        //print("ballObject: " + ballObject);
-        //print("ballInGame: " + ballInGame);
-        //CreateBall();
-        //if (ballInGame == 0 && ballObject)
-        //{
-        //}
     }
 
     // Update is called once per frame
@@ -111,62 +71,10 @@ public class GameManager : MonoBehaviour
         {
             WinGame();
         }
-
-
-
-
-        /*
-        if (!ballObject)
-        {
-            SelectBall();
-        }
-        */
-        /*
-        if (attempts <= 0)
-        {
-            GameOver();
-        }
-        */
-
-        //Debug.Log(ballObject);
-        //if (!uIControl)
-        //{   
-        // uIControl = GameObject.FindObjectOfType<UIControl>();
-        //}
-
-        //if (ballObject == null && ballNum > 0)
-        //{
-        //uIControl.LoadSelectBallMenu();
-        //}
-
-        /*
-        if(ballInGame == 0 && ballNum > 0 && ballObject)
-        {
-            //BallBorn();
-            CreateBall();
-            ballInGame = 1;
-        }
-        */
-
-
-        //if (ballNum > 0 && ballObject)
-        //{
-        //BallBorn();
-        //}
-
-
-
-
-        /*
-        if (ballObject)
-        {
-            BallBorn();
-        }
-        */
     }
 
     // Cria o objeto bola no jogo
-    public void CreateBall(BaseBall ball)
+    public void AddBall()
     {
         if (!startPoint)
         {
@@ -175,27 +83,36 @@ public class GameManager : MonoBehaviour
 
         if (startPoint)
         {
-            if (attempts > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
-            {
-                ballObject = Instantiate(ball, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
-                ballInGame = 1;
-                kick = 0;
-            }
+            //Debug.Log("ballObject 1 : " + ballObject);
+
+                if (attempts > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
+                {
+                    //ballObject = Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
+                   Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
+
+                    ballInGame = 1;
+                    kick = 0;
+                }
+
+
+            
+            //Debug.Log("ballObject depois do IF : " + ballObject);
+
+
+
+            /*
             else
             {
                 if (attempts > 0 && ballInGame == 0)
                 {
-                    ballObject = Instantiate(ball, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
+                    ballObject = Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
                     ballInGame = 1;
                     kick = 0;
                 }
             }
+           */
         }
-
-       
     }
-
-
     
     // O Player ganhou a fase
     void WinGame()
@@ -227,62 +144,47 @@ public class GameManager : MonoBehaviour
     //Start game
     public void StartGame(BaseBall ball)
     {
+        ballObject = ball;
+
+        //SelectBall();
+
         beginGame = true;
         attempts = maxAttempts;
         ballInGame = 0;
         win = false;
-        
-        CreateBall(ball);
-        
-        
-        
-        //UIManager.instance.StartUI();
-        // Criar a UI Control
-        /*
-        print("chegou aqui");
-        print("startPoint: " + startPoint);
-        print("attempts: " + attempts);
-        print("maxAttempts: " + maxAttempts);
-        print("ballInGame: " + ballInGame);
-        */
+
+        AddBall();
     }
 
 
     // O Player morreu e chama o panel de Game Over
     void GameOver()
     {
-        //Destroy(this.ballObject.gameObject);
-        //Destroy(this.ballObject);
-        //Debug.Log("GameOver");
-        //UIManager.instance.GameOverUI();
         uIControl.LoadGameOverMenu();
         beginGame = false;
         ballInGame = 0;
-        //ballObject.ballRigdbody2D.velocity = Vector3.zero;
-
     }
 
 
-    public void RespawnBall(BaseBall ball)
+    public void RespawnBall()
     {
+        //Destroy(this.ballObject.gameObject);
+
         attempts -= 1;
         ballInGame = 0;
-        //ScoreManager.instance.UpdateScore();
-
-        //win = false;
 
         if (attempts > 0)
         {
-            CreateBall(ball);
+            AddBall();
             //ballObject.transform.position = new Vector2(startPoint.position.x, startPoint.position.y);
             //ballObject.ballRigdbody2D.velocity = Vector3.zero;
             //ballObject.ballRigdbody2D.AddForce(new Vector2(0, 0));
+
         }
-        if(attempts <= 0 )
+        if (attempts <= 0 )
         {
             GameOver();
         }
-        //BallBorn();
     }
 
 }

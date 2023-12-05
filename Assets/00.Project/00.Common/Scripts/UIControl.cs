@@ -28,26 +28,13 @@ public class UIControl : MonoBehaviour
 
     private void Awake()
     {
-        /*
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-        */
-        //pointsUI = GameObject.Find(TAG_COIN).GetComponent<TMP_Text>();
         coinsNumBefore = PlayerPrefs.GetInt("saveCoin");
-
-        //selectBallMenu.SetActive(true);
     }
 
     private void Start()
     {
-        selectBallMenu.SetActive(true);
-        //LoadSelectBallMenu();
+
+        LoadSelectBallMenu();
         //Carregar quantidade de moeda do jogador no começo do jogo
         coinsNumAfter = ScoreManager.instance.coins;
         winGameMenu.SetActive(false);
@@ -95,8 +82,6 @@ public class UIControl : MonoBehaviour
         if (GameManager.instance.win)
         {
             int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-            //Debug.Log(SceneManager.GetSceneByBuildIndex(nextSceneIndex).name.Contains("Level_"));
-            //Debug.Log(SceneManager.GetSceneByBuildIndex(nextSceneIndex).path);
             SceneManager.LoadScene(nextSceneIndex);
             if (SceneManager.GetSceneByBuildIndex(nextSceneIndex).name.Contains("Level_"))
             {
@@ -112,8 +97,10 @@ public class UIControl : MonoBehaviour
 
     public void SceneRetryLevel()
     {
+        SceneManager.LoadScene(1);
+        /*
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
+                
         if(GameManager.instance.win)
         {
             // Se o jogador vencer, ele apenas recarrega a fase.
@@ -126,54 +113,13 @@ public class UIControl : MonoBehaviour
             ScoreManager.instance.LoseCoins(coinsNumResult);
             coinsNumResult = 0;
         }
-        pauseMenu.SetActive(false);
-        selectBallMenu.SetActive(true);
-        GameManager.instance.attempts = GameManager.instance.maxAttempts;
+        
 
-
-
-
-        //Scene scene = SceneManager.GetActiveScene();
-        //SceneManager.LoadScene(scene.name);
-
-
-        /*
-        if (GameManager.instance.win == false)
-        {
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-            // Se o jogador morrer, as moedas que pegou na fase são descontadas.
-            coinsNumResult = coinsNumAfter - coinsNumBefore;
-            ScoreManager.instance.LoseCoins(coinsNumResult);
-            coinsNumResult = 0;
-        }
-        else
-        {
-            // Se o jogador vencer, ele apenas recarrega a fase.
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            coinsNumResult = 0;
-        }
-        */
         //pauseMenu.SetActive(false);
-
-
         //selectBallMenu.SetActive(true);
-        //Time.timeScale = 0;
-
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //GameManager.instance.SelectBall();
-        //LoadSelectBallMenu();
-
-        /*
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        pauseMenu.SetActive(false);
-        Time.timeScale = 0;
-        LoadSelectBallMenu();
+        GameManager.instance.attempts = GameManager.instance.maxAttempts;
         */
     }
-
 
     public void SceneListLevels()
     {

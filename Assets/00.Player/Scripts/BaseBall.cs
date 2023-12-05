@@ -321,14 +321,8 @@ public class BaseBall : MonoBehaviour
 
     public void Respawn()
     {
-        gameManager.RespawnBall(GameManager.instance.ballObject);
-        Destroy(this.gameObject);
-        //ballRigdbody2D.AddForce(new Vector2(0, 0));
-        //ballRigdbody2D.velocity = Vector3.zero;
-        //Destroy(this.gameObject);
-        //GameManager.instance.ballInGame -= 1;
-        //GameManager.instance.ballInGame = 0;
-        //GameManager.instance.attempts -= 1;
+       gameManager.RespawnBall();
+       Destroy(this.gameObject);
     }
 }
 
