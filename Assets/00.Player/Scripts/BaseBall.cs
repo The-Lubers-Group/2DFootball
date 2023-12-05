@@ -80,6 +80,9 @@ public class BaseBall : MonoBehaviour
     const string TAG_WIN = "win";
 
 
+    public Vector2 inputVector;
+
+
     private GameManager gameManager;
     //private bool isMoving = false;
 
@@ -124,22 +127,47 @@ public class BaseBall : MonoBehaviour
 
 
         gameManager = GameObject.FindObjectOfType<GameManager>();
+
+
     }
 
     void Update()
     {
+        inputVector = gameInput.GetArrowRotationNormalized();
+
+        if (ballRigdbody2D.velocity.magnitude > 0.001)
+        {
+            arrow.enabled = false;
+        }
+        else 
+        {
+            arrow.enabled = true;
+        }
+
         SpecialUpdate();
         RotationArrow();
 
         if (ballRigdbody2D == null)
         {
-            //ballRigdbody2D = GetComponent<Rigidbody2D>();
             ballRigdbody2D = GameObject.FindAnyObjectByType<Rigidbody2D>();
         }
 
+        //print(inputVector.y);
+
+        if (inputVector.y > 0 || zRotate > 90)
+        {
+            zRotate += inputVector.y;
+            //zRotate += 1;
+        }
+        else if (inputVector.y < 0  || zRotate > 0)
+        {
+            zRotate += inputVector.y;
+            
+            //zRotate += -1;
+        }
 
 
-        Vector2 inputVector = gameInput.GetArrowRotationNormalized();
+        /*
         if (inputVector.y == 1 || zRotate > 90)
         {
             zRotate += inputVector.y;
@@ -148,10 +176,14 @@ public class BaseBall : MonoBehaviour
         {
             zRotate += inputVector.y;
         }
+        */
+
 
         //RotationLimit();
         OnSetArrow();
         Wall();
+
+
 
     }
 
@@ -248,8 +280,14 @@ public class BaseBall : MonoBehaviour
     {
         if (arrow)
         {
+            //arrow.transform.GetChild(0).GetComponent<Image>().fillAmount += .5f * Time.deltaTime;
             arrow.transform.GetChild(0).GetComponent<Image>().fillAmount += 1f * Time.deltaTime;
             force = arrow.transform.GetChild(0).GetComponent<Image>().fillAmount * 1000;
+            
+            if(arrow.transform.GetChild(0).GetComponent<Image>().fillAmount == 1f)
+            {
+                arrow.transform.GetChild(0).GetComponent<Image>().fillAmount = 0f;
+            }
         }
     }
 

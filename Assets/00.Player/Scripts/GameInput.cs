@@ -22,6 +22,7 @@ public class GameInput : MonoBehaviour
 
     void Update()
     {
+
         if (playerInputActions.Player.BallForce.IsPressed())
         {
             Force_started();

@@ -46,6 +46,7 @@ public class UIControl : MonoBehaviour
     {
         pointsUI.text = ScoreManager.instance.coins.ToString();
         ballUI.text = "x" + GameManager.instance.attempts.ToString();
+        //ballUI.text = "IV.Y: " + GameManager.instance.ballObject.inputVector.y;
 
         // Se o jogador morrer, as moedas que pegou na fase são descontadas.
         coinsNumResult = coinsNumAfter - coinsNumBefore;

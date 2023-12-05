@@ -168,7 +168,7 @@ public class GameManager : MonoBehaviour
 
         if (attempts > 0)
         {
-            print("respawn");
+            //print("respawn");
             AddBall();
             //ballObject.transform.position = new Vector2(startPoint.position.x, startPoint.position.y);
             //ballObject.ballRigdbody2D.velocity = Vector3.zero;
