@@ -85,22 +85,15 @@ public class GameManager : MonoBehaviour
         {
             //Debug.Log("ballObject 1 : " + ballObject);
 
-                if (attempts > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
-                {
-                   ballObject = Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
-                   //Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
+            if (attempts > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
+            {
+                ballObject = Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
+                //Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
 
-                    ballInGame = 1;
-                    kick = 0;
-                }
-
-
-            
+                ballInGame = 1;
+                kick = 0;
+            }
             //Debug.Log("ballObject depois do IF : " + ballObject);
-
-
-
-            /*
             else
             {
                 if (attempts > 0 && ballInGame == 0)
@@ -110,10 +103,10 @@ public class GameManager : MonoBehaviour
                     kick = 0;
                 }
             }
-           */
+          
         }
     }
-    
+
     // O Player ganhou a fase
     void WinGame()
     {
@@ -124,8 +117,8 @@ public class GameManager : MonoBehaviour
 
     public void SelectBall()
     {
-       
-        if(!uIControl)
+
+        if (!uIControl)
         {
             if (GameObject.FindObjectOfType<UIControl>())
             {
@@ -134,7 +127,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(uIControl)
+        if (uIControl)
         {
             uIControl.LoadSelectBallMenu();
 
@@ -175,13 +168,14 @@ public class GameManager : MonoBehaviour
 
         if (attempts > 0)
         {
+            print("respawn");
             AddBall();
             //ballObject.transform.position = new Vector2(startPoint.position.x, startPoint.position.y);
             //ballObject.ballRigdbody2D.velocity = Vector3.zero;
             //ballObject.ballRigdbody2D.AddForce(new Vector2(0, 0));
 
         }
-        if (attempts <= 0 )
+        if (attempts <= 0)
         {
             GameOver();
         }

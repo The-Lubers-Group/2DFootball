@@ -321,6 +321,7 @@ public class BaseBall : MonoBehaviour
 
     public void Respawn()
     {
+       
        gameManager.RespawnBall();
        Destroy(this.gameObject);
     }
