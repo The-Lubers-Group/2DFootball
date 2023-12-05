@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using NaughtyAttributes;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 
 public class BallSelection : MonoBehaviour
 {
@@ -73,20 +73,22 @@ public class BallSelection : MonoBehaviour
     // Função responsável por enviar o jogador para o nível selecionado
     void ClickLevel(BaseBall ball)
     {
-        Time.timeScale = 1;
+        print("Bola selecionada: " + ball.name);
         selectBall = ball;
-
         GameObject.FindObjectOfType<GameManager>().ballObject = ball;
+       
         //gameManager.ballObject = ball;
-        
         //Debug.Log(gameManager.ballObject);
         //Debug.Log(ball);
-
-
         //GameObject.setV
-        this.gameObject.SetActive(false);
-
+       // this.gameObject.SetActive(false);
         //SceneManager.UnloadSceneAsync("SelectBall");
+
+
+        gameManager.StartGame(ball);
+        this.gameObject.SetActive(false);
+        Time.timeScale = 1;
+
     }
 
     public BaseBall GetSelectBall()

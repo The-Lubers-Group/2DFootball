@@ -53,7 +53,7 @@ public class BombBall : BaseBall
         Instantiate(ballDeathAnim, ball.transform.position, Quaternion.identity);
         Destroy(this.gameObject);
         GameManager.instance.ballInGame -= 1;
-        GameManager.instance.ballNum -= 1;
+        GameManager.instance.attempts -= 1;
     }
 
     IEnumerator explodeTimer()

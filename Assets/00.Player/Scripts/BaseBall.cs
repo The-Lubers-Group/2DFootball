@@ -57,7 +57,7 @@ public class BaseBall : MonoBehaviour
 
     [HideInInspector] public float zRotate;
     //[HideInInspector] public bool shoot = false;
-    protected Rigidbody2D ballRigdbody2D;
+    public Rigidbody2D ballRigdbody2D;
 
     // Wall 
     private Transform leftWall;
@@ -258,16 +258,22 @@ public class BaseBall : MonoBehaviour
     {
         if (this.gameObject.transform.position.x > rightWall.position.x)
         {
+            Respawn();
+            /*
             Destroy(this.gameObject);
             GameManager.instance.ballInGame -= 1;
             GameManager.instance.ballNum -= 1;
+            */
         }
 
         if (this.gameObject.transform.position.x < leftWall.position.x)
         {
+            Respawn();
+            /*
             Destroy(this.gameObject);
             GameManager.instance.ballInGame -= 1;
             GameManager.instance.ballNum -= 1;
+            */
         }
     }
 
@@ -282,10 +288,13 @@ public class BaseBall : MonoBehaviour
 
             //GameManager.instance.ballObject = ;
             BaseBall ball = GameManager.instance.ballObject;
-            Destroy(this.gameObject);
 
-            GameManager.instance.ballInGame -= 1;
-            GameManager.instance.ballNum -= 1;
+
+            Respawn();
+            //Destroy(this.gameObject);
+
+            //GameManager.instance.ballInGame -= 1;
+            //GameManager.instance.ballNum -= 1;
             
             //GameManager.instance.ballObject = ball;
             GameObject.FindObjectOfType<GameManager>().ballObject = ball;
@@ -308,5 +317,18 @@ public class BaseBall : MonoBehaviour
     
     public virtual void OnSpecialAttack() { }
     public virtual void SpecialUpdate() { }
+
+
+    public void Respawn()
+    {
+        gameManager.RespawnBall(GameManager.instance.ballObject);
+        Destroy(this.gameObject);
+        //ballRigdbody2D.AddForce(new Vector2(0, 0));
+        //ballRigdbody2D.velocity = Vector3.zero;
+        //Destroy(this.gameObject);
+        //GameManager.instance.ballInGame -= 1;
+        //GameManager.instance.ballInGame = 0;
+        //GameManager.instance.attempts -= 1;
+    }
 }
 

@@ -1,7 +1,9 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.ShaderGraph;
+//using UnityEditor.ShaderGraph;
+//using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -38,14 +40,16 @@ public class UIControl : MonoBehaviour
         */
         //pointsUI = GameObject.Find(TAG_COIN).GetComponent<TMP_Text>();
         coinsNumBefore = PlayerPrefs.GetInt("saveCoin");
+
+        //selectBallMenu.SetActive(true);
     }
 
     private void Start()
     {
+        selectBallMenu.SetActive(true);
         //LoadSelectBallMenu();
         //Carregar quantidade de moeda do jogador no começo do jogo
         coinsNumAfter = ScoreManager.instance.coins;
-
         winGameMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         pauseMenu.SetActive(false);
@@ -54,7 +58,7 @@ public class UIControl : MonoBehaviour
     private void Update()
     {
         pointsUI.text = ScoreManager.instance.coins.ToString();
-        ballUI.text = "x" + GameManager.instance.ballNum.ToString();
+        ballUI.text = "x" + GameManager.instance.attempts.ToString();
 
         // Se o jogador morrer, as moedas que pegou na fase são descontadas.
         coinsNumResult = coinsNumAfter - coinsNumBefore;
@@ -108,9 +112,35 @@ public class UIControl : MonoBehaviour
 
     public void SceneRetryLevel()
     {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        
+        if(GameManager.instance.win)
+        {
+            // Se o jogador vencer, ele apenas recarrega a fase.
+            coinsNumResult = 0;
+        }
+        else
+        {
+            // Se o jogador morrer, as moedas que pegou na fase são descontadas.
+            coinsNumResult = coinsNumAfter - coinsNumBefore;
+            ScoreManager.instance.LoseCoins(coinsNumResult);
+            coinsNumResult = 0;
+        }
+        pauseMenu.SetActive(false);
+        selectBallMenu.SetActive(true);
+        GameManager.instance.attempts = GameManager.instance.maxAttempts;
+
+
+
+
+        //Scene scene = SceneManager.GetActiveScene();
+        //SceneManager.LoadScene(scene.name);
+
+
+        /*
         if (GameManager.instance.win == false)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
             // Se o jogador morrer, as moedas que pegou na fase são descontadas.
             coinsNumResult = coinsNumAfter - coinsNumBefore;
@@ -120,13 +150,22 @@ public class UIControl : MonoBehaviour
         else
         {
             // Se o jogador vencer, ele apenas recarrega a fase.
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             coinsNumResult = 0;
         }
-        pauseMenu.SetActive(false);
-        Time.timeScale = 0;
-        LoadSelectBallMenu();
-     
+        */
+        //pauseMenu.SetActive(false);
+
+
+        //selectBallMenu.SetActive(true);
+        //Time.timeScale = 0;
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //GameManager.instance.SelectBall();
+        //LoadSelectBallMenu();
+
         /*
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         pauseMenu.SetActive(false);
