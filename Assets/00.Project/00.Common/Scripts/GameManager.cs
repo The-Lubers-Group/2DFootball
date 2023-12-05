@@ -87,8 +87,8 @@ public class GameManager : MonoBehaviour
 
                 if (attempts > 0 && ballInGame == 0 && Camera.main.transform.position.x <= 0.05f)
                 {
-                    //ballObject = Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
-                   Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
+                   ballObject = Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
+                   //Instantiate(ballObject, new Vector2(startPoint.position.x, startPoint.position.y), Quaternion.identity, startPoint);
 
                     ballInGame = 1;
                     kick = 0;

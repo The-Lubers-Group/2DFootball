@@ -1382,14 +1382,9 @@ MonoBehaviour:
     levelName: 2
     isEnable: 0
     unlock: 0
-  - levelID: 3
-    levelName: 3
-    isEnable: 0
-    unlock: 0
-  - levelID: 4
-    levelName: 4
-    isEnable: 0
-    unlock: 0
+  OnTransitionDone:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1278412661
 Transform:
   m_ObjectHideFlags: 0

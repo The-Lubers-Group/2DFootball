@@ -79,20 +79,35 @@ public class UIControl : MonoBehaviour
 
     public void SceneNextLevel()
     {
+        SceneManager.LoadScene(1);
+
+        /*
+
+
         if (GameManager.instance.win)
         {
             int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
             SceneManager.LoadScene(nextSceneIndex);
-            if (SceneManager.GetSceneByBuildIndex(nextSceneIndex).name.Contains("Level_"))
-            {
-                SceneManager.LoadScene(nextSceneIndex);
-            }
-            else
+
+
+            if (nextSceneIndex == 9)
             {
                 SceneManager.LoadScene(1);
             }
-
+            else
+            {
+                if (SceneManager.GetSceneByBuildIndex(nextSceneIndex).name.Contains("Level_"))
+                {
+                    SceneManager.LoadScene(nextSceneIndex);
+                }
+                else
+                {
+                    SceneManager.LoadScene(1);
+                }
+            }
         }
+
+        */
     }
 
     public void SceneRetryLevel()
